@@ -1,6 +1,10 @@
+import java.util.Scanner;
+
 public class test {
     public static void main(String[] args) {
+        Scanner input= new Scanner(System.in);
+
         CashSystem lol = new CashSystem();
-        lol.cashInputCheck(2.5,20);
+        lol.transaction(input.next());
     }
 }

@@ -1,24 +1,83 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CashSystem {
-    private Map<String,Double> notes =new HashMap<>();
-    private Map<String,Double> coins =new HashMap<>();
+    private HashMap cash =new HashMap<String, Double>(){{
+        {
+            put("$5",5.0);
+            put("$10",10.0);
+            put("$20",20.0);
+            put("10c",0.1);
+            put("20c",0.2);
+            put("50c",0.5);
+            put("$1",1.0);
+            put("$2",2.0);
+        }
+    }};
 
     public CashSystem(){}
-    private void notesInitialization(){
-        notes.put("$5",5.0);
-        notes.put("$10",10.0);
-        notes.put("$20",20.0);
-    }
-    private void coinsInitialization(){
-        coins.put("10c",0.1);
-        coins.put("20c",0.2);
-        coins.put("50c",0.5);
-        coins.put("$1",1.0);
-        coins.put("$2",2.0);
+
+    public double cashInput(String input){
+        double inputtedVal = 0;
+        boolean end = false;
+        while(!end){
+            System.out.println("Please choose the note or coin value,");
+            System.out.println("Followed by the amount of that value after a space:");
+            System.out.println("(E.g. 1 10 = $200 inputted )");
+            System.out.println("    1. $20 note");
+            System.out.println("    2. $10 note");
+            System.out.println("    3.  $5 note");
+            System.out.println("    4.  $2 coin");
+            System.out.println("    5.  $1 coin");
+            System.out.println("    6. 50c coin");
+            System.out.println("    7. 20c coin");
+            System.out.println("    8. 10c coin");
+            System.out.println("    9. Finish input.");
+            if(cashHandler(inputChecker(input))==-1){
+                end = true;
+                return inputtedVal;
+            }
+            inputtedVal+= cashHandler(inputChecker(input));
+        }
+        return 0;
     }
 
+    private List<Integer> inputChecker(String input){
+        String[] splitter = input.split(" ");
+        List<Integer> finalList = new ArrayList<>();
+        try{
+            finalList.add(Integer.parseInt(splitter[0]));
+            finalList.add(Integer.parseInt(splitter[1]));
+        }catch (Exception e){
+            System.out.println("Please make sure only input number in the following format:");
+            System.out.println("<cash><space><amount>");
+        }
+        return null;
+    }
+    private double cashHandler(List<Integer> choice){
+        switch (choice.get(0)){
+           case 1 :
+                return 20*choice.get(1);
+            case 2 :
+                return 10*choice.get(1);
+            case 3 :
+                return 5*choice.get(1);
+            case 4 :
+                return 2*choice.get(1);
+            case 5 :
+                return 1*choice.get(1);
+            case 6 :
+                return 0.5*choice.get(1);
+            case 7 :
+                return 0.2*choice.get(1);
+            case 8 :
+                return 0.1*choice.get(1);
+            case 9:
+                return -1;
+            default:
+                System.out.println("Error input please check again.");
+        }
+        return 0;
+    }
     public void cashInputCheck(double cost,double inputCash){
         if(inputCash<cost){
             System.out.println("The cash inputted is not enough.");
@@ -28,6 +87,11 @@ public class CashSystem {
         else{
             changeSystem(cost,inputCash);
         }
+    }
+    public void transaction(String input){
+        double userInput = cashInput(input);
+        cashInputCheck(100,userInput);
+
     }
     public double changeSystem(double cost,double inputCash){
 
@@ -214,7 +278,6 @@ public class CashSystem {
         System.out.println("$0.2:"+ numberOf2Cents);
         System.out.println("$0.1:"+ numberOf1Cents);
     }
-
     private void moreThan01(double cost){
         double numberOf1Cents = cost/0.1;
         System.out.println("$0.1:"+ numberOf1Cents);
