@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Driver",
+            "request": "launch",
+            "mainClass": "Driver",
+            "projectName": "VandingMachine"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - VendingMachine",
+            "request": "launch",
+            "mainClass": "VendingMachine",
+            "projectName": "VandingMachine"
+        }
+    ]
+}
