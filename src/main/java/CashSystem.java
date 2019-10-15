@@ -79,9 +79,7 @@ public class CashSystem {
         }
     }
 
-    public void transaction(){
-        cashInput(5.2);
-    }
+
 
     //manages the change to user
     private void changeSystem(double cost, double inputCash){
