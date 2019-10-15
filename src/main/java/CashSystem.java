@@ -3,11 +3,17 @@ import java.util.*;
 public class CashSystem {
 
     public void cashInput(double cost){
-        Scanner input= new Scanner(System.in);
+        Scanner user= new Scanner(System.in);
         double inputtedVal = 0;
         while((Math.round(inputtedVal * 10) / 10.0)<cost){
             cashChoiceText();
-            List<Integer> userInput = inputChecker(input.nextLine());
+            String input = user.nextLine();
+
+            if(input.equals("9")){
+                System.out.println("Transaction canceled.See you next time!");
+                return;
+            }
+            List<Integer> userInput = inputChecker(input);
             inputtedVal += cashHandler(userInput);
             if(inputtedVal>=cost||(Math.round(inputtedVal * 10) / 10.0)>=cost){
                 changeSystem(cost,inputtedVal);
@@ -33,6 +39,7 @@ public class CashSystem {
         System.out.println("    6. 50c coin");
         System.out.println("    7. 20c coin");
         System.out.println("    8. 10c coin");
+        System.out.println("    9. Cancel Transaction");
     }
 
     //check if input is valid
@@ -73,13 +80,14 @@ public class CashSystem {
                 return 0.2*choice.get(1);
             case 8 :
                 return 0.1*choice.get(1);
+            case 9:
+
+                return -1;
             default:
                 System.out.println("Invalid input, please make sure to input the given choice.");
                return 0;
         }
     }
-
-
 
     //manages the change to user
     private void changeSystem(double cost, double inputCash){
