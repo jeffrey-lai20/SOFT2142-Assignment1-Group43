@@ -12,11 +12,22 @@ public class CustomerSystem {
 
         // Shows items available and number of items available
         System.out.println("Items Avaliable: ");
+        // Get items from each category and print it
 
 
         // Type in product name or unique code
             // Do for while loop until user EOF
+        Scanner input = new Scanner(System.in);
         System.out.println("Select Item: ");
+
+        String item_selected = input.nextLine();
+
+        System.out.println("You have selected " + item_selected);
+
+        // Add to cart
+        // Decline --> does not match any product description 
+
+
 
         // Confirmation
         System.out.println("To confirm, items selected are: ");
