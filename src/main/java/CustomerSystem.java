@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-public class CustomerSystem {
-=======
 import java.util.*;
 import java.io.*;
 
@@ -42,5 +39,4 @@ public class CustomerSystem {
     }
 
 
->>>>>>> 543120fde177f93bda9d800345fd42b6dbd4c159
 }
