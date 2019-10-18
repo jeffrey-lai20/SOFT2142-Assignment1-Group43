@@ -32,39 +32,77 @@ public class CustomerSystem {
 
                 System.out.println("Drinks - ");
                 for (Item i : drinks) {
-                        System.out.println(i.getName());
+                        System.out.println(i.getName()+": "+i.getQuantity());
                 }
+                System.out.println();
 
                 System.out.println("Chocolates - ");
                 for (Item i : chocolates) {
-                        System.out.println(i.getName());
+                        System.out.println(i.getName()+": "+i.getQuantity());
                 }
+                System.out.println()
 
                 System.out.println("Chips - ");
                 for (Item i : chips) {
-                        System.out.println(i.getName());
+                        System.out.println(i.getName()+": "+i.getQuantity());
                 }
+                System.out.println()
 
                 System.out.println("Lollies - ");
                 for (Item i : lollies) {
-                        System.out.println(i.getName());
+                        System.out.println(i.getName()+": "+i.getQuantity());
                 }
-
+                System.out.println()
         }
 
-        private void enterItem() {
+        private void enterItem(ArrayList<Item> items) {
                 // Type in product name or unique code
                 // Do for while loop until user EOF
                 Scanner input = new Scanner(System.in);
-                System.out.println("Enter Item: ");
 
-                String itemSelected = input.nextLine();
+                String itemSelected;
+                int quantitySelected
 
-                System.out.println("Enter amount: ");
-                int amountSelected = input.nextInt();
+                // Checks if item entered is valid
+                int itemExists = 0;
+                while (itemExists == 0;) {
+                        System.out.println("Enter Item: ");
+                        itemSelected = input.nextLine();
 
+                        for (Item i : items) {
+                                if (itemSelected.equalsIgnoreCase(i.getName())) {
+                                        itemExists = 1;
+                                        break;
+                                }
+                        }
 
-                System.out.println("You have selected " + item_selected);
+                        if (itemExists != 1) {
+                                System.out.println("Invalid Item. Please enter again.");
+                        }
+                }
+
+                // Checks if quantity entered is valid
+                int amountValid = 0;
+                while (amountValid == 0) {
+                        System.out.println("Enter quantity: ");
+                        quantitySelected = input.nextInt();
+
+                        for (Item i : items) {
+                                if (itemSelected.equalsIgnoreCase(i.getName())) {
+                                        if (i.getQuantity() >= quantitySelected) {
+                                                amountValid = 1;
+                                                break;
+                                        }
+                                }
+                        }
+
+                }
+
+                if (quantitySelected == 1) {
+                        System.out.println("You have selected " + itemSelected);
+                } else {
+                        System.out.println("You have selected " + quantitySelected + " " + itemSelected + "s ");
+                }
 
                 // Add to cart
                 // Decline --> does not match any product description
