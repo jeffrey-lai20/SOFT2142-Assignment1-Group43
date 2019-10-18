@@ -27,7 +27,7 @@ public class ItemImpl implements Item {
     }
 
     @Override
-    public void getQuantity() {
+    public double getQuantity() {
         return this.quantity;
 
     }

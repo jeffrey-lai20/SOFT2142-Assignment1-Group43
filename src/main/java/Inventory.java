@@ -19,7 +19,7 @@ public class Inventory {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] productInfo = line.split(",", 3);
-                Item i = new ItemImpl(productInfo[0], Double.valueOf(productInfo[1]), Item.TYPE.valueOf(productInfo[2])); 
+                Item i = new ItemImpl(productInfo[0], Double.valueOf(productInfo[1]), Item.TYPE.valueOf(productInfo[2]), Double.valueOf(productInfo[3])); 
                 this.items.add(i);
             }
         } catch (Exception e) {
