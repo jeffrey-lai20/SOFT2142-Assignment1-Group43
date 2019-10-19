@@ -190,6 +190,6 @@ public class CashSystemTest {
         testList = new ArrayList<>();
         testList.add(200);
         testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),-1,0.0);
+        assertEquals(testSystem.cashHandler(testList),0,0.0);
     }
 }

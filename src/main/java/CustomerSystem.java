@@ -17,13 +17,13 @@ public class CustomerSystem {
                 ArrayList<Item> lollies = new ArrayList<Item>();
 
                 for (Item i : items) {
-                        if (i.getType() == DRINKS) {
+                        if (i.getType() == Item.TYPE.DRINKS) {
                                 drinks.add(i);
-                        } else if (i.getType() == CHOCOLATES) {
+                        } else if (i.getType() == Item.TYPE.CHOCOLATES) {
                                 chocolates.add(i);
-                        } else if (i.getType() == CHIPS) {
+                        } else if (i.getType() == Item.TYPE.CHIPS) {
                                 chips.add(i);
-                        } else if (i.getType() == LOLLIES) {
+                        } else if (i.getType() == Item.TYPE.LOLLIES) {
                                 lollies.add(i);
                         }
                 }
@@ -60,8 +60,8 @@ public class CustomerSystem {
                 // Do for while loop until user EOF
                 Scanner input = new Scanner(System.in);
 
-                String itemSelected;
-                int quantitySelected;
+                String itemSelected = null;
+                int quantitySelected = 0;
 
                 // Checks if item entered is valid
                 int itemExists = 0;
