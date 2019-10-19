@@ -40,19 +40,19 @@ public class CustomerSystem {
                 for (Item i : chocolates) {
                         System.out.println(i.getName()+": "+i.getQuantity());
                 }
-                System.out.println()
+                System.out.println();
 
                 System.out.println("Chips - ");
                 for (Item i : chips) {
                         System.out.println(i.getName()+": "+i.getQuantity());
                 }
-                System.out.println()
+                System.out.println();
 
                 System.out.println("Lollies - ");
                 for (Item i : lollies) {
                         System.out.println(i.getName()+": "+i.getQuantity());
                 }
-                System.out.println()
+                System.out.println();
         }
 
         private void enterItem(ArrayList<Item> items) {
@@ -61,11 +61,11 @@ public class CustomerSystem {
                 Scanner input = new Scanner(System.in);
 
                 String itemSelected;
-                int quantitySelected
+                int quantitySelected;
 
                 // Checks if item entered is valid
                 int itemExists = 0;
-                while (itemExists == 0;) {
+                while (itemExists == 0) {
                         System.out.println("Enter Item: ");
                         itemSelected = input.nextLine();
 
