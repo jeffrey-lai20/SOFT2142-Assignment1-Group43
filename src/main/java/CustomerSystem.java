@@ -8,7 +8,7 @@ public class CustomerSystem {
         private ArrayList<Item.TYPE> cart = new ArrayList<>();
         private ArrayList<Integer> cartQuantity = new ArrayList<>();
 
-        // Select item ( availability), specify number of items
+        // Select item (availability), specify number of items
         public void itemsAvaliable(ArrayList<Item> items) {
 
                 // Sort each items into categories and print them
@@ -29,7 +29,7 @@ public class CustomerSystem {
                         }
                 }
 
-                System.out.println("Here are our items available: ");
+                System.out.println("Here are our items available: \n");
 
                 System.out.println("Drinks - ");
                 for (Item i : drinks) {
@@ -129,7 +129,7 @@ public class CustomerSystem {
                 }
 
                 // Add to cart
-                //Need to do this for specific selections when specific items have been determined in other code.
+                // Need to do this for specific selections when specific items have been determined in other code.
                 if (itemSelected != null) {
                         switch (itemSelected) {
                                 case ("Chips"):
