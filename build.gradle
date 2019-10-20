@@ -16,4 +16,4 @@ dependencies {
 }
 
 apply plugin: 'application'
-mainClassName = 'VendingMachine'
+mainClassName = 'Driver'

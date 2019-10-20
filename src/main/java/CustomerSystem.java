@@ -5,11 +5,11 @@ public class CustomerSystem {
         // Can type in product name or a unique code
         // Can select more than one item in one go.
         // Can cancel transaction before buying.
-        ArrayList<Item.TYPE> cart = new ArrayList<>();
-        ArrayList<Integer> cartQuantity = new ArrayList<Integer>();
+        private ArrayList<Item.TYPE> cart = new ArrayList<>();
+        private ArrayList<Integer> cartQuantity = new ArrayList<>();
 
         // Select item ( availability), specify number of items
-        private void itemsAvaliable(ArrayList<Item> items) {
+        public void itemsAvaliable(ArrayList<Item> items) {
 
                 // Sort each items into categories and print them
                 ArrayList<Item> drinks = new ArrayList<Item>();
@@ -29,26 +29,23 @@ public class CustomerSystem {
                         }
                 }
 
-                System.out.println("Items Avaliable: ");
+                System.out.println("Here are our items available: ");
 
                 System.out.println("Drinks - ");
                 for (Item i : drinks) {
                         System.out.println(i.getName()+": "+i.getQuantity());
                 }
                 System.out.println();
-
                 System.out.println("Chocolates - ");
                 for (Item i : chocolates) {
                         System.out.println(i.getName()+": "+i.getQuantity());
                 }
                 System.out.println();
-
                 System.out.println("Chips - ");
                 for (Item i : chips) {
                         System.out.println(i.getName()+": "+i.getQuantity());
                 }
                 System.out.println();
-
                 System.out.println("Lollies - ");
                 for (Item i : lollies) {
                         System.out.println(i.getName()+": "+i.getQuantity());
@@ -56,19 +53,29 @@ public class CustomerSystem {
                 System.out.println();
         }
 
-        private void enterItem(ArrayList<Item> items) {
+        public void enterItem(ArrayList<Item> items) {
                 // Type in product name or unique code
                 // Do for while loop until user EOF
                 Scanner input = new Scanner(System.in);
+
+                if (input.hasNextLine()) {
+                        String test = input.nextLine(); //Testing scanner input, not working.
+                        System.out.println(test);
+                }
 
                 String itemSelected = null;
                 int quantitySelected = 0;
 
                 // Checks if item entered is valid
                 int itemExists = 0;
-                while (itemExists == 0) {
+                while (itemExists == 0 && input.hasNextLine()) {
                         System.out.println("Enter Item: ");
                         itemSelected = input.nextLine();
+
+                        if (itemSelected == null) {
+                                System.out.println("Invalid input.");
+                                System.exit(1);
+                        }
                         if (itemSelected.equalsIgnoreCase("Cancel")) {
                                 break;
                                 //Stop the transaction, either back to start or end program.
@@ -88,7 +95,7 @@ public class CustomerSystem {
 
                 // Checks if quantity entered is valid
                 int amountValid = 0;
-                while (amountValid == 0) {
+                while (amountValid == 0 && input.hasNextInt()) {
                         System.out.println("Enter quantity: ");
                         try {
                                 quantitySelected = input.nextInt();
@@ -123,29 +130,32 @@ public class CustomerSystem {
 
                 // Add to cart
                 //Need to do this for specific selections when specific items have been determined in other code.
-                switch (itemSelected) {
-                        case ("Chips"):
-                                cart.add(Item.TYPE.CHIPS);      //Adds item to cart.
-                                cartQuantity.add(quantitySelected);     //Adds quantity to list, same index as cart.
-                                break;
-                        case ("Drinks"):
-                                cart.add(Item.TYPE.DRINKS);
-                                cartQuantity.add(quantitySelected);
-                                break;
-                        case("Chocolates"):
-                                cart.add(Item.TYPE.CHOCOLATES);
-                                cartQuantity.add(quantitySelected);
-                                break;
-                        case("Lollies"):
-                                cart.add(Item.TYPE.LOLLIES);
-                                cartQuantity.add(quantitySelected);
-                                break;
-                        default:
-                                System.out.println("Invalid selection.");
+                if (itemSelected != null) {
+                        switch (itemSelected) {
+                                case ("Chips"):
+                                        cart.add(Item.TYPE.CHIPS);      //Adds item to cart.
+                                        cartQuantity.add(quantitySelected);     //Adds quantity to list, same index as cart.
+                                        break;
+                                case ("Drinks"):
+                                        cart.add(Item.TYPE.DRINKS);
+                                        cartQuantity.add(quantitySelected);
+                                        break;
+                                case("Chocolates"):
+                                        cart.add(Item.TYPE.CHOCOLATES);
+                                        cartQuantity.add(quantitySelected);
+                                        break;
+                                case("Lollies"):
+                                        cart.add(Item.TYPE.LOLLIES);
+                                        cartQuantity.add(quantitySelected);
+                                        break;
+                                default:
+                                        System.out.println("Invalid selection.");
+                        }
                 }
+
         }
 
-        private void confirmation() {
+        public void confirmation() {
                 // Confirmation
                 System.out.println("To confirm, items selected are: ");
                 for (int i = 0; i < cart.size(); i++) {
@@ -172,6 +182,14 @@ public class CustomerSystem {
                         System.out.println("Invalid input.");
                         System.out.println("Continue with transaction? (Y/N)");
                 }
+        }
+
+        public ArrayList<Item.TYPE> getCart () {
+                return cart;
+        }
+
+        public ArrayList<Integer> getCartQuantity() {
+                return cartQuantity;
         }
 
 
