@@ -1,2 +1,15 @@
-Mount Franklin,2.5,DRINKS,10
+Water,2.5,DRINKS,10
+Soft Drink,3.0,DRINKS,10
+Juice,3.0,DRINKS,10
+M&M,4.0,CHOCOLATES,10
+Bounty,4.0,CHOCOLATES,10
+Mars,4.0,CHOCOLATES,10
 Snickers,4.0,CHOCOLATES,10
+Original,5.0,CHIPS,10
+Chicken,5.0,CHIPS,10
+BBQ,5.0,CHIPS,10
+Sweet Chilly,5.0,CHIPS,10
+Sour Worms,4.5,LOLLIES,10
+Jellybeans,4.5,LOLLIES,10
+Little Bears,4.5,LOLLIES,10
+Party Mix,4.5,LOLLIES,10
