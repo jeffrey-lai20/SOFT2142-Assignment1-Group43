@@ -17,15 +17,15 @@ public class CustomerSystem {
                 ArrayList<Item> lollies = new ArrayList<Item>();
 
                 for (Item i : items) {
-                        if (i.getType() == DRINKS) {
-                                drinks.add(i);
-                        } else if (i.getType() == CHOCOLATES) {
-                                chocolates.add(i);
-                        } else if (i.getType() == CHIPS) {
-                                chips.add(i);
-                        } else if (i.getType() == LOLLIES) {
-                                lollies.add(i);
-                        }
+                    if (i.getType() == DRINKS) {
+                            drinks.add(i);
+                    } else if (i.getType() == CHOCOLATES) {
+                            chocolates.add(i);
+                    } else if (i.getType() == CHIPS) {
+                            chips.add(i);
+                    } else if (i.getType() == LOLLIES) {
+                            lollies.add(i);
+                    }
                 }
 
                 System.out.println("Items Avaliable: ");
