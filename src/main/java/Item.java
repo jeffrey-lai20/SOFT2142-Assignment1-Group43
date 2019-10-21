@@ -2,11 +2,11 @@ public interface Item {
     public String getName();
     public double getPrice();
     public TYPE getType();
-    public double getQuantity();
+    public Integer getQuantity();
     public void setName(String name);
     public void setPrice(double price);
     public void setType(TYPE t);
-    public void setQuantity(double quantity);
+    public void setQuantity(Integer quantity);
 
     public enum TYPE {
         DRINKS,

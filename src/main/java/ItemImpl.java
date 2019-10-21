@@ -2,9 +2,9 @@ public class ItemImpl implements Item {
     private String name;
     private double price;
     private TYPE type;
-    private double quantity;
+    private Integer quantity;
     
-    public ItemImpl(String name, double price, TYPE type, double quantity) {
+    public ItemImpl(String name, double price, TYPE type, Integer quantity) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -27,7 +27,7 @@ public class ItemImpl implements Item {
     }
 
     @Override
-    public double getQuantity() {
+    public Integer getQuantity() {
         return this.quantity;
 
     }
@@ -49,7 +49,7 @@ public class ItemImpl implements Item {
 
 
     @Override
-    public void setQuantity(double quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
 
     }

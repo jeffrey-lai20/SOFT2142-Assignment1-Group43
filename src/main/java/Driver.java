@@ -19,9 +19,24 @@ public class Driver {
         String itemSelected = null;
         int quantitySelected = 0;
 
+        System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
+        Scanner input = new Scanner(System.in);
+        if (input.hasNextLine()) {
+            String userInput = input.nextLine();
+            while (userInput.equals("2")) {
+                // Show Customer Login
+                staffSystem.loginScreen();
+                if (staffSystem.staffLoggedIn()) {
+                    staffSystem.showMenu(inventory);
+                }
+                System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
+                userInput = input.nextLine();
+            }
+        }
+        
+        
         customerSystem.itemsAvaliable();
         System.out.println("Please make a selection.");
-        Scanner input = new Scanner(System.in);
         System.out.println("Enter Item: ");
 //        while (input.hasNext()) {
 //            System.out.println(input.next());
