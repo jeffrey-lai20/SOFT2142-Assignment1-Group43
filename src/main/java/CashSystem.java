@@ -2,15 +2,15 @@ import java.util.*;
 
 public class CashSystem {
 
+
     public void cashInput(double cost){
         Scanner user= new Scanner(System.in);
         double inputtedVal = 0;
         while((Math.round(inputtedVal * 10) / 10.0)<cost){
             cashChoiceText();
             String input = user.nextLine();
-
             if(input.equals("9")){
-                System.out.println("Transaction canceled.See you next time!");
+                System.out.println("Transaction cancelled.See you next time!");
                 return;
             }
             List<Integer> userInput = inputChecker(input);
@@ -27,7 +27,7 @@ public class CashSystem {
         }
     }
     //prints out input menu
-    private void cashChoiceText(){
+    void cashChoiceText(){
         System.out.println("\nPlease choose the note or coin value,");
         System.out.println("Followed by the amount of that value after a space:");
         System.out.println("(E.g. 1 10 = $200 inputted )");
@@ -43,7 +43,7 @@ public class CashSystem {
     }
 
     //check if input is valid
-    private List<Integer> inputChecker(String input){
+    List<Integer> inputChecker(String input){
         String[] splitter = input.split(" ");
         List<Integer> finalList = new ArrayList<>();
         try{
@@ -62,7 +62,7 @@ public class CashSystem {
     }
 
     //Determines the user input value
-    private double cashHandler(List<Integer> choice){
+    double cashHandler(List<Integer> choice){
         switch (choice.get(0)){
            case 1 :
                 return 20*choice.get(1);
@@ -90,11 +90,9 @@ public class CashSystem {
     }
 
     //manages the change to user
-    private void changeSystem(double cost, double inputCash){
+    double changeSystem(double cost, double inputCash){
         double changeValue= inputCash - cost;
         changeValue = Math.round(changeValue * 10) / 10.0;
-
-
          if(changeValue>=20){
             moreThan20(changeValue);
         }
@@ -123,6 +121,7 @@ public class CashSystem {
             changeValue=0.0;
          }
         System.out.println("Please collect your change: $"+changeValue);
+        return changeValue;
     }
 
     //calculates the value of inputted change
