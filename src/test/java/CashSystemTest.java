@@ -40,7 +40,7 @@ public class CashSystemTest {
                 "    6. 50c coin\n"+
                 "    7. 20c coin\n"+
                 "    8. 10c coin\n"+
-                "    9. Cancel Transaction"
+                "    9. Cancel Transaction\n"
                 );
         assertEquals(test,outContent.toString());
     }
@@ -58,7 +58,7 @@ public class CashSystemTest {
                 "    7. 20c coin\n"+
                 "    8. 10c coin\n"+
                 "    9. Cancel Transaction\n"+
-                "Transaction cancelled.See you next time!\n\n"
+                "Transaction cancelled.See you next time!\n"
         );
         String input = "9";
         InputStream in = new ByteArrayInputStream(input.getBytes());
