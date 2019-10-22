@@ -10,7 +10,7 @@ public class CashSystem {
             cashChoiceText();
             String input = user.nextLine();
             if(input.equals("9")){
-                System.out.println("Transaction cancelled.See you next time!\n");
+                System.out.println("Transaction cancelled.See you next time!");
                 return;
             }
             List<Integer> userInput = inputChecker(input);
