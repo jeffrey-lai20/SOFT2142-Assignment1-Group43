@@ -55,8 +55,8 @@ public class CustomerSystem {
                 }
                 System.out.print("\n");
         }
-
-        private boolean enterItemChecker(String input) {
+        // Checks if quantity entered is valid
+        boolean enterItemChecker(String input) {
                 for(Item i :items) {
                     if (i.getName().equalsIgnoreCase(input)) {
                         return true;
@@ -65,17 +65,14 @@ public class CustomerSystem {
             System.out.println("Invalid input please try again.");
                 return false;
         }
-
-                // Checks if quantity entered is valid
-
-        private void takeAwayItem(String item,int quantity){
+        void takeAwayItem(String item,int quantity){
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(item)){
                     i.setQuantity(i.getQuantity()-quantity);
                 }
             }
         }
-        private boolean enterQuantityChecker(int quantity, String itemSelected) {
+        boolean enterQuantityChecker(int quantity, String itemSelected) {
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(itemSelected)){
                     if(i.getQuantity() < quantity){
@@ -83,7 +80,7 @@ public class CustomerSystem {
                         return false;
                     }
                     else if(quantity<=0){
-                        System.out.println("quantity must be more than 1 and less than availability.Please try again.");
+                        System.out.println("quantity must be at least 1 and less than availability.Please try again.");
                         return false;
                     }
                     else{
@@ -93,19 +90,20 @@ public class CustomerSystem {
             }
             return false;
         }
+        //prints confirmation menu
         public void confirmationText(){
             System.out.print("Please choose the next action by entering the corresponding number:\n");
             System.out.print("  1.Proceed to checkout.\n");
             System.out.print("  2.Continue to shop.\n");
             System.out.print("  3.Cancel Transaction.\n");
         }
+        //checks user input for confirmation stage
         public boolean confirmation(int quantitySelected, String itemSelected, int answer) {
-
             switch(answer){
                 case 1 :
                     //calculate cost
                     CashSystem cs = new CashSystem();
-                    cs.cashInput(cost);
+                    cs.cashInput(100);
                     return true;
                 case 2:
                     takeAwayItem(itemSelected,quantitySelected);
@@ -120,6 +118,7 @@ public class CustomerSystem {
             }
         }
 
+        //the loop responsible for select item,quantity and confirmaion
         public void buyingPage(){
             itemsAvaliable();
 
@@ -158,11 +157,15 @@ public class CustomerSystem {
                 this.cartQuantity.add(quantitySelected);
                 int answer = Integer.parseInt(input.nextLine());
                 confirmation(quantitySelected, itemSelected, answer);
-
             }
         }
 
-
+        // to do get calculate price for transaction
+        public double priceCalculation(){
+            for(String i:cart){
+            }
+            return 0;
+        }
         public ArrayList<String> getCart () {
                 return cart;
         }
