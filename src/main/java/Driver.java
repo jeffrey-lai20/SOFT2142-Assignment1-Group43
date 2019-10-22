@@ -48,6 +48,7 @@ public class Driver {
             staffSystem.showMenu(inventory);
         }
     }
+    
     private static void customerPage() {
         customerSystem.buyingPage();
     }
