@@ -1,5 +1,6 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert.*;
+
+import org.junit.Test;
 
 public class CustomerSystemTest {
 
@@ -9,8 +10,9 @@ public class CustomerSystemTest {
 
 	@Test
 	public void itemAvaliableTest1() {
+		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
-		CustomerSystem customerSystem = new CustomerSystem();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 
 		String test1 = ("Here are our items avaliable: \n" +
 			"Drinks - \n" +
@@ -34,10 +36,10 @@ public class CustomerSystemTest {
 				"Sour Worms: 10\n" +
 				"Jellybeans: 10\n" +
 				"Little Bears: 10\n" +
-				"Party Mix: 10\n\n" +
+				"Party Mix: 10\n\n"
 		);
 
-		assertEquals(test1, customerSystem.itemsAvaliable(inventory.getItems()));
+		assertEquals(test1, customerSystem.itemsAvaliable());
 
 	}
 
