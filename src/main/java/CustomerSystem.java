@@ -79,11 +79,11 @@ public class CustomerSystem {
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(itemSelected)){
                     if(i.getQuantity() < quantity){
-                        System.out.println("Quantity requested exceeds stock quantity.Please try again.");
+                        System.out.print("Quantity requested exceeds stock quantity.Please try again.\n");
                         return false;
                     }
                     else if(quantity<=0){
-                        System.out.println("quantity must be more than 1 and less than availability.Please try again.");
+                        System.out.print("quantity must be atleast 1 and less than availability.Please try again.\n");
                         return false;
                     }
                     else{

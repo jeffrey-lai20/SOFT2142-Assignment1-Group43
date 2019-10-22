@@ -122,9 +122,9 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "quantity must be atleast 1 and less than availability.Please try again.";
+		String test1 = "quantity must be atleast 1 and less than availability.Please try again.\n";
 
-		customerSystem.enterQuantityChecker(0,null);
+		customerSystem.enterQuantityChecker(0,"Water");
 		assertEquals(test1, testOut.toString());
 	}
 
@@ -134,7 +134,7 @@ public class CustomerSystemTest {
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 
-		String test1 = "quantity must be atleast 1 and less than availability.Please try again.";
+		String test1 = "quantity must be atleast 1 and less than availability.Please try again.\n";
 
 		customerSystem.enterQuantityChecker(-10,"Water");
 		assertEquals(test1, testOut.toString());
@@ -145,7 +145,7 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "Quantity requested exceeds stock quantity.Please try again.";
+		String test1 = "Quantity requested exceeds stock quantity.Please try again.\n";
 		customerSystem.enterQuantityChecker(20,"Water");
 		assertEquals(test1, testOut.toString());
 	}
