@@ -137,7 +137,6 @@ public class CashSystemTest {
             add(1);
         }};
         assertEquals(testCashSystem.changeSystem(100,160),60.0,0.0);
-
         assertEquals(testCashSystem.changeSystem(100,150),50.0,0.0);
         assertEquals(testCashSystem.changeSystem(100,115),15.0,0.0);
         assertEquals(testCashSystem.changeSystem(100,106),6.0,0.0);

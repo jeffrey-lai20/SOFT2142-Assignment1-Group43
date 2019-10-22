@@ -3,7 +3,9 @@ import org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -99,32 +101,38 @@ public class CustomerSystemTest {
 
 	}
 
-//	@Test
-//	public void enterItemTest1() {
-//		Inventory i = new Inventory();
-//		Driver testCustomerSystem = new Driver();
-//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-//
-//		assertEquals("Invalid input.", customerSystem.enterItem());
-//	}
-//
-//	@Test
-//	public void enterQuantityTest2() {
-//		Inventory i = new Inventory();
-//		Driver testCustomerSystem = new Driver();
-//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-//
-//		assertEquals("Invalid quantity input.", customerSystem.enterQuantity(-10, "Water"));
-//	}
-//
-//	@Test
-//	public void enterQuantityTest3() {
-//		Inventory i = new Inventory();
-//		Driver testCustomerSystem = new Driver();
-//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-//
-//		assertEquals("Quantity requested exceeds stock quantity.", customerSystem.enterQuantity(20, "Water"));
-//	}
+	@Test
+	public void enterItemTest1() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		String test1 = "Invalid quantity input.\n";
+
+		customerSystem.enterQuantity(0,null);
+		assertEquals(test1, outContent.toString());
+	}
+
+	@Test
+	public void enterQuantityTest2() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+
+		String test1 = "Invalid quantity input.\n";
+
+		customerSystem.enterQuantity(-10,"Water");
+		assertEquals(test1, outContent.toString());
+	}
+
+	@Test
+	public void enterQuantityTest3() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		String test1 = "Quantity requested exceeds stock quantity.\n";
+		customerSystem.enterQuantity(20,"Water");
+		assertEquals(test1, outContent.toString());
+	}
 
 
 }
