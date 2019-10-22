@@ -5,6 +5,13 @@
             "name": "CodeLens (Launch) - Driver",
             "request": "launch",
             "mainClass": "Driver",
+            "projectName": "Assignment2-group43"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Driver",
+            "request": "launch",
+            "mainClass": "Driver",
             "projectName": "VandingMachine"
         },
         {

@@ -1,36 +1,43 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-
 public class StaffTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+    private final InputStream systemIn = System.in;
+    private final PrintStream systemOut = System.out;
 
-    // @Before
-    // public void setUp() {
-    // }
+    private ByteArrayInputStream testIn;
+    private ByteArrayOutputStream testOut;
+
+    @Before
+    public void setUpOutput() {
+        testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+    }
     
-    // @After
-    // public void restoreStreams() {
-    // }
     
     @Test
     public void loginSuccess() {
-        System.setOut(originalOut);
-        System.setOut(new PrintStream(outContent));
-        StaffSystem s = new StaffSystem();
-        s.loginScreen();
         String input = "staff";
         InputStream in = new ByteArrayInputStream(input.getBytes());
+        StaffSystem s = new StaffSystem();
+        s.loginScreen();
         System.setIn(in);
         input = "st@ff";
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals(false, s.staffLoggedIn());
+        assertEquals(true, s.staffLoggedIn());
+    }
+    
+    @After
+    public void restoreSystemInputOutput() {
+        System.setIn(systemIn);
+        System.setOut(systemOut);
     }
 }
