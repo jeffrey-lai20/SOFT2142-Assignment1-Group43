@@ -16,6 +16,7 @@ public class Driver {
         cashSystem = new CashSystem();
         staffSystem = new StaffSystem();
         vendingMachine = new VendingMachine();
+
         String itemSelected = null;
         int quantitySelected = 0;
 
@@ -23,7 +24,7 @@ public class Driver {
 
     }
 
-
+    //Selecting role page
     public static void firstPage(){
         System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
         Scanner input = new Scanner(System.in);
@@ -42,13 +43,15 @@ public class Driver {
         }
     }
 
+    //Staff interface
     private static void staffPage(){
         staffSystem.loginScreen();
         if (staffSystem.staffLoggedIn()) {
             staffSystem.showMenu(inventory);
         }
     }
-    
+
+    //Customer interface
     private static void customerPage() {
         customerSystem.buyingPage();
     }

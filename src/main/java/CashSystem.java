@@ -4,6 +4,7 @@ public class CashSystem {
 
 
     public void cashInput(double cost){
+        System.out.print("\nYour total value is : $"+ cost);
         Scanner user= new Scanner(System.in);
         double inputtedVal = 0;
         while((Math.round(inputtedVal * 10) / 10.0)<cost){
@@ -28,7 +29,7 @@ public class CashSystem {
     //prints out input menu
     void cashChoiceText(){
         System.out.print("\nPlease choose the note or coin value,\n");
-        System.out.print("Followed by the amount of that value after a space:\n");
+        System.out.print("Followed by the amount to be inputted:\n");
         System.out.print("(E.g. 1 10 = $200 inputted )\n");
         System.out.print("    1. $20 note\n");
         System.out.print("    2. $10 note\n");
@@ -119,6 +120,7 @@ public class CashSystem {
         else{
             changeValue=0.0;
          }
+        System.out.print("Thank you for purchasing !\n");
         System.out.print("Please collect your change: $"+changeValue+"\n");
         return changeValue;
     }
