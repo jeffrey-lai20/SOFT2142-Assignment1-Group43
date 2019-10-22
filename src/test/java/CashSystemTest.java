@@ -1,7 +1,5 @@
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,26 +8,35 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 public class CashSystemTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+    // private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    // private final PrintStream originalOut = System.out;
+
+    // @Before
+    // public void setUpStreams() {
+    //     System.setOut(new PrintStream(outContent));
+    // }
+
+    private final InputStream systemIn = System.in;
+    private final PrintStream systemOut = System.out;
+
+    private ByteArrayInputStream testIn;
+    private ByteArrayOutputStream testOut;
 
     @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void restoreStreams() {
-        System.setOut(originalOut);
-    }
-
+    public void setUpOutput() {
+        testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+    }    
+    
     @Test
     public void OutputText(){
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashChoiceText();
-        String test = ("\nPlease choose the note or coin value,\n" +
+        String test = "\nPlease choose the note or coin value,\n" +
                 "Followed by the amount of that value after a space:\n"+
                 "(E.g. 1 10 = $200 inputted )\n"+
                 "    1. $20 note\n"+
@@ -40,33 +47,40 @@ public class CashSystemTest {
                 "    6. 50c coin\n"+
                 "    7. 20c coin\n"+
                 "    8. 10c coin\n"+
-                "    9. Cancel Transaction\n"
-                );
-        assertEquals(test,outContent.toString());
+                "    9. Cancel Transaction\n";
+                assertEquals(test, testOut.toString());
     }
+
+    @After
+    public void restoreStreams() {
+        System.setOut(systemOut);
+    }
+
     @Test
     public void cashInputTest() {
         String test = ("\nPlease choose the note or coin value,\n" +
-                "Followed by the amount of that value after a space:\n"+
-                "(E.g. 1 10 = $200 inputted )\n"+
-                "    1. $20 note\n"+
-                "    2. $10 note\n"+
-                "    3.  $5 note\n"+
-                "    4.  $2 coin\n"+
-                "    5.  $1 coin\n"+
-                "    6. 50c coin\n"+
-                "    7. 20c coin\n"+
-                "    8. 10c coin\n"+
-                "    9. Cancel Transaction\n"+
-                "Transaction cancelled.See you next time!\n"
+        "Followed by the amount of that value after a space:\n"+
+        "(E.g. 1 10 = $200 inputted )\n"+
+        "    1. $20 note\n"+
+        "    2. $10 note\n"+
+        "    3.  $5 note\n"+
+        "    4.  $2 coin\n"+
+        "    5.  $1 coin\n"+
+        "    6. 50c coin\n"+
+        "    7. 20c coin\n"+
+        "    8. 10c coin\n"+
+        "    9. Cancel Transaction\n"+
+        "Transaction cancelled.See you next time!\n"
         );
         String input = "9";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashInput(100);
-        assertEquals(test, outContent.toString());
+        assertEquals(test, testOut.toString());
     }
+
+
     @Test
     public void cashInputTest2() {
         String test = ("\nPlease choose the note or coin value,\n" +
@@ -88,7 +102,7 @@ public class CashSystemTest {
         System.setIn(in);
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashInput(100);
-        assertEquals(test, outContent.toString());
+        assertEquals(test, testOut.toString());
     }
     @Test
     public void cashInputTest3() {
@@ -105,7 +119,7 @@ public class CashSystemTest {
                 "    8. 10c coin\n" +
                 "    9. Cancel Transaction\n" +
                 "Total inputted cash value:80.0\n" +
-                "Remaining value:20.0\n" +
+                "Remaining value:20.0" +
                 "\nPlease choose the note or coin value,\n" +
                 "Followed by the amount of that value after a space:\n"+
                 "(E.g. 1 10 = $200 inputted )\n"+
@@ -127,7 +141,7 @@ public class CashSystemTest {
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashInput(100);
         System.setIn(savedStandardInputStream);
-        assertEquals(test, outContent.toString());
+        assertEquals(test, testOut.toString());
     }
     @Test
     public void changeSystemTest(){
