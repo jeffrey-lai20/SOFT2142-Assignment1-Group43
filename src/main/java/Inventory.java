@@ -48,7 +48,8 @@ public class Inventory {
                 for (int i = 0; i<Integer.valueOf(quantityFill); i++) {
                     item.setQuantity(item.getQuantity()+1);
                     if(item.getQuantity() == 10) {
-                        System.out.println("Item Capacity reached. Added " + i+1 + " items\n");
+                        Integer quantityAdded = i+1;
+                        System.out.println("Item Capacity reached. Added " + quantityAdded + " items\n");
                         break;
                     }
                 }
