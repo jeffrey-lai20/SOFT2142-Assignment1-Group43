@@ -67,7 +67,7 @@ public class Driver {
             System.out.println("Continue with transaction? (Y/N)");
             // If yes, take out money and minus the stock available
             // If no, cancel the transaction
-
+            String buffer = input.nextLine();
             String answer = input.nextLine();
             customerSystem.confirmation(quantitySelected, itemSelected, answer);
         }
