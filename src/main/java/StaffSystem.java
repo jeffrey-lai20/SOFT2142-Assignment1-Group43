@@ -20,7 +20,7 @@ public class StaffSystem {
                     inputPassword = input.nextLine();
                 }
                 if (inputPassword.equals(password)) {
-                    loggedIn = !loggedIn;
+                    this.loggedIn = true;
                     System.out.println("\nLogin Successfully\n");
                 }
             } else {
@@ -73,6 +73,5 @@ public class StaffSystem {
             loggedIn = !loggedIn;
             System.out.println("Logout Successfull\n");
         }
-
     }
 }

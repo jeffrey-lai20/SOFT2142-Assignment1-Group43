@@ -8,6 +8,7 @@ import java.io.PrintStream;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 public class StaffTest {
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
@@ -24,14 +25,13 @@ public class StaffTest {
     
     @Test
     public void loginSuccess() {
-        String input = "staff";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        String input = "staff" + System.getProperty("line.separator")
+                + "st@ff" + System.getProperty("line.separator");
+        InputStream savedStandardInputStream = System.in;
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         StaffSystem s = new StaffSystem();
         s.loginScreen();
-        System.setIn(in);
-        input = "st@ff";
-        in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        System.setIn(savedStandardInputStream);
         assertEquals(true, s.staffLoggedIn());
     }
     
