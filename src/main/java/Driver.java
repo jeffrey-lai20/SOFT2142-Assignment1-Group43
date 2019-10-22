@@ -19,64 +19,36 @@ public class Driver {
         String itemSelected = null;
         int quantitySelected = 0;
 
+        firstPage();
+
+    }
+
+
+    public static void firstPage(){
         System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
         Scanner input = new Scanner(System.in);
         if (input.hasNextLine()) {
             String userInput = input.nextLine();
             while (userInput.equals("2")) {
-                // Show Customer Login
-                staffSystem.loginScreen();
-                if (staffSystem.staffLoggedIn()) {
-                    staffSystem.showMenu(inventory);
-                }
-                System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
-                userInput = input.nextLine();
+               staffPage();
+            }
+            if (userInput.equals("1")) {
+               customerPage();
+            }
+            else{
+                System.out.println("Invalid input please try again");
+                firstPage();
             }
         }
-        
-        
-        customerSystem.itemsAvaliable();
-        System.out.println("Please make a selection.");
-        System.out.println("Enter Item: ");
-//        while (input.hasNext()) {
-//            System.out.println(input.next());
-//        }
+    }
 
-//        input.nextLine();
-        if (input.hasNextLine()) {
-            itemSelected = input.nextLine(); //Testing scanner input, not working.
-            customerSystem.enterItem(itemSelected);
-
-                //Need to check if "Cancel is input"
+    private static void staffPage(){
+        staffSystem.loginScreen();
+        if (staffSystem.staffLoggedIn()) {
+            staffSystem.showMenu(inventory);
         }
-
-        System.out.println("Enter quantity: ");
-        if (input.hasNextInt()) {
-            quantitySelected = input.nextInt();
-            customerSystem.enterQuantity(quantitySelected, itemSelected);
-        }
-
-        if (input.hasNextLine()) {
-            // Confirmation
-            System.out.println("To confirm, items selected are: ");
-            for (int i = 0; i < customerSystem.getCart().size(); i++) {
-                System.out.print("Item: " + customerSystem.getCart().get(i) + "/t Quantity: ");
-                System.out.println(customerSystem.getCartQuantity().get(i));
-            }
-            // Continue with transaction or cancel
-            System.out.println("Continue with transaction? (Y/N)");
-            // If yes, take out money and minus the stock available
-            // If no, cancel the transaction
-
-            String answer = input.nextLine();
-            customerSystem.confirmation(quantitySelected, itemSelected, answer);
-        }
-
-        input.close();
-
-
-        // Item mountFranklin = new ItemImpl("Mount Franklin", 2.5, Item.TYPE.DRINKS);
-        // i.addItem(mountFranklin);
-        // System.out.println("Inventory size = " + i.getQuantity());
+    }
+    private static void customerPage() {
+        customerSystem.buyingPage();
     }
 }

@@ -5,10 +5,10 @@ public class CustomerSystem {
         // Can type in product name or a unique code
         // Can select more than one item in one go.
         // Can cancel transaction before buying.
-        private ArrayList<Item.TYPE> cart = new ArrayList<>();
+        private ArrayList<String> cart = new ArrayList<>();
         private ArrayList<Integer> cartQuantity = new ArrayList<>();
         private ArrayList<Item> items;
-
+        private double cost = 0;
         CustomerSystem(ArrayList<Item> items) {
             this.items = items;
         }
@@ -58,113 +58,114 @@ public class CustomerSystem {
                 System.out.println();
         }
 
-        public void enterItem(String input) {
-                // Type in product name or unique code
-                // Do for while loop until user EOF
-
-                String itemSelected = input;
-                // Checks if item entered is valid
-                int itemExists = 0;
-                while (itemExists == 0) {
-                        if (itemSelected == null) {
-                                System.out.println("Invalid input.");
-                                System.exit(1);
-                        }
-                        if (itemSelected.equalsIgnoreCase("Cancel")) {
-                                break;
-                                //Stop the transaction, either back to start or end program.
-                        }
-
-                        for (Item i : items) {
-                                if (itemSelected.equalsIgnoreCase(i.getName())) {
-                                        itemExists = 1;
-                                        break;
-                                }
-                        }
-
-                        if (itemExists != 1) {
-                                System.out.println("Invalid Item. Please enter again.");
-                                break;
-                        }
+        private boolean enterItemChecker(String input) {
+                for(Item i :items) {
+                    if (i.getName().equalsIgnoreCase(input)) {
+                        return true;
+                    }
                 }
+            System.out.println("Invalid input please try again.");
+                return false;
+        }
 
                 // Checks if quantity entered is valid
 
-
-
+        private void takeAwayItem(String item,int quantity){
+            for(Item i : items){
+                if(i.getName().equalsIgnoreCase(item)){
+                    i.setQuantity(i.getQuantity()-quantity);
+                }
+            }
         }
-
-        public void enterQuantity (int quantity, String itemSelected) {
-            int quantitySelected = quantity;
-            int amountValid = 0;
-            while (amountValid == 0) {
-                if (quantitySelected <= 0) {
-                    System.out.println("Invalid quantity input.");
-                    return;
-                } else {
-                    for (Item i : items) {
-                        if (itemSelected.equalsIgnoreCase(i.getName())) {
-                            if (i.getQuantity() < quantitySelected) {
-                                System.out.println("Quantity requested exceeds stock quantity.");
-                                amountValid = 1;
-                                break;
-                            }
-                        }
+        private boolean enterQuantityChecker(int quantity, String itemSelected) {
+            for(Item i : items){
+                if(i.getName().equalsIgnoreCase(itemSelected)){
+                    if(i.getQuantity() < quantity){
+                        System.out.println("Quantity requested exceeds stock quantity.Please try again.");
+                        return false;
                     }
-                    if (amountValid != 1) {
-                        System.out.println("Invalid item.");
-                        break;
+                    else if(quantity<=0){
+                        System.out.println("quantity must be more than 1 and less than availability.Please try again.");
+                        return false;
+                    }
+                    else{
+                        return true;
                     }
                 }
+            }
+            return false;
+        }
+        public void confirmationText(){
+            System.out.print("Please choose the next action by entering the corresponding number:\n");
+            System.out.print("  1.Proceed to checkout.\n");
+            System.out.print("  2.Continue to shop.\n");
+            System.out.print("  3.Cancel Transaction.\n");
+        }
+        public boolean confirmation(int quantitySelected, String itemSelected, int answer) {
+
+            switch(answer){
+                case 1 :
+                    //calculate cost
+                    CashSystem cs = new CashSystem();
+                    cs.cashInput(cost);
+                    return true;
+                case 2:
+                    takeAwayItem(itemSelected,quantitySelected);
+                    buyingPage();
+                    return true;
+                case 3:
+                    System.out.println("Transaction cancelled, have a good day!");
+                    System.exit(0);
+                default:
+                    System.out.println("invalid input please try again.");
+                    return false;
+            }
+        }
+
+        public void buyingPage(){
+            itemsAvaliable();
+
+            Scanner input = new Scanner(System.in);
+            String itemSelected = null;
+            int quantitySelected =0;
+
+            //takes in item and checks if input is correct
+            System.out.println("Please make a selection.");
+            System.out.println("Enter Item: ");
+            if (input.hasNextLine()) {
+                itemSelected = input.nextLine(); //Testing scanner input, not working.
+                while(!enterItemChecker(itemSelected)){
+                    itemSelected = input.nextLine();
+                }
+            }
+
+            //takes in quantity and checks if quantity is correct.
+            System.out.println("Enter quantity: ");
+            if (input.hasNextLine()) {
+                quantitySelected = Integer.parseInt(input.nextLine());
+                while(!enterQuantityChecker(quantitySelected, itemSelected)){
+                    quantitySelected = Integer.parseInt(input.nextLine());
+                };
+            }
+
+            //Provide customer next action to take.
+            if (quantitySelected == 1) {
+                System.out.println("\nYou have selected one " + itemSelected);
+            } else {
+                System.out.println("\nYou have selected " + quantitySelected + " " + itemSelected + "s ");
+            }
+            confirmationText();
+            if (input.hasNextLine()) {
+                this.cart.add(itemSelected);
+                this.cartQuantity.add(quantitySelected);
+                int answer = Integer.parseInt(input.nextLine());
+                confirmation(quantitySelected, itemSelected, answer);
+
             }
         }
 
 
-        public void confirmation(int quantitySelected, String itemSelected, String answer) {
-
-                if (answer.equalsIgnoreCase("y")) {
-                        //Deduct money and items from stock.
-                    if (quantitySelected == 1) {
-                        System.out.println("You have selected " + itemSelected);
-                    } else {
-                        System.out.println("You have selected " + quantitySelected + " " + itemSelected + "s ");
-                    }
-
-                    // Add to cart
-                    // Need to do this for specific selections when specific items have been determined in other code.
-                    if (itemSelected != null) {
-                        switch (itemSelected) {
-                            case ("Chips"):
-                                cart.add(Item.TYPE.CHIPS);      //Adds item to cart.
-                                cartQuantity.add(quantitySelected);     //Adds quantity to list, same index as cart.
-                                break;
-                            case ("Drinks"):
-                                cart.add(Item.TYPE.DRINKS);
-                                cartQuantity.add(quantitySelected);
-                                break;
-                            case("Chocolates"):
-                                cart.add(Item.TYPE.CHOCOLATES);
-                                cartQuantity.add(quantitySelected);
-                                break;
-                            case("Lollies"):
-                                cart.add(Item.TYPE.LOLLIES);
-                                cartQuantity.add(quantitySelected);
-                                break;
-                            default:
-                                System.out.println("Invalid selection.");
-                        }
-                    }
-
-                } else if (answer.equalsIgnoreCase("n")) {
-                        //Cancel
-                        cart.clear();
-                        cartQuantity.clear();
-                } else {
-                        System.out.println("Invalid input.");
-                }
-        }
-
-        public ArrayList<Item.TYPE> getCart () {
+        public ArrayList<String> getCart () {
                 return cart;
         }
 
