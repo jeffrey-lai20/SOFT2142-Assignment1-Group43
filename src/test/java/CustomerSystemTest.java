@@ -1,5 +1,4 @@
 import org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class CustomerSystemTest {
@@ -45,11 +44,30 @@ public class CustomerSystemTest {
 
 	@Test
 	public void enterItemTest1() {
+		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
-		CustomerSystem customerSystem = new CustomerSystem();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems);
 
-
-
-
+		assertEquals("Invalid input.", customerSystem.enterItem());
 	}
+
+	@Test
+	public void enterQuantityTest1() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems);
+
+		assertEquals("Invalid quantity input.", customerSystem.enterQuantity(-10, "Water"));
+	}
+
+	@Test
+	public void enterQuantityTest1() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems);
+
+		assertEquals("Quantity requested exceeds stock quantity.", customerSystem.enterQuantity(20, "Water"));
+	}
+
+
 }
