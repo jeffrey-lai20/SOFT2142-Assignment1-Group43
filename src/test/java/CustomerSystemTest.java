@@ -6,6 +6,7 @@ public class CustomerSystemTest {
 	/**
 	 * Basic test to check avaliable items
 	 */
+
 	@Test
 	public void itemAvaliableTest1() {
 		Driver testCustomerSystem = new Driver();
@@ -37,6 +38,16 @@ public class CustomerSystemTest {
 		);
 
 		assertEquals(test1, customerSystem.itemsAvaliable(inventory.getItems()));
+
+	}
+
+	@Test
+	public void enterItemTest1() {
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem();
+
+
+
 
 	}
 }
