@@ -55,8 +55,8 @@ public class CustomerSystem {
                 }
                 System.out.print("\n");
         }
-        // Checks if quantity entered is valid
-        boolean enterItemChecker(String input) {
+
+        public boolean enterItemChecker(String input) {
                 for(Item i :items) {
                     if (i.getName().equalsIgnoreCase(input)) {
                         return true;
@@ -65,14 +65,17 @@ public class CustomerSystem {
             System.out.println("Invalid input please try again.");
                 return false;
         }
-        void takeAwayItem(String item,int quantity){
+
+                // Checks if quantity entered is valid
+
+        public void takeAwayItem(String item,int quantity){
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(item)){
                     i.setQuantity(i.getQuantity()-quantity);
                 }
             }
         }
-        boolean enterQuantityChecker(int quantity, String itemSelected) {
+        public boolean enterQuantityChecker(int quantity, String itemSelected) {
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(itemSelected)){
                     if(i.getQuantity() < quantity){
