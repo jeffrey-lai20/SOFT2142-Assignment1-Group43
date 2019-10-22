@@ -23,8 +23,8 @@ public class CustomerSystem {
                 ArrayList<Item> lollies = new ArrayList<Item>();
 
                 for (Item i : items) {
-                        if (i.getType() == Item.TYPE.DRINKS) {
-                                drinks.add(i);
+                        if (i.getType()== Item.TYPE.DRINKS) {
+                            drinks.add(i);
                         } else if (i.getType() == Item.TYPE.CHOCOLATES) {
                                 chocolates.add(i);
                         } else if (i.getType() == Item.TYPE.CHIPS) {
