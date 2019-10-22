@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CustomerSystem {
 
@@ -55,7 +56,7 @@ public class CustomerSystem {
                 System.out.print("\n");
         }
 
-        private boolean enterItemChecker(String input) {
+        public boolean enterItemChecker(String input) {
                 for(Item i :items) {
                     if (i.getName().equalsIgnoreCase(input)) {
                         return true;
@@ -67,14 +68,14 @@ public class CustomerSystem {
 
                 // Checks if quantity entered is valid
 
-        private void takeAwayItem(String item,int quantity){
+        public void takeAwayItem(String item,int quantity){
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(item)){
                     i.setQuantity(i.getQuantity()-quantity);
                 }
             }
         }
-        private boolean enterQuantityChecker(int quantity, String itemSelected) {
+        public boolean enterQuantityChecker(int quantity, String itemSelected) {
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(itemSelected)){
                     if(i.getQuantity() < quantity){
