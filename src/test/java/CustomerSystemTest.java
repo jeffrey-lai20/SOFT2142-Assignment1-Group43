@@ -1,7 +1,4 @@
-import org.junit.After;
-import org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -9,21 +6,40 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class CustomerSystemTest {
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final PrintStream originalOut = System.out;
+	// private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	// private final PrintStream originalOut = System.out;
 
-	@Before
-	public void setUpStreams() {
-		System.setOut(new PrintStream(outContent));
-	}
+	// @Before
+	// public void setUpStreams() {
+	// 	System.setOut(new PrintStream(outContent));
+	// }
 
+	// @After
+	// public void restoreStreams() {
+	// 	System.setOut(originalOut);
+	// }
+
+	private final InputStream systemIn = System.in;
+    private final PrintStream systemOut = System.out;
+
+    private ByteArrayInputStream testIn;
+    private ByteArrayOutputStream testOut;
+
+    @Before
+    public void setUpOutput() {
+        testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+	} 
+	
 	@After
-	public void restoreStreams() {
-		System.setOut(originalOut);
-	}
+    public void restoreStreams() {
+        System.setOut(systemOut);
+    }
 	/**
 	 * Basic test to check avaliable items
 	 */
@@ -60,7 +76,7 @@ public class CustomerSystemTest {
 				"Party Mix: 10\n\n"
 		);
 
-		assertEquals(test1,outContent.toString() );
+		assertEquals(test1,testOut.toString() );
 
 	}
 
@@ -97,7 +113,7 @@ public class CustomerSystemTest {
 				"Party Mix: "+items.get(14).getQuantity()+"\n\n"
 		);
 
-		assertEquals(test2,outContent.toString());
+		assertEquals(test2,testOut.toString());
 
 	}
 
@@ -109,7 +125,7 @@ public class CustomerSystemTest {
 		String test1 = "Invalid quantity input.\n";
 
 		customerSystem.enterQuantity(0,null);
-		assertEquals(test1, outContent.toString());
+		assertEquals(test1, testOut.toString());
 	}
 
 	@Test
@@ -121,7 +137,7 @@ public class CustomerSystemTest {
 		String test1 = "Invalid quantity input.\n";
 
 		customerSystem.enterQuantity(-10,"Water");
-		assertEquals(test1, outContent.toString());
+		assertEquals(test1, testOut.toString());
 	}
 
 	@Test
@@ -131,7 +147,7 @@ public class CustomerSystemTest {
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Quantity requested exceeds stock quantity.\n";
 		customerSystem.enterQuantity(20,"Water");
-		assertEquals(test1, outContent.toString());
+		assertEquals(test1, testOut.toString());
 	}
 
 

@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class CustomerSystem {
 
@@ -34,28 +34,25 @@ public class CustomerSystem {
                         }
                 }
 
-                System.out.println("Here are our items available: \n");
+                System.out.print("Here are our items available: \n");
 
-                System.out.println("Drinks - ");
+                System.out.print("\nDrinks - \n");
                 for (Item i : drinks) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
-                System.out.println("Chocolates - ");
+                System.out.print("\nChocolates - \n");
                 for (Item i : chocolates) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
-                System.out.println("Chips - ");
+                System.out.print("\nChips - \n");
                 for (Item i : chips) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
-                System.out.println("Lollies - ");
+                System.out.print("\nLollies - \n");
                 for (Item i : lollies) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
+                System.out.print("\n");
         }
 
         public void enterItem(String input) {
@@ -67,7 +64,7 @@ public class CustomerSystem {
                 int itemExists = 0;
                 while (itemExists == 0) {
                         if (itemSelected == null) {
-                                System.out.println("Invalid input.");
+                                System.out.print("Invalid input.");
                                 System.exit(1);
                         }
                         if (itemSelected.equalsIgnoreCase("Cancel")) {
@@ -99,13 +96,13 @@ public class CustomerSystem {
             int amountValid = 0;
             while (amountValid == 0) {
                 if (quantitySelected <= 0) {
-                    System.out.println("Invalid quantity input.");
+                    System.out.print("Invalid quantity input.\n");
                     return;
                 } else {
                     for (Item i : items) {
                         if (itemSelected.equalsIgnoreCase(i.getName())) {
                             if (i.getQuantity() < quantitySelected) {
-                                System.out.println("Quantity requested exceeds stock quantity.");
+                                System.out.print("Quantity requested exceeds stock quantity.\n");
                                 amountValid = 1;
                                 break;
                             }

@@ -12,14 +12,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 public class CashSystemTest {
-    // private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    // private final PrintStream originalOut = System.out;
-
-    // @Before
-    // public void setUpStreams() {
-    //     System.setOut(new PrintStream(outContent));
-    // }
-
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
 
@@ -30,7 +22,12 @@ public class CashSystemTest {
     public void setUpOutput() {
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
-    }    
+    }
+       
+    @After
+    public void restoreStreams() {
+        System.setOut(systemOut);
+    }
     
     @Test
     public void OutputText(){
@@ -51,10 +48,6 @@ public class CashSystemTest {
                 assertEquals(test, testOut.toString());
     }
 
-    @After
-    public void restoreStreams() {
-        System.setOut(systemOut);
-    }
 
     @Test
     public void cashInputTest() {
