@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'jacoco'
+
 }
 
 group 'VendingMachine'
@@ -24,5 +26,16 @@ dependencies {
             'org.junit.platform:junit-platform-runner:1.1.0'
 }
 
+test {
+    useJUnitPlatform()
+    test.finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled = true
+        csv.enabled = true
+    }
+}
 apply plugin: 'application'
 mainClassName = 'Driver'

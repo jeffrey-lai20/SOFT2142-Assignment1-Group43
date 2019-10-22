@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class CustomerSystem {
 
@@ -34,28 +34,25 @@ public class CustomerSystem {
                         }
                 }
 
-                System.out.println("Here are our items available: \n");
+                System.out.print("Here are our items available: \n");
 
-                System.out.println("Drinks - ");
+                System.out.print("\nDrinks - \n");
                 for (Item i : drinks) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
-                System.out.println("Chocolates - ");
+                System.out.print("\nChocolates - \n");
                 for (Item i : chocolates) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
-                System.out.println("Chips - ");
+                System.out.print("\nChips - \n");
                 for (Item i : chips) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
-                System.out.println("Lollies - ");
+                System.out.print("\nLollies - \n");
                 for (Item i : lollies) {
-                        System.out.println(i.getName()+": "+i.getQuantity());
+                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
                 }
-                System.out.println();
+                System.out.print("\n");
         }
 
         private boolean enterItemChecker(String input) {

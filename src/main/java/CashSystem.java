@@ -10,7 +10,7 @@ public class CashSystem {
             cashChoiceText();
             String input = user.nextLine();
             if(input.equals("9")){
-                System.out.println("Transaction cancelled.See you next time!");
+                System.out.print("Transaction cancelled.See you next time!\n");
                 return;
             }
             List<Integer> userInput = inputChecker(input);
@@ -19,27 +19,26 @@ public class CashSystem {
                 changeSystem(cost,inputtedVal);
             }
             else{
-                System.out.println("Total inputted cash value:"+Math.round(inputtedVal * 10) / 10.0);;
+                System.out.print("Total inputted cash value:"+Math.round(inputtedVal * 10) / 10.0+"\n");;
                 System.out.print("Remaining value:");
                 System.out.printf("%.1f",(cost - inputtedVal));
-                System.out.println("");
             }
         }
     }
     //prints out input menu
     void cashChoiceText(){
-        System.out.println("\nPlease choose the note or coin value,");
-        System.out.println("Followed by the amount of that value after a space:");
-        System.out.println("(E.g. 1 10 = $200 inputted )");
-        System.out.println("    1. $20 note");
-        System.out.println("    2. $10 note");
-        System.out.println("    3.  $5 note");
-        System.out.println("    4.  $2 coin");
-        System.out.println("    5.  $1 coin");
-        System.out.println("    6. 50c coin");
-        System.out.println("    7. 20c coin");
-        System.out.println("    8. 10c coin");
-        System.out.println("    9. Cancel Transaction");
+        System.out.print("\nPlease choose the note or coin value,\n");
+        System.out.print("Followed by the amount of that value after a space:\n");
+        System.out.print("(E.g. 1 10 = $200 inputted )\n");
+        System.out.print("    1. $20 note\n");
+        System.out.print("    2. $10 note\n");
+        System.out.print("    3.  $5 note\n");
+        System.out.print("    4.  $2 coin\n");
+        System.out.print("    5.  $1 coin\n");
+        System.out.print("    6. 50c coin\n");
+        System.out.print("    7. 20c coin\n");
+        System.out.print("    8. 10c coin\n");
+        System.out.print("    9. Cancel Transaction\n");
     }
 
     //check if input is valid
@@ -120,7 +119,7 @@ public class CashSystem {
         else{
             changeValue=0.0;
          }
-        System.out.println("Please collect your change: $"+changeValue);
+        System.out.print("Please collect your change: $"+changeValue+"\n");
         return changeValue;
     }
 
