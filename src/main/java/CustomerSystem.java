@@ -100,10 +100,11 @@ public class CustomerSystem {
             while (amountValid == 0) {
                 if (quantitySelected <= 0) {
                     System.out.println("Invalid quantity input.");
+                    return;
                 } else {
                     for (Item i : items) {
                         if (itemSelected.equalsIgnoreCase(i.getName())) {
-                            if (i.getQuantity() >= quantitySelected) {
+                            if (i.getQuantity() < quantitySelected) {
                                 System.out.println("Quantity requested exceeds stock quantity.");
                                 amountValid = 1;
                                 break;
