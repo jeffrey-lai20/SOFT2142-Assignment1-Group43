@@ -34,7 +34,7 @@ public class CashSystemTest {
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashChoiceText();
         String test = "\nPlease choose the note or coin value,\n" +
-                "Followed by the amount of that value after a space:\n"+
+                "Followed by the amount to be inputted:\n"+
                 "(E.g. 1 10 = $200 inputted )\n"+
                 "    1. $20 note\n"+
                 "    2. $10 note\n"+
@@ -45,14 +45,14 @@ public class CashSystemTest {
                 "    7. 20c coin\n"+
                 "    8. 10c coin\n"+
                 "    9. Cancel Transaction\n";
-                assertEquals(test, testOut.toString());
+        assertEquals(test, testOut.toString());
     }
 
 
     @Test
     public void cashInputTest() {
-        String test = ("\nPlease choose the note or coin value,\n" +
-        "Followed by the amount of that value after a space:\n"+
+        String test = ("\nYour total value is : $100.0\nPlease choose the note or coin value,\n" +
+        "Followed by the amount to be inputted:\n"+
         "(E.g. 1 10 = $200 inputted )\n"+
         "    1. $20 note\n"+
         "    2. $10 note\n"+
@@ -76,8 +76,8 @@ public class CashSystemTest {
 
     @Test
     public void cashInputTest2() {
-        String test = ("\nPlease choose the note or coin value,\n" +
-                "Followed by the amount of that value after a space:\n"+
+        String test = ("\nYour total value is : $100.0\nPlease choose the note or coin value,\n" +
+                "Followed by the amount to be inputted:\n"+
                 "(E.g. 1 10 = $200 inputted )\n"+
                 "    1. $20 note\n"+
                 "    2. $10 note\n"+
@@ -88,6 +88,7 @@ public class CashSystemTest {
                 "    7. 20c coin\n"+
                 "    8. 10c coin\n"+
                 "    9. Cancel Transaction\n"+
+                "Thank you for purchasing !\n"+
                 "Please collect your change: $0.0\n"
         );
         String input = "1 5";
@@ -99,8 +100,8 @@ public class CashSystemTest {
     }
     @Test
     public void cashInputTest3() {
-        String test = ("\nPlease choose the note or coin value,\n" +
-                "Followed by the amount of that value after a space:\n" +
+        String test = ("\nYour total value is : $100.0\nPlease choose the note or coin value,\n" +
+                "Followed by the amount to be inputted:\n" +
                 "(E.g. 1 10 = $200 inputted )\n" +
                 "    1. $20 note\n" +
                 "    2. $10 note\n" +
@@ -114,7 +115,7 @@ public class CashSystemTest {
                 "Total inputted cash value:80.0\n" +
                 "Remaining value:20.0" +
                 "\nPlease choose the note or coin value,\n" +
-                "Followed by the amount of that value after a space:\n"+
+                "Followed by the amount to be inputted:\n"+
                 "(E.g. 1 10 = $200 inputted )\n"+
                 "    1. $20 note\n"+
                 "    2. $10 note\n"+
@@ -125,6 +126,7 @@ public class CashSystemTest {
                 "    7. 20c coin\n"+
                 "    8. 10c coin\n"+
                 "    9. Cancel Transaction\n"+
+                "Thank you for purchasing !\n"+
                 "Please collect your change: $0.0\n"
         );
         String simulatedUserInput = "1 4" + System.getProperty("line.separator")
