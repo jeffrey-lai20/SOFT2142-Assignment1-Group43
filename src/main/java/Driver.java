@@ -24,7 +24,7 @@ public class Driver {
 
     }
 
-    //Selecting role page
+    //Selecting role page some changes for jenkins
     public static void firstPage(){
         System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
         Scanner input = new Scanner(System.in);
