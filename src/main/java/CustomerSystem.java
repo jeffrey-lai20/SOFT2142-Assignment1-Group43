@@ -65,7 +65,7 @@ public class CustomerSystem {
                         System.exit(0);
                     }
                 }
-            System.out.println("Invalid input please try again.");
+                System.out.println("Invalid input please try again.");
                 return false;
         }
 
