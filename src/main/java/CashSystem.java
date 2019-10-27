@@ -11,7 +11,7 @@ public class CashSystem {
             cashChoiceText();
             String input = user.nextLine();
             if(input.equals("9")){
-                System.out.print("Transaction cancelled.See you next time!\n");
+                System.out.print("Transaction cancelled. See you next time!\n");
                 return;
             }
             List<Integer> userInput = inputChecker(input);
@@ -120,7 +120,7 @@ public class CashSystem {
         else{
             changeValue=0.0;
          }
-        System.out.print("Thank you for purchasing !\n");
+        System.out.print("Thank you for purchasing!\n");
         System.out.print("Please collect your change: $"+changeValue+"\n");
         return changeValue;
     }
