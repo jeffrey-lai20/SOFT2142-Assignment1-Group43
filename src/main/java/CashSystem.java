@@ -121,6 +121,7 @@ public class CashSystem {
          }
         System.out.print("Thank you for purchasing!\n");
         System.out.print("Please collect your change: $"+changeValue+"\n");
+        System.exit(0);
         return changeValue;
     }
 
