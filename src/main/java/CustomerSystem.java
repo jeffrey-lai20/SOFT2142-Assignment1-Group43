@@ -142,22 +142,25 @@ public class CustomerSystem {
             //takes in quantity and checks if quantity is correct.
             System.out.println("Enter quantity: ");
             if (input.hasNextLine()) {
-                quantitySelected = Integer.parseInt(input.nextLine());
-                while(!enterQuantityChecker(quantitySelected, itemSelected)){
-                    try {
+                try {
+                    quantitySelected = Integer.parseInt(input.nextLine());
+                    while(!enterQuantityChecker(quantitySelected, itemSelected)){
                         quantitySelected = Integer.parseInt(input.nextLine());
-                    } catch(Exception e) {
-                        System.out.println("Invalid input. Please try again.");
-                        continue;
                     }
-                };
+                } catch(Exception e) {
+                    System.out.println("Invalid input. Please try again.");
+                }
+
             }
 
             //Provide customer next action to take.
             if (quantitySelected == 1) {
                 System.out.println("\nYou have selected one " + itemSelected);
-            } else {
+            } else if (quantitySelected != 0){
                 System.out.println("\nYou have selected " + quantitySelected + " " + itemSelected + "s ");
+            } else {
+                buyingPage();
+                return;
             }
             confirmationText();
             if (input.hasNextLine()) {
