@@ -69,15 +69,25 @@ public class CustomerSystem {
                 return false;
         }
 
-                // Checks if quantity entered is valid
+        public String convertCodeToName(String code) {
+            String name = null;
+            for(Item i :items) {
+                if (i.getCode().equalsIgnoreCase(code)) {
+                    name = i.getName();
+                }
+            }
+            return name;
+        }
 
-        public void takeAwayItem(String item,int quantity){
+        public void takeAwayItem(String item, int quantity){
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(item) || i.getCode().equalsIgnoreCase(item)){
                     i.setQuantity(i.getQuantity()-quantity);
                 }
             }
         }
+
+        // Checks if quantity entered is valid
         public boolean enterQuantityChecker(int quantity, String itemSelected) {
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(itemSelected) || i.getCode().equalsIgnoreCase(itemSelected)){
@@ -147,6 +157,9 @@ public class CustomerSystem {
                 itemSelected = input.nextLine(); //Testing scanner input, not working.
                 while(!enterItemChecker(itemSelected)){
                     itemSelected = input.nextLine();
+                }
+                if (itemSelected.length() == 2) {
+                    itemSelected = convertCodeToName(itemSelected);
                 }
             }
 
