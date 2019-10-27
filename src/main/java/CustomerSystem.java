@@ -79,11 +79,11 @@ public class CustomerSystem {
             for(Item i : items){
                 if(i.getName().equalsIgnoreCase(itemSelected)){
                     if(i.getQuantity() < quantity){
-                        System.out.print("Quantity requested exceeds stock quantity.Please try again.\n");
+                        System.out.print("Quantity requested exceeds stock quantity. Please try again.\n");
                         return false;
                     }
                     else if(quantity<=0){
-                        System.out.print("quantity must be at least 1 and less than availability.Please try again.\n");
+                        System.out.print("quantity must be at least 1 and less than availability. Please try again.\n");
                         return false;
                     }
                     else{
@@ -96,9 +96,9 @@ public class CustomerSystem {
         //prints confirmation menu
         public void confirmationText(){
             System.out.print("Please choose the next action by entering the corresponding number:\n");
-            System.out.print("  1.Proceed to checkout.\n");
-            System.out.print("  2.Continue to shop.\n");
-            System.out.print("  3.Cancel Transaction.\n");
+            System.out.print("  1. Proceed to checkout.\n");
+            System.out.print("  2. Continue to shop.\n");
+            System.out.print("  3. Cancel Transaction.\n");
         }
         //checks user input for confirmation stage
         public boolean confirmation(int quantitySelected, String itemSelected, int answer) {
