@@ -94,13 +94,16 @@ public class CustomerSystem {
             }
             return false;
         }
+
         //prints confirmation menu
         public void confirmationText(){
             System.out.print("Please choose the next action by entering the corresponding number:\n");
             System.out.print("  1. Proceed to checkout.\n");
             System.out.print("  2. Continue to shop.\n");
             System.out.print("  3. Cancel Transaction.\n");
+            System.out.print("  4. View Cart.\n");
         }
+
         //checks user input for confirmation stage
         public boolean confirmation(int quantitySelected, String itemSelected, int answer) {
             switch(answer){
@@ -116,13 +119,20 @@ public class CustomerSystem {
                 case 3:
                     System.out.println("Transaction cancelled. Have a good day!");
                     System.exit(0);
+                case 4:
+                    viewCart(cart,cartQuantity);
+                    confirmationText();
+                    Scanner input = new Scanner(System.in);
+                    int number = Integer.parseInt(input.nextLine());
+                    confirmation(quantitySelected, itemSelected, number);
+                    return true;
                 default:
-                    System.out.println("invalid input please try again.");
+                    System.out.println("Invalid input please try again.");
                     return false;
             }
         }
 
-        //the loop responsible for select item,quantity and confirmaion
+        //the loop responsible for select item,quantity and confirmation
         public void buyingPage(){
             itemsAvaliable();
 
@@ -184,6 +194,16 @@ public class CustomerSystem {
             }
             return 0;
         }
+
+        public void viewCart(ArrayList<String> cart, ArrayList<Integer> cartQuantity) {
+            System.out.println("Cart: ");
+            int i;
+            for (i=0;i<cart.size();i++) {
+                System.out.println(cart.get(i) + ": " + cartQuantity.get(i));
+            }
+            System.out.println();
+        }
+
         public ArrayList<String> getCart () {
                 return cart;
         }
