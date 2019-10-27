@@ -2,7 +2,6 @@ import java.util.*;
 
 public class CashSystem {
 
-
     public void cashInput(double cost){
         System.out.print("\nYour total value is : $"+ cost);
         Scanner user= new Scanner(System.in);
