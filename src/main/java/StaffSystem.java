@@ -71,7 +71,8 @@ public class StaffSystem {
         }
         if(staffInput.equals("4")) {
             loggedIn = !loggedIn;
-            System.out.println("Logout Successfull\n");
+            System.out.println("Logout Successfully\n");
+            Driver.firstPage();
         }
     }
 }
