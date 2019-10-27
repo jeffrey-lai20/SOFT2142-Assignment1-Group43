@@ -9,14 +9,14 @@ public class StaffSystem {
 
     public void loginScreen() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter your Username");
+        System.out.println("Enter your username");
         if (input.hasNextLine()) {
             String inputUsername = input.nextLine();
             if (inputUsername.equals(username)) {
                 System.out.println("Enter your password");
                 String inputPassword = input.nextLine();
                 while(inputPassword.equals(password) != true) {
-                    System.out.println("Incorect Password. Please try again");
+                    System.out.println("Incorrect Password. Please try again");
                     inputPassword = input.nextLine();
                 }
                 if (inputPassword.equals(password)) {
@@ -71,7 +71,8 @@ public class StaffSystem {
         }
         if(staffInput.equals("4")) {
             loggedIn = !loggedIn;
-            System.out.println("Logout Successfull\n");
+            System.out.println("Logout Successfully\n");
+            Driver.firstPage();
         }
     }
 }
