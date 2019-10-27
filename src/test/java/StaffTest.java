@@ -33,6 +33,7 @@ public class StaffTest {
         s.loginScreen();
         System.setIn(savedStandardInputStream);
         assertEquals(true, s.staffLoggedIn());
+        // just testing
     }
     
     @After
