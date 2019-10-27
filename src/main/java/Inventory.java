@@ -19,8 +19,8 @@ public class Inventory {
             this.reader = new BufferedReader(new FileReader(this.configFile));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] productInfo = line.split(",", 4);
-                Item i = new ItemImpl(productInfo[0], Double.valueOf(productInfo[1]), Item.TYPE.valueOf(productInfo[2]), Integer.valueOf(productInfo[3])); 
+                String[] productInfo = line.split(",", 5);
+                Item i = new ItemImpl(productInfo[0], Double.valueOf(productInfo[1]), Item.TYPE.valueOf(productInfo[2]), Integer.valueOf(productInfo[3]), productInfo[4]);
                 this.items.add(i);
             }
         } catch (Exception e) {

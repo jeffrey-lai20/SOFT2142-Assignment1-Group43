@@ -3,12 +3,31 @@ public class ItemImpl implements Item {
     private double price;
     private TYPE type;
     private Integer quantity;
+    private String code;
     
-    public ItemImpl(String name, double price, TYPE type, Integer quantity) {
+//    public ItemImpl(String name, double price, TYPE type, Integer quantity) {
+//        this.name = name;
+//        this.price = price;
+//        this.type = type;
+//        this.quantity = quantity;
+//    }
+
+    public ItemImpl(String name, double price, TYPE type, Integer quantity, String code) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.quantity = quantity;
+        this.code = code;
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override

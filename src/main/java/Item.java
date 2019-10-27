@@ -7,6 +7,8 @@ public interface Item {
     public void setPrice(double price);
     public void setType(TYPE t);
     public void setQuantity(Integer quantity);
+    void setCode(String code);
+    String getCode();
 
     public enum TYPE {
         DRINKS,

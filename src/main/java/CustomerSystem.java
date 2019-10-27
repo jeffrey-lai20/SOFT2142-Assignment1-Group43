@@ -39,27 +39,30 @@ public class CustomerSystem {
 
                 System.out.print("\nDrinks - \n");
                 for (Item i : drinks) {
-                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
                 }
                 System.out.print("\nChocolates - \n");
                 for (Item i : chocolates) {
-                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
                 }
                 System.out.print("\nChips - \n");
                 for (Item i : chips) {
-                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
                 }
                 System.out.print("\nLollies - \n");
                 for (Item i : lollies) {
-                        System.out.print(i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
                 }
                 System.out.print("\n");
         }
 
         public boolean enterItemChecker(String input) {
                 for(Item i :items) {
-                    if (i.getName().equalsIgnoreCase(input)) {
+                    if (i.getName().equalsIgnoreCase(input) || i.getCode().equalsIgnoreCase(input)) {
                         return true;
+                    } else if (input.equalsIgnoreCase("Cancel")) {
+                        System.out.println("Transaction cancelled, have a good day!");
+                        System.exit(0);
                     }
                 }
             System.out.println("Invalid input please try again.");
@@ -70,23 +73,21 @@ public class CustomerSystem {
 
         public void takeAwayItem(String item,int quantity){
             for(Item i : items){
-                if(i.getName().equalsIgnoreCase(item)){
+                if(i.getName().equalsIgnoreCase(item) || i.getCode().equalsIgnoreCase(item)){
                     i.setQuantity(i.getQuantity()-quantity);
                 }
             }
         }
         public boolean enterQuantityChecker(int quantity, String itemSelected) {
             for(Item i : items){
-                if(i.getName().equalsIgnoreCase(itemSelected)){
+                if(i.getName().equalsIgnoreCase(itemSelected) || i.getCode().equalsIgnoreCase(itemSelected)){
                     if(i.getQuantity() < quantity){
                         System.out.print("Quantity requested exceeds stock quantity. Please try again.\n");
                         return false;
-                    }
-                    else if(quantity<=0){
-                        System.out.print("quantity must be at least 1 and less than availability. Please try again.\n");
+                    } else if(quantity<=0){
+                        System.out.print("Quantity must be at least 1 and less than availability. Please try again.\n");
                         return false;
-                    }
-                    else{
+                    } else {
                         return true;
                     }
                 }
@@ -113,7 +114,7 @@ public class CustomerSystem {
                     buyingPage();
                     return true;
                 case 3:
-                    System.out.println("Transaction cancelled, have a good day!");
+                    System.out.println("Transaction cancelled. Have a good day!");
                     System.exit(0);
                 default:
                     System.out.println("invalid input please try again.");
@@ -143,9 +144,15 @@ public class CustomerSystem {
             System.out.println("Enter quantity: ");
             if (input.hasNextLine()) {
                 try {
-                    quantitySelected = Integer.parseInt(input.nextLine());
+                    String in = input.nextLine();
+                    if (in.equalsIgnoreCase("Cancel")) {
+                        System.out.println("Transaction cancelled. Have a good day!");
+                        System.exit(0);
+                    }
+                    quantitySelected = Integer.parseInt(in);
                     while(!enterQuantityChecker(quantitySelected, itemSelected)){
-                        quantitySelected = Integer.parseInt(input.nextLine());
+                        in = input.nextLine();
+                        quantitySelected = Integer.parseInt(in);
                     }
                 } catch(Exception e) {
                     System.out.println("Invalid input. Please try again.");
