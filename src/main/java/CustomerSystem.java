@@ -144,7 +144,12 @@ public class CustomerSystem {
             if (input.hasNextLine()) {
                 quantitySelected = Integer.parseInt(input.nextLine());
                 while(!enterQuantityChecker(quantitySelected, itemSelected)){
-                    quantitySelected = Integer.parseInt(input.nextLine());
+                    try {
+                        quantitySelected = Integer.parseInt(input.nextLine());
+                    } catch(Exception e) {
+                        System.out.println("Invalid input. Please try again.");
+                        continue;
+                    }
                 };
             }
 
