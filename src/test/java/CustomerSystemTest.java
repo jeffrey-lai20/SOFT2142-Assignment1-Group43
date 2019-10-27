@@ -55,11 +55,11 @@ public class CustomerSystemTest {
 				"Drinks - \n" +
 				"Water: 10\n" +
 				"Soft Drink: 10\n" +
-				"Juice: 5\n" +
+				"Juice: 10\n" +
 				"\n" +
 				"Chocolates - \n" +
 				"M&M: 10\n" +
-				"Bounty: 5\n" +
+				"Bounty: 10\n" +
 				"Mars: 10\n" +
 				"Snickers: 10\n" +
 				"\n" +
@@ -122,7 +122,7 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "quantity must be at least 1 and less than availability.Please try again.\n";
+		String test1 = "Quantity must be at least 1 and less than availability. Please try again.\n";
 
 		customerSystem.enterQuantityChecker(0,"Water");
 		assertEquals(test1, testOut.toString());
@@ -134,7 +134,7 @@ public class CustomerSystemTest {
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 
-		String test1 = "quantity must be at least 1 and less than availability.Please try again.\n";
+		String test1 = "Quantity must be at least 1 and less than availability. Please try again.\n";
 
 		customerSystem.enterQuantityChecker(-10,"Water");
 		assertEquals(test1, testOut.toString());
@@ -145,7 +145,7 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "Quantity requested exceeds stock quantity.Please try again.\n";
+		String test1 = "Quantity requested exceeds stock quantity. Please try again.\n";
 		customerSystem.enterQuantityChecker(20,"Water");
 		assertEquals(test1, testOut.toString());
 	}
