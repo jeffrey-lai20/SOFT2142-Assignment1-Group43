@@ -106,7 +106,7 @@ public class CustomerSystem {
                 case 1 :
                     //calculate cost
                     CashSystem cs = new CashSystem();
-                    cs.cashInput(100);
+                    cs.cashInput(10);
                     return true;
                 case 2:
                     takeAwayItem(itemSelected,quantitySelected);
