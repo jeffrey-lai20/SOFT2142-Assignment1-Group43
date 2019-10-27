@@ -122,6 +122,28 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		String test1 = "Invalid input please try again.\n";
+
+		customerSystem.enterItemChecker("Ice-cream");
+		assertEquals(test1, testOut.toString());
+	}
+
+	@Test
+	public void enterItemTest2() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		String test1 = "Transaction cancelled, have a good day!";
+
+		customerSystem.enterItemChecker("cancel");
+		assertEquals(test1, testOut.toString());
+	}
+
+	@Test
+	public void enterQuantityTest1() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Quantity must be at least 1 and less than availability. Please try again.\n";
 
 		customerSystem.enterQuantityChecker(0,"Water");
@@ -133,7 +155,6 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-
 		String test1 = "Quantity must be at least 1 and less than availability. Please try again.\n";
 
 		customerSystem.enterQuantityChecker(-10,"Water");
@@ -146,9 +167,31 @@ public class CustomerSystemTest {
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Quantity requested exceeds stock quantity. Please try again.\n";
+
 		customerSystem.enterQuantityChecker(20,"Water");
 		assertEquals(test1, testOut.toString());
 	}
 
+	@Test
+	public void confirmationTest1() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		String test1 = "Invalid input please try again.\n";
+
+		customerSystem.confirmation(2,"Water",5);
+		assertEquals(test1, testOut.toString());
+	}
+
+	@Test
+	public void confirmationTest2() {
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		String test1 = "Transaction cancelled. Have a good day!";
+
+		customerSystem.confirmation(2,"Water",3);
+		assertEquals(test1, testOut.toString());
+	}
 
 }
