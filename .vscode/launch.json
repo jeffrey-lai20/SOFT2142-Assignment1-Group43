@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Transaction",
+            "request": "launch",
+            "mainClass": "Transaction",
+            "projectName": "Assignment2-group43"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Driver",
             "request": "launch",
             "mainClass": "Driver",

@@ -38,6 +38,7 @@ public class Driver {
             }
             if (userInput.equalsIgnoreCase("Cancel")) {
                 System.out.println("Cancelling transaction.");
+                input.close();
             } else {
                 System.out.println("Invalid input please try again");
                 firstPage();
