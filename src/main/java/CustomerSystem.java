@@ -61,11 +61,11 @@ public class CustomerSystem {
                     if (i.getName().equalsIgnoreCase(input) || i.getCode().equalsIgnoreCase(input)) {
                         return true;
                     } else if (input.equalsIgnoreCase("Cancel")) {
-                        System.out.println("Transaction cancelled, have a good day!");
-                        System.exit(0);
+                        System.out.print("Transaction cancelled, have a good day!\n");
+                        return false;
                     }
                 }
-                System.out.println("Invalid input please try again.");
+                System.out.print("Invalid input please try again.\n");
                 return false;
         }
 
@@ -127,8 +127,8 @@ public class CustomerSystem {
                     buyingPage();
                     return true;
                 case 3:
-                    System.out.println("Transaction cancelled. Have a good day!");
-                    System.exit(0);
+                    System.out.print("Transaction cancelled. Have a good day!\n");
+                    return false;
                 case 4:
                     viewCart(cart,cartQuantity);
                     confirmationText();
@@ -137,7 +137,7 @@ public class CustomerSystem {
                     confirmation(quantitySelected, itemSelected, number);
                     return true;
                 default:
-                    System.out.println("Invalid input please try again.");
+                    System.out.print("Invalid input please try again.\n");
                     return false;
             }
         }

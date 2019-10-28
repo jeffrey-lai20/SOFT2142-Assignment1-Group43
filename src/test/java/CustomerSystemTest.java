@@ -53,27 +53,27 @@ public class CustomerSystemTest {
 		String test1 = ("Here are our items available: \n" +
 				"\n" +
 				"Drinks - \n" +
-				"Water: 10\n" +
-				"Soft Drink: 10\n" +
-				"Juice: 10\n" +
+				"A1 - Water: 10\n" +
+				"A2 - Soft Drink: 10\n" +
+				"A3 - Juice: 10\n" +
 				"\n" +
 				"Chocolates - \n" +
-				"M&M: 10\n" +
-				"Bounty: 10\n" +
-				"Mars: 10\n" +
-				"Snickers: 10\n" +
+				"B1 - M&M: 10\n" +
+				"B2 - Bounty: 10\n" +
+				"B3 - Mars: 10\n" +
+				"B4 - Snickers: 10\n" +
 				"\n" +
 				"Chips - \n" +
-				"Original: 10\n" +
-				"Chicken: 10\n" +
-				"BBQ: 10\n" +
-				"Sweet Chilly: 10\n" +
+				"C1 - Original: 10\n" +
+				"C2 - Chicken: 10\n" +
+				"C3 - BBQ: 10\n" +
+				"C4 - Sweet Chilly: 10\n" +
 				"\n" +
 				"Lollies - \n" +
-				"Sour Worms: 10\n" +
-				"Jellybeans: 10\n" +
-				"Little Bears: 10\n" +
-				"Party Mix: 10\n\n"
+				"D1 - Sour Worms: 10\n" +
+				"D2 - Jellybeans: 10\n" +
+				"D3 - Little Bears: 10\n" +
+				"D4 - Party Mix: 10\n\n"
 		);
 
 		assertEquals(test1,testOut.toString() );
@@ -90,27 +90,27 @@ public class CustomerSystemTest {
 		customerSystem.itemsAvaliable();
 		String test2 = ("Here are our items available: \n"+"\n"+
 				"Drinks - \n" +
-				"Water: "+items.get(0).getQuantity()+"\n" +
-				"Soft Drink: "+items.get(1).getQuantity()+"\n" +
-				"Juice: "+items.get(2).getQuantity()+"\n\n" +
+				"A1 - Water: "+items.get(0).getQuantity()+"\n" +
+				"A2 - Soft Drink: "+items.get(1).getQuantity()+"\n" +
+				"A3 - Juice: "+items.get(2).getQuantity()+"\n\n" +
 
 				"Chocolates - \n" +
-				"M&M: "+items.get(3).getQuantity()+"\n" +
-				"Bounty: "+items.get(4).getQuantity()+"\n" +
-				"Mars: "+items.get(5).getQuantity()+"\n" +
-				"Snickers: "+items.get(6).getQuantity()+"\n\n" +
+				"B1 - M&M: "+items.get(3).getQuantity()+"\n" +
+				"B2 - Bounty: "+items.get(4).getQuantity()+"\n" +
+				"B3 - Mars: "+items.get(5).getQuantity()+"\n" +
+				"B4 - Snickers: "+items.get(6).getQuantity()+"\n\n" +
 
 				"Chips - \n" +
-				"Original: "+items.get(7).getQuantity()+"\n" +
-				"Chicken: "+items.get(8).getQuantity()+"\n" +
-				"BBQ: "+items.get(9).getQuantity()+"\n" +
-				"Sweet Chilly: "+items.get(10).getQuantity()+"\n\n" +
+				"C1 - Original: "+items.get(7).getQuantity()+"\n" +
+				"C2 - Chicken: "+items.get(8).getQuantity()+"\n" +
+				"C3 - BBQ: "+items.get(9).getQuantity()+"\n" +
+				"C4 - Sweet Chilly: "+items.get(10).getQuantity()+"\n\n" +
 
 				"Lollies - \n" +
-				"Sour Worms: "+items.get(11).getQuantity()+"\n" +
-				"Jellybeans: "+items.get(12).getQuantity()+"\n" +
-				"Little Bears: "+items.get(13).getQuantity()+"\n" +
-				"Party Mix: "+items.get(14).getQuantity()+"\n\n"
+				"D1 - Sour Worms: "+items.get(11).getQuantity()+"\n" +
+				"D2 - Jellybeans: "+items.get(12).getQuantity()+"\n" +
+				"D3 - Little Bears: "+items.get(13).getQuantity()+"\n" +
+				"D4 - Party Mix: "+items.get(14).getQuantity()+"\n\n"
 		);
 
 		assertEquals(test2,testOut.toString());
@@ -133,7 +133,7 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "Transaction cancelled, have a good day!";
+		String test1 = "Transaction cancelled, have a good day!\n";
 
 		customerSystem.enterItemChecker("cancel");
 		assertEquals(test1, testOut.toString());
@@ -188,7 +188,7 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "Transaction cancelled. Have a good day!";
+		String test1 = "Transaction cancelled. Have a good day!\n";
 
 		customerSystem.confirmation(2,"Water",3);
 		assertEquals(test1, testOut.toString());
