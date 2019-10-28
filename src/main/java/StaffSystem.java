@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StaffSystem {
@@ -41,7 +42,13 @@ public class StaffSystem {
         System.out.println("4 : Exit / Logout\n");
     }
 
-    public void showMenu(Inventory inventory) {
+    public static void showSales(ArrayList<Transaction> transactions) {
+        for (Transaction t : transactions) {
+            t.printTransaction();
+        }
+    }
+
+    public void showMenu(Inventory inventory, ArrayList<Transaction> transactions) {
         Scanner input = new Scanner(System.in);
         showMenuOptions();
         String staffInput = input.nextLine();
@@ -59,6 +66,7 @@ public class StaffSystem {
                     break;
                 case "3":
                     // see sales
+                    showSales(transactions);
                     showMenuOptions();
                     break;
                 default:

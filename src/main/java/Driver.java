@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
@@ -7,6 +8,7 @@ public class Driver {
     private static CashSystem cashSystem;
     private static StaffSystem staffSystem;
     private static VendingMachine vendingMachine;
+    private static ArrayList<Transaction> transactions;
 
     public static void main(String[] args) {
         // System.out.println(System.getProperty("user.dir"));
@@ -16,6 +18,7 @@ public class Driver {
         cashSystem = new CashSystem();
         staffSystem = new StaffSystem();
         vendingMachine = new VendingMachine();
+        transactions = new ArrayList<>();
 
         String itemSelected = null;
         int quantitySelected = 0;
@@ -50,7 +53,7 @@ public class Driver {
     private static void staffPage(){
         staffSystem.loginScreen();
         if (staffSystem.staffLoggedIn()) {
-            staffSystem.showMenu(inventory);
+            staffSystem.showMenu(inventory, transactions);
         }
     }
 
