@@ -119,9 +119,9 @@ public class CashSystem {
         else{
             changeValue=0.0;
          }
-        System.out.print("Thank you for purchasing!\n");
+        System.out.print("Thank you for purchasing !\n");
         System.out.print("Please collect your change: $"+changeValue+"\n");
-        System.exit(0);
+        // System.exit(0);
         return changeValue;
     }
 

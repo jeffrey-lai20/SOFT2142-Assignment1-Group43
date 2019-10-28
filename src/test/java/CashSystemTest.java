@@ -27,6 +27,7 @@ public class CashSystemTest {
     @After
     public void restoreStreams() {
         System.setOut(systemOut);
+        System.setIn(systemIn);
     }
     
     @Test
@@ -63,7 +64,7 @@ public class CashSystemTest {
         "    7. 20c coin\n"+
         "    8. 10c coin\n"+
         "    9. Cancel Transaction\n"+
-        "Transaction cancelled.See you next time!\n"
+        "Transaction cancelled. See you next time!\n"
         );
         String input = "9";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -98,6 +99,7 @@ public class CashSystemTest {
         testCashSystem.cashInput(100);
         assertEquals(test, testOut.toString());
     }
+
     @Test
     public void cashInputTest3() {
         String test = ("\nYour total value is : $100.0\nPlease choose the note or coin value,\n" +
