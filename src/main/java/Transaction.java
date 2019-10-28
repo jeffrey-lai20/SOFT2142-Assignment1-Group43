@@ -8,19 +8,24 @@ public class Transaction {
     private ArrayList<Item> items;
     private boolean completed;
     private double totalAmount;
+    private ArrayList<Integer> quantity;
 
     public Transaction() {
         Date currentDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         this.dateTime = formatter.format(currentDate);
         this.items = new ArrayList<>();
+        this.quantity = new ArrayList<>();
         this.completed = false;
         this.totalAmount = 0.0;
     }
 
-    public void addItem(Item i) {
+    public void addItem(Item i, Integer quantity) {
         this.items.add(i);
-        this.totalAmount = this.totalAmount + i.getPrice();
+        this.quantity.add(quantity);
+        for (int j = 0; j < quantity; j++) {
+            this.totalAmount = this.totalAmount + i.getPrice();
+        }
     }
 
     public void complete() {
@@ -44,11 +49,12 @@ public class Transaction {
     }
 
     public void printItems() {
-        for (Item i : this.items) {
-            System.out.print(i.getName() + "\t"
-                            + "1\t\t"
-                            + i.getPrice() + "\t\t"
-                            + i.getPrice() + "\t"
+        for (int i = 0; i < this.items.size(); i++) {
+            Item item = this.items.get(i);
+            System.out.print(item.getName() + "\t"
+                            + this.quantity.get(i) + "\t\t"
+                            + item.getPrice() + "\t\t"
+                            + item.getPrice()*this.quantity.get(i) + "\t"
                             + "\n");
         }
     }
@@ -61,13 +67,23 @@ public class Transaction {
         }
     }
 
+    public Integer getTotalQuantity() {
+        Integer total = 0;
+        for (Integer i : this.quantity) {
+            total = total + i;
+        }
+        return total;
+    }
+
     public void printTransaction() {
         System.out.print("\n==============================================================\n"
                         + "Transaction Date and Time - " + getDateAndTime() + "\n"
+                        +"-----------------------------------------------------------\n"
                         + "Item Name\tQuantity\tPrice/ea\tTotal Price" + "\n"
                         );
         this.printItems();
-        System.out.print("\nTotal Amount - " + this.totalAmount + "\n"
+        System.out.print("-----------------------------------------------------------\n" 
+                        + "Total\t\t" + this.getTotalQuantity() + "\t\t\t\t" + this.totalAmount + " $" + "\n"
                         + "Transaction Status - " + this.getStatus() + "\n");
         System.out.print("==============================================================\n");
 
@@ -77,7 +93,7 @@ public class Transaction {
     public static void main(String[] args) {
         Item airpods = new ItemImpl("Apple Airpods", 319.0, Item.TYPE.CHOCOLATES, 1, "A5");
         Transaction t1 = new Transaction();
-        t1.addItem(airpods);
+        t1.addItem(airpods, 2);
         t1.complete();
         t1.printTransaction();
     }
