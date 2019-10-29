@@ -209,8 +209,6 @@ public class CustomerSystem {
                     confirmation(quantitySelected, itemSelected, answer);
                 } catch (Exception e) {
                     System.out.println("Invalid input.");
-                    confirmationText();
-
                 }
             }
         }
