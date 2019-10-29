@@ -126,10 +126,12 @@ public class CustomerSystem {
                     cart = emptyCart1;
                     cartQuantity = emptyCartQuantity1;
                     return true;
+
                 case 2:
                     takeAwayItem(itemSelected,quantitySelected);
                     buyingPage();
                     return true;
+
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
                     ArrayList<String> emptyCart2 = new ArrayList<>();
@@ -137,6 +139,7 @@ public class CustomerSystem {
                     cart = emptyCart2;
                     cartQuantity = emptyCartQuantity2;
                     return false;
+
                 case 4:
                     viewCart(cart,cartQuantity);
                     confirmationText();
@@ -144,6 +147,7 @@ public class CustomerSystem {
                     int number = Integer.parseInt(input.nextLine());
                     confirmation(0, null, number);
                     return true;
+
                 default:
                     System.out.print("Invalid input please try again.\n");
                     return false;
@@ -243,6 +247,7 @@ public class CustomerSystem {
         public ArrayList<Integer> getCartQuantity() {
                 return cartQuantity;
         }
+
 
 
 }
