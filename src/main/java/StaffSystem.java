@@ -34,11 +34,11 @@ public class StaffSystem {
     }
 
     public void showMenuOptions() {
-        System.out.println("Select a task :");
-        System.out.println("1 : See Inventory");
-        System.out.println("2 : Fill Inventory");
-        System.out.println("3 : See Sales");
-        System.out.println("4 : Exit / Logout\n");
+        System.out.print("Select a task :\n");
+        System.out.print("1 : See Inventory\n");
+        System.out.print("2 : Fill Inventory\n");
+        System.out.print("3 : See Sales\n");
+        System.out.print("4 : Exit / Logout\n\n");
     }
 
     public void showMenu(Inventory inventory) {
