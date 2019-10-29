@@ -27,14 +27,16 @@ public class Driver {
     //Selecting role page some changes for jenkins
     public static void firstPage(){
         System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
-        Scanner input = new Scanner(System.in);
-        if (input.hasNextLine()) {
-            String userInput = input.nextLine();
+        Scanner roleInput = new Scanner(System.in);
+        if (roleInput.hasNextLine()) {
+            String userInput = roleInput.nextLine();
             while (userInput.equals("2")) {
                staffPage();
             }
             if (userInput.equals("1")) {
                customerPage();
+                System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
+                userInput = roleInput.nextLine();
             }
             if (userInput.equalsIgnoreCase("Cancel")) {
                 System.out.println("Cancelling transaction.");
