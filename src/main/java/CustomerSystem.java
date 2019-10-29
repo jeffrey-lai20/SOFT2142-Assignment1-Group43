@@ -145,7 +145,7 @@ public class CustomerSystem {
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
-                    confirmation(quantitySelected, itemSelected, number);
+                    confirmation(0, null, number);
                     return true;
 
                 default:
@@ -205,14 +205,16 @@ public class CustomerSystem {
                 return;
             }
             confirmationText();
-            if (input.hasNextLine()) {
-                this.cart.add(itemSelected);
-                this.cartQuantity.add(quantitySelected);
+            this.cart.add(itemSelected);
+            this.cartQuantity.add(quantitySelected);
+            while (input.hasNextLine()) {
                 try {
                     int answer = Integer.parseInt(input.nextLine());
                     confirmation(quantitySelected, itemSelected, answer);
+                    break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input.");
+                    System.out.println("Invalid input. Please try again.\n");
+                    confirmationText();
                 }
             }
         }
