@@ -47,6 +47,7 @@ public class StaffTest {
     //     assertEquals(false, s.staffLoggedIn());
     //     System.setIn(savedStandardInputStream);
     // }
+    // aws test
 
     @Test
     public void staffMenuOptionsTest() {
