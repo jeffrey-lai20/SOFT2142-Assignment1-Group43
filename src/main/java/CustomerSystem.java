@@ -209,12 +209,8 @@ public class CustomerSystem {
                     confirmation(quantitySelected, itemSelected, answer);
                     break;
                 } catch (Exception e) {
-<<<<<<< HEAD
                     System.out.println("Invalid input. Please try again.\n");
                     confirmationText();
-=======
-                    System.out.println("Invalid input.");
->>>>>>> 8f20d1ec242cb877be8ad5e7a6571791f424da8c
                 }
             }
         }
