@@ -204,8 +204,14 @@ public class CustomerSystem {
             if (input.hasNextLine()) {
                 this.cart.add(itemSelected);
                 this.cartQuantity.add(quantitySelected);
-                int answer = Integer.parseInt(input.nextLine());
-                confirmation(quantitySelected, itemSelected, answer);
+                try {
+                    int answer = Integer.parseInt(input.nextLine());
+                    confirmation(quantitySelected, itemSelected, answer);
+                } catch (Exception e) {
+                    System.out.println("Invalid input.");
+                    confirmationText();
+
+                }
             }
         }
 

@@ -34,9 +34,10 @@ public class Driver {
                staffPage();
             }
             if (userInput.equals("1")) {
-               customerPage();
+                customerPage();
                 System.out.println("");
                 firstPage();
+                // userInput = roleInput.nextLine();
             }
             if (userInput.equalsIgnoreCase("Cancel")) {
                 System.out.println("Cancelling transaction.");
