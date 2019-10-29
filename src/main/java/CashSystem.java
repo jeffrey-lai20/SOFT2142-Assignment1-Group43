@@ -3,7 +3,7 @@ import java.util.*;
 public class CashSystem {
 
     public void cashInput(double cost){
-        System.out.print("\nYour total value is : $"+ cost);
+        System.out.print("\nThe total cost is : $"+ cost);
         Scanner user= new Scanner(System.in);
         double inputtedVal = 0;
         while((Math.round(inputtedVal * 10) / 10.0)<cost){
