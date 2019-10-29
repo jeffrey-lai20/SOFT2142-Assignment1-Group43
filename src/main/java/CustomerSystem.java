@@ -121,6 +121,10 @@ public class CustomerSystem {
                     //calculate cost
                     CashSystem cs = new CashSystem();
                     cs.cashInput(10);
+                    ArrayList<String> emptyCart1 = new ArrayList<>();
+                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
+                    cart = emptyCart1;
+                    cartQuantity = emptyCartQuantity1;
                     return true;
                 case 2:
                     takeAwayItem(itemSelected,quantitySelected);
@@ -128,6 +132,10 @@ public class CustomerSystem {
                     return true;
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
+                    ArrayList<String> emptyCart2 = new ArrayList<>();
+                    ArrayList<Integer> emptyCartQuantity2 = new ArrayList<>();
+                    cart = emptyCart2;
+                    cartQuantity = emptyCartQuantity2;
                     return false;
                 case 4:
                     viewCart(cart,cartQuantity);
@@ -201,8 +209,12 @@ public class CustomerSystem {
                     confirmation(quantitySelected, itemSelected, answer);
                     break;
                 } catch (Exception e) {
+<<<<<<< HEAD
                     System.out.println("Invalid input. Please try again.\n");
                     confirmationText();
+=======
+                    System.out.println("Invalid input.");
+>>>>>>> 8f20d1ec242cb877be8ad5e7a6571791f424da8c
                 }
             }
         }
