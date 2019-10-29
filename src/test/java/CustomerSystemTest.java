@@ -8,21 +8,16 @@ import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.Assertion;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+
 
 public class CustomerSystemTest {
-	// private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	// private final PrintStream originalOut = System.out;
 
-	// @Before
-	// public void setUpStreams() {
-	// 	System.setOut(new PrintStream(outContent));
-	// }
-
-	// @After
-	// public void restoreStreams() {
-	// 	System.setOut(originalOut);
-	// }
+	@Rule
+	public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
 	private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
@@ -193,5 +188,13 @@ public class CustomerSystemTest {
 		customerSystem.confirmation(2,"Water",3);
 		assertEquals(test1, testOut.toString());
 	}
+//	@Test
+//	public void systemExitWithSelectedStatusCode0() {
+//		//for system.exit(0) tests
+//		exit.expectSystemExitWithStatus(0);
+//		Inventory i = new Inventory();
+//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+//		//customerSystem.testExit();
+//	}
 
 }
