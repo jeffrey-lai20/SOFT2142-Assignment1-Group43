@@ -35,8 +35,8 @@ public class Driver {
             }
             if (userInput.equals("1")) {
                customerPage();
-                System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
-                userInput = roleInput.nextLine();
+                System.out.println("");
+                firstPage();
             }
             if (userInput.equalsIgnoreCase("Cancel")) {
                 System.out.println("Cancelling transaction.");
