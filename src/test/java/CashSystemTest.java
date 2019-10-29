@@ -52,7 +52,7 @@ public class CashSystemTest {
 
     @Test
     public void cashInputTest() {
-        String test = ("\nYour total value is : $100.0\nPlease choose the note or coin value,\n" +
+        String test = ("\nThe total cost is : $100.0\nPlease choose the note or coin value,\n" +
         "Followed by the amount to be inputted:\n"+
         "(E.g. 1 10 = $200 inputted )\n"+
         "    1. $20 note\n"+
@@ -77,7 +77,7 @@ public class CashSystemTest {
 
     @Test
     public void cashInputTest2() {
-        String test = ("\nYour total value is : $100.0\nPlease choose the note or coin value,\n" +
+        String test = ("\nThe total cost is : $100.0\nPlease choose the note or coin value,\n" +
                 "Followed by the amount to be inputted:\n"+
                 "(E.g. 1 10 = $200 inputted )\n"+
                 "    1. $20 note\n"+
@@ -102,7 +102,7 @@ public class CashSystemTest {
 
     @Test
     public void cashInputTest3() {
-        String test = ("\nYour total value is : $100.0\nPlease choose the note or coin value,\n" +
+        String test = ("\nThe total cost is : $100.0\nPlease choose the note or coin value,\n" +
                 "Followed by the amount to be inputted:\n" +
                 "(E.g. 1 10 = $200 inputted )\n" +
                 "    1. $20 note\n" +
