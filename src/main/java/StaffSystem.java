@@ -15,16 +15,18 @@ public class StaffSystem {
             if (inputUsername.equals(username)) {
                 System.out.println("Enter your password");
                 String inputPassword = input.nextLine();
-                while(inputPassword.equals(password) != true) {
-                    System.out.println("Incorrect Password. Please try again");
-                    inputPassword = input.nextLine();
-                }
-                if (inputPassword.equals(password)) {
-                    this.loggedIn = true;
-                    System.out.println("\nLogin Successfully\n");
+                while(this.loggedIn == false && (inputPassword != null)) {
+                    if (inputPassword.equals(password)) {
+                        this.loggedIn = true;
+                        System.out.println("\nLogin Successfully\n");
+                    } else {
+                        System.out.println("Incorrect Password. Please try again");
+                        this.loggedIn = false;
+                        inputPassword = input.nextLine();
+                    }
                 }
             } else {
-                System.out.println("Invalid Username\nShutting Down...");
+                System.out.println("Invalid Username\n");
             }
         }
     }

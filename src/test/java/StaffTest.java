@@ -31,10 +31,23 @@ public class StaffTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         StaffSystem s = new StaffSystem();
         s.loginScreen();
-        System.setIn(savedStandardInputStream);
         assertEquals(true, s.staffLoggedIn());
+        System.setIn(savedStandardInputStream);
     }
-    
+
+    // @Test
+    // public void loginFail() {
+    //     String input = "staff" + System.getProperty("line.separator")
+    //             + "@staff" + System.getProperty("line.separator") 
+    //             + "" + System.getProperty("line.separator");
+    //     InputStream savedStandardInputStream = System.in;
+    //     System.setIn(new ByteArrayInputStream(input.getBytes()));
+    //     StaffSystem s = new StaffSystem();
+    //     s.loginScreen();
+    //     assertEquals(false, s.staffLoggedIn());
+    //     System.setIn(savedStandardInputStream);
+    // }
+
     @Test
     public void staffMenuOptionsTest() {
         String expected = ("Select a task :\n"
@@ -50,7 +63,7 @@ public class StaffTest {
     
     @After
     public void restoreSystemInputOutput() {
-        System.setIn(systemIn);
+        // System.setIn(systemIn);
         System.setOut(systemOut);
     }
 }
