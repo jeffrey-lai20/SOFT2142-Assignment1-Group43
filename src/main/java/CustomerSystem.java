@@ -193,16 +193,16 @@ public class CustomerSystem {
                 return;
             }
             confirmationText();
-            if (input.hasNextLine()) {
+            while (input.hasNextLine()) {
                 this.cart.add(itemSelected);
                 this.cartQuantity.add(quantitySelected);
                 try {
                     int answer = Integer.parseInt(input.nextLine());
                     confirmation(quantitySelected, itemSelected, answer);
+                    break;
                 } catch (Exception e) {
-                    System.out.println("Invalid input.");
+                    System.out.println("Invalid input. Please try again.\n");
                     confirmationText();
-
                 }
             }
         }
