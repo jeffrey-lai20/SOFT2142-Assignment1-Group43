@@ -142,7 +142,7 @@ public class CustomerSystem {
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
-                    confirmation(quantitySelected, itemSelected, number);
+                    confirmation(0, null, number);
                     return true;
                 default:
                     System.out.print("Invalid input please try again.\n");
@@ -201,9 +201,9 @@ public class CustomerSystem {
                 return;
             }
             confirmationText();
+            this.cart.add(itemSelected);
+            this.cartQuantity.add(quantitySelected);
             while (input.hasNextLine()) {
-                this.cart.add(itemSelected);
-                this.cartQuantity.add(quantitySelected);
                 try {
                     int answer = Integer.parseInt(input.nextLine());
                     confirmation(quantitySelected, itemSelected, answer);
