@@ -35,6 +35,19 @@ public class StaffTest {
         assertEquals(true, s.staffLoggedIn());
     }
     
+    @Test
+    public void staffMenuOptionsTest() {
+        String expected = ("Select a task :\n"
+                            + "1 : See Inventory\n"
+                            + "2 : Fill Inventory\n"
+                            + "3 : See Sales\n"
+                            + "4 : Exit / Logout\n\n"
+                            );
+        StaffSystem s = new StaffSystem();
+        s.showMenuOptions();
+        assertEquals(expected, testOut.toString());
+    }
+    
     @After
     public void restoreSystemInputOutput() {
         System.setIn(systemIn);
