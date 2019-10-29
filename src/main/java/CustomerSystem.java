@@ -206,8 +206,13 @@ public class CustomerSystem {
             while (input.hasNextLine()) {
                 try {
                     int answer = Integer.parseInt(input.nextLine());
-                    confirmation(quantitySelected, itemSelected, answer);
-                    break;
+                    if (answer < 5 || answer > 0) {
+                        confirmation(quantitySelected, itemSelected, answer);
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please try again.\n");
+                        confirmationText();
+                    }
                 } catch (Exception e) {
                     System.out.println("Invalid input. Please try again.\n");
                     confirmationText();
