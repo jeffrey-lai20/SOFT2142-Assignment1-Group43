@@ -128,6 +128,10 @@ public class CustomerSystem {
                     return true;
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
+                    ArrayList<String> emptyCart = new ArrayList<>();
+                    ArrayList<Integer> emptyCartQuantity = new ArrayList<>();
+                    cart = emptyCart;
+                    cartQuantity = emptyCartQuantity;
                     return false;
                 case 4:
                     viewCart(cart,cartQuantity);
