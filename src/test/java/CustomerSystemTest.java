@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.Assertion;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 
@@ -40,11 +39,11 @@ public class CustomerSystemTest {
 	 */
 
 	@Test
-	public void itemAvaliableTest1() {
+	public void itemAvailableTest1() {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		customerSystem.itemsAvaliable();
+		customerSystem.itemsAvailable();
 		String test1 = ("Here are our items available: \n" +
 				"\n" +
 				"Drinks - \n" +
@@ -76,13 +75,13 @@ public class CustomerSystemTest {
 	}
 
 	@Test
-	public void itemAvaliableTest2() {
+	public void itemAvailableTest2() {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 
 		ArrayList<Item> items = i.getItems();
-		customerSystem.itemsAvaliable();
+		customerSystem.itemsAvailable();
 		String test2 = ("Here are our items available: \n"+"\n"+
 				"Drinks - \n" +
 				"A1 - Water: "+items.get(0).getQuantity()+"\n" +
