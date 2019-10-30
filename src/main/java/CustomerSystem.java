@@ -210,7 +210,7 @@ public class CustomerSystem {
             while (input.hasNextLine()) {
                 try {
                     int answer = Integer.parseInt(input.nextLine());
-                    if (answer < 5 || answer > 0) {
+                    if (answer < 5 && answer > 0) {
                         confirmation(quantitySelected, itemSelected, answer);
                         break;
                     } else {
