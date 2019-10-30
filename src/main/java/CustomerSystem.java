@@ -15,7 +15,7 @@ public class CustomerSystem {
         }
 
         // Select item (availability), specify number of items
-        public void itemsAvaliable() {
+        public void itemsAvailable() {
 
                 // Sort each items into categories and print them
                 ArrayList<Item> drinks = new ArrayList<Item>();
@@ -156,7 +156,7 @@ public class CustomerSystem {
 
         //the loop responsible for select item,quantity and confirmation
         public void buyingPage(){
-            itemsAvaliable();
+            itemsAvailable();
 
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
