@@ -15,7 +15,7 @@ public class CustomerSystem {
         }
 
         // Select item (availability), specify number of items
-        public void itemsAvaliable() {
+        public void itemsAvailable() {
 
                 // Sort each items into categories and print them
                 ArrayList<Item> drinks = new ArrayList<Item>();
@@ -121,21 +121,33 @@ public class CustomerSystem {
                     //calculate cost
                     CashSystem cs = new CashSystem();
                     cs.cashInput(10);
+                    ArrayList<String> emptyCart1 = new ArrayList<>();
+                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
+                    cart = emptyCart1;
+                    cartQuantity = emptyCartQuantity1;
                     return true;
+
                 case 2:
                     takeAwayItem(itemSelected,quantitySelected);
                     buyingPage();
                     return true;
+
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
+                    ArrayList<String> emptyCart2 = new ArrayList<>();
+                    ArrayList<Integer> emptyCartQuantity2 = new ArrayList<>();
+                    cart = emptyCart2;
+                    cartQuantity = emptyCartQuantity2;
                     return false;
+
                 case 4:
                     viewCart(cart,cartQuantity);
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
-                    confirmation(quantitySelected, itemSelected, number);
+                    confirmation(0, null, number);
                     return true;
+
                 default:
                     System.out.print("Invalid input please try again.\n");
                     return false;
@@ -144,7 +156,7 @@ public class CustomerSystem {
 
         //the loop responsible for select item,quantity and confirmation
         public void buyingPage(){
-            itemsAvaliable();
+            itemsAvailable();
 
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
@@ -193,11 +205,22 @@ public class CustomerSystem {
                 return;
             }
             confirmationText();
-            if (input.hasNextLine()) {
-                this.cart.add(itemSelected);
-                this.cartQuantity.add(quantitySelected);
-                int answer = Integer.parseInt(input.nextLine());
-                confirmation(quantitySelected, itemSelected, answer);
+            this.cart.add(itemSelected);
+            this.cartQuantity.add(quantitySelected);
+            while (input.hasNextLine()) {
+                try {
+                    int answer = Integer.parseInt(input.nextLine());
+                    if (answer < 5 && answer > 0) {
+                        confirmation(quantitySelected, itemSelected, answer);
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please try again.\n");
+                        confirmationText();
+                    }
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please try again.\n");
+                    confirmationText();
+                }
             }
         }
 
@@ -224,6 +247,7 @@ public class CustomerSystem {
         public ArrayList<Integer> getCartQuantity() {
                 return cartQuantity;
         }
+
 
 
 }

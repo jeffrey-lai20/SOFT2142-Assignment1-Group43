@@ -8,21 +8,15 @@ import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+
 
 public class CustomerSystemTest {
-	// private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	// private final PrintStream originalOut = System.out;
 
-	// @Before
-	// public void setUpStreams() {
-	// 	System.setOut(new PrintStream(outContent));
-	// }
-
-	// @After
-	// public void restoreStreams() {
-	// 	System.setOut(originalOut);
-	// }
+	@Rule
+	public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
 	private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
@@ -45,11 +39,11 @@ public class CustomerSystemTest {
 	 */
 
 	@Test
-	public void itemAvaliableTest1() {
+	public void itemAvailableTest1() {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		customerSystem.itemsAvaliable();
+		customerSystem.itemsAvailable();
 		String test1 = ("Here are our items available: \n" +
 				"\n" +
 				"Drinks - \n" +
@@ -81,13 +75,13 @@ public class CustomerSystemTest {
 	}
 
 	@Test
-	public void itemAvaliableTest2() {
+	public void itemAvailableTest2() {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 
 		ArrayList<Item> items = i.getItems();
-		customerSystem.itemsAvaliable();
+		customerSystem.itemsAvailable();
 		String test2 = ("Here are our items available: \n"+"\n"+
 				"Drinks - \n" +
 				"A1 - Water: "+items.get(0).getQuantity()+"\n" +
@@ -193,5 +187,13 @@ public class CustomerSystemTest {
 		customerSystem.confirmation(2,"Water",3);
 		assertEquals(test1, testOut.toString());
 	}
+//	@Test
+//	public void systemExitWithSelectedStatusCode0() {
+//		//for system.exit(0) tests
+//		exit.expectSystemExitWithStatus(0);
+//		Inventory i = new Inventory();
+//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+//		//customerSystem.testExit();
+//	}
 
 }

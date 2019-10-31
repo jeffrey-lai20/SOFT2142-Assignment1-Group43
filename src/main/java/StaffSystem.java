@@ -16,16 +16,18 @@ public class StaffSystem {
             if (inputUsername.equals(username)) {
                 System.out.println("Enter your password");
                 String inputPassword = input.nextLine();
-                while(inputPassword.equals(password) != true) {
-                    System.out.println("Incorrect Password. Please try again");
-                    inputPassword = input.nextLine();
-                }
-                if (inputPassword.equals(password)) {
-                    this.loggedIn = true;
-                    System.out.println("\nLogin Successfully\n");
+                while(this.loggedIn == false && (inputPassword != null)) {
+                    if (inputPassword.equals(password)) {
+                        this.loggedIn = true;
+                        System.out.println("\nLogin Successfully\n");
+                    } else {
+                        System.out.println("Incorrect Password. Please try again");
+                        this.loggedIn = false;
+                        inputPassword = input.nextLine();
+                    }
                 }
             } else {
-                System.out.println("Invalid Username\nShutting Down...");
+                System.out.println("Invalid Username\n");
             }
         }
     }
@@ -35,11 +37,11 @@ public class StaffSystem {
     }
 
     public void showMenuOptions() {
-        System.out.println("Select a task :");
-        System.out.println("1 : See Inventory");
-        System.out.println("2 : Fill Inventory");
-        System.out.println("3 : See Sales");
-        System.out.println("4 : Exit / Logout\n");
+        System.out.print("Select a task :\n");
+        System.out.print("1 : See Inventory\n");
+        System.out.print("2 : Fill Inventory\n");
+        System.out.print("3 : See Sales\n");
+        System.out.print("4 : Exit / Logout\n\n");
     }
 
     public static void showSales(ArrayList<Transaction> transactions) {
