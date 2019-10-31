@@ -31,33 +31,16 @@ public class Inventory {
 
     public void fill() {
         if (this.getQuantity() < MAX) {
-            Scanner input = new Scanner(System.in);
-            System.out.println("Enter Item Name : ");
-            Item item = null;
-            String searchName = input.nextLine();
-            for (Item it : this.items) {
-                if (it.getName().equalsIgnoreCase(searchName)) {
-                    item = it;
+            for (Item i : this.items) {
+                if (i.getQuantity() < 10) {
+                    Integer fillQuantity = 10-i.getQuantity();
+                    System.out.print(i.getName() + " added " + fillQuantity + "\n");
+                    i.setQuantity(10);
+                } else {
+                    System.out.print(i.getName() + " stock already full.\n");
                 }
             }
-            System.out.println("Selected Item - " + item.getName() + " Price - " + item.getPrice() + " Type - " + item.getType() + " Quantity - " + item.getQuantity());
-            System.out.println("Enter Fill Quantity : ");
-            String quantityFill = input.nextLine();
-            if (item.getQuantity() < 10) {
-                // fill item
-                for (int i = 0; i<Integer.valueOf(quantityFill); i++) {
-                    item.setQuantity(item.getQuantity()+1);
-                    if(item.getQuantity() == 10) {
-                        Integer quantityAdded = i+1;
-                        System.out.println("Item Capacity reached. Added " + quantityAdded + " items\n");
-                        break;
-                    }
-                }
-                System.out.println("Successfully Added " + quantityFill + " items.\n");
-            } else {
-                System.out.println("Item " + item.getName() + " is full");
-            }
-            System.out.println("Inventory Size = " + this.getQuantity() + "/" + MAX + ".\n");
+            System.out.print("\n");
         } else {
             System.out.println("Inventory Full. Cannot add/fill a new item.\n");
         }
