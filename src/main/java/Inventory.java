@@ -36,7 +36,7 @@ public class Inventory {
             Item item = null;
             String searchName = input.nextLine();
             for (Item it : this.items) {
-                if (it.getName().equals(searchName)) {
+                if (it.getName().equalsIgnoreCase(searchName)) {
                     item = it;
                 }
             }
