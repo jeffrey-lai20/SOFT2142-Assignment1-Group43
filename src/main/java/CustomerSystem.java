@@ -247,7 +247,4 @@ public class CustomerSystem {
         public ArrayList<Integer> getCartQuantity() {
                 return cartQuantity;
         }
-
-
-
 }
