@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 public class CustomerSystem {
 
-        // Can type in product name or a unique code
-        // Can select more than one item in one go.
-        // Can cancel transaction before buying.
 //        private ArrayList<String> cart = new ArrayList<>();
 //        private ArrayList<Integer> cartQuantity = new ArrayList<>();
         private Transaction transaction = new Transaction();
