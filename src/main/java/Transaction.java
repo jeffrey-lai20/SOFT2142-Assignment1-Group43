@@ -83,10 +83,14 @@ public class Transaction {
                         );
         this.printItems();
         System.out.print("-----------------------------------------------------------\n" 
-                        + "Total\t\t" + this.getTotalQuantity() + "\t\t\t\t" + this.totalAmount + " $" + "\n"
+                        + "Total\t\t $" + this.getTotalQuantity() + "\t\t\t\t" + this.totalAmount + "\n"
                         + "Transaction Status - " + this.getStatus() + "\n");
         System.out.print("==============================================================\n");
 
+    }
+
+    public int getQuantity(int index) {
+        return quantity.get(index);
     }
 
     // Just for testing // will delete later

@@ -10,7 +10,7 @@ public class CustomerSystem {
 //        private ArrayList<String> cart = new ArrayList<>();
 //        private ArrayList<Integer> cartQuantity = new ArrayList<>();
         private Transaction transaction = new Transaction();
-        private ArrayList<Item> items;
+    private ArrayList<Item> items;
         private double cost = 0;
         CustomerSystem(ArrayList<Item> items) {
             this.items = items;
@@ -64,6 +64,7 @@ public class CustomerSystem {
                         return true;
                     } else if (input.equalsIgnoreCase("Cancel")) {
                         System.out.print("Transaction cancelled, have a good day!\n");
+                        transaction = new Transaction();
                         return false;
                     }
                 }
@@ -127,6 +128,7 @@ public class CustomerSystem {
                         cost += i.getPrice()*i.getQuantity();
                     }
                     cs.cashInput(cost);
+                    transaction.complete();
 //                    ArrayList<String> emptyCart1 = new ArrayList<>();
 //                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
 //                    cart = emptyCart1;
@@ -141,6 +143,7 @@ public class CustomerSystem {
 
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
+                    transaction = new Transaction();
 //                    ArrayList<String> emptyCart2 = new ArrayList<>();
 //                    ArrayList<Integer> emptyCartQuantity2 = new ArrayList<>();
 //                    cart = emptyCart2;
@@ -149,8 +152,11 @@ public class CustomerSystem {
 
                 case 4:
 //                    viewCart();
-                    for (Item i: transaction.getItems()) {
-                        System.out.println(i.getName() + ": " + i.getQuantity());
+//                    for (Item i: transaction.getItems()) {
+//                        System.out.println(i.getName() + ": " + transaction.);
+//                    }
+                    for (int i = 0; i < transaction.getItems().size(); i++) {
+                        System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity(i));
                     }
                     confirmationText();
                     Scanner input = new Scanner(System.in);
@@ -192,6 +198,7 @@ public class CustomerSystem {
                     String in = input.nextLine();
                     if (in.equalsIgnoreCase("Cancel")) {
                         System.out.println("Transaction cancelled. Have a good day!");
+                        transaction = new Transaction();
                         System.exit(0);
                     }
                     quantitySelected = Integer.parseInt(in);
