@@ -1,3 +1,4 @@
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,8 +7,9 @@ public class CustomerSystem {
         // Can type in product name or a unique code
         // Can select more than one item in one go.
         // Can cancel transaction before buying.
-        private ArrayList<String> cart = new ArrayList<>();
-        private ArrayList<Integer> cartQuantity = new ArrayList<>();
+//        private ArrayList<String> cart = new ArrayList<>();
+//        private ArrayList<Integer> cartQuantity = new ArrayList<>();
+        private Transaction transaction = new Transaction();
         private ArrayList<Item> items;
         private double cost = 0;
         CustomerSystem(ArrayList<Item> items) {
@@ -120,11 +122,16 @@ public class CustomerSystem {
                 case 1 :
                     //calculate cost
                     CashSystem cs = new CashSystem();
-                    cs.cashInput(10);
-                    ArrayList<String> emptyCart1 = new ArrayList<>();
-                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
-                    cart = emptyCart1;
-                    cartQuantity = emptyCartQuantity1;
+                    double cost = 0;
+                    for (Item i: transaction.getItems()) {
+                        cost += i.getPrice()*i.getQuantity();
+                    }
+                    cs.cashInput(cost);
+//                    ArrayList<String> emptyCart1 = new ArrayList<>();
+//                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
+//                    cart = emptyCart1;
+//                    cartQuantity = emptyCartQuantity1;
+                    transaction.printTransaction();
                     return true;
 
                 case 2:
@@ -134,14 +141,17 @@ public class CustomerSystem {
 
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
-                    ArrayList<String> emptyCart2 = new ArrayList<>();
-                    ArrayList<Integer> emptyCartQuantity2 = new ArrayList<>();
-                    cart = emptyCart2;
-                    cartQuantity = emptyCartQuantity2;
+//                    ArrayList<String> emptyCart2 = new ArrayList<>();
+//                    ArrayList<Integer> emptyCartQuantity2 = new ArrayList<>();
+//                    cart = emptyCart2;
+//                    cartQuantity = emptyCartQuantity2;
                     return false;
 
                 case 4:
-                    viewCart(cart,cartQuantity);
+//                    viewCart();
+                    for (Item i: transaction.getItems()) {
+                        System.out.println(i.getName() + ": " + i.getQuantity());
+                    }
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
@@ -160,7 +170,7 @@ public class CustomerSystem {
 
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
-            int quantitySelected =0;
+            int quantitySelected = 0;
 
             //takes in item and checks if input is correct
             System.out.println("Please make a selection.");
@@ -205,8 +215,14 @@ public class CustomerSystem {
                 return;
             }
             confirmationText();
-            this.cart.add(itemSelected);
-            this.cartQuantity.add(quantitySelected);
+            for (Item i :items) {
+                if (i.getName().equalsIgnoreCase(itemSelected)) {
+                    transaction.addItem(i, quantitySelected);
+
+                }
+            }
+//            this.cart.add(itemSelected);
+//            this.cartQuantity.add(quantitySelected);
             while (input.hasNextLine()) {
                 try {
                     int answer = Integer.parseInt(input.nextLine());
@@ -226,7 +242,7 @@ public class CustomerSystem {
 
         // to do get calculate price for transaction
         public double priceCalculation(){
-            for(String i:cart){
+            for(Item i : transaction.getItems())    {
             }
             return 0;
         }
@@ -240,11 +256,11 @@ public class CustomerSystem {
             System.out.println();
         }
 
-        public ArrayList<String> getCart () {
-                return cart;
-        }
+//        public ArrayList<Item> getCart () {
+//                return transaction.getItems();
+//        }
 
-        public ArrayList<Integer> getCartQuantity() {
-                return cartQuantity;
-        }
+//        public ArrayList<Integer> getCartQuantity() {
+//                return cartQuantity;
+//        }
 }
