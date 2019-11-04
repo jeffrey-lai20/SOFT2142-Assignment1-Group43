@@ -47,27 +47,27 @@ public class CustomerSystemTest {
 		String test1 = ("Here are our items available: \n" +
 				"\n" +
 				"Drinks - \n" +
-				"A1 - Water: 10\n" +
-				"A2 - Soft Drink: 10\n" +
-				"A3 - Juice: 10\n" +
+				"A1 - Water - Quantity: 10 - Price: $2.5\n" +
+				"A2 - Soft Drink - Quantity: 10 - Price: $3.0\n" +
+				"A3 - Juice - Quantity: 5 - Price: $3.0\n" +
 				"\n" +
 				"Chocolates - \n" +
-				"B1 - M&M: 10\n" +
-				"B2 - Bounty: 10\n" +
-				"B3 - Mars: 10\n" +
-				"B4 - Snickers: 10\n" +
+				"B1 - M&M - Quantity: 10 - Price: $4.0\n" +
+				"B2 - Bounty - Quantity: 10 - Price: $4.0\n" +
+				"B3 - Mars - Quantity: 10 - Price: $4.0\n" +
+				"B4 - Snickers - Quantity: 10 - Price: $4.0\n" +
 				"\n" +
 				"Chips - \n" +
-				"C1 - Original: 10\n" +
-				"C2 - Chicken: 10\n" +
-				"C3 - BBQ: 10\n" +
-				"C4 - Sweet Chilly: 10\n" +
+				"C1 - Original - Quantity: 10 - Price: $5.0\n" +
+				"C2 - Chicken - Quantity: 10 - Price: $5.0\n" +
+				"C3 - BBQ - Quantity: 10 - Price: $5.0\n" +
+				"C4 - Sweet Chilly - Quantity: 10 - Price: $5.0\n" +
 				"\n" +
 				"Lollies - \n" +
-				"D1 - Sour Worms: 10\n" +
-				"D2 - Jellybeans: 10\n" +
-				"D3 - Little Bears: 10\n" +
-				"D4 - Party Mix: 10\n\n"
+				"D1 - Sour Worms - Quantity: 10 - Price: $4.5\n" +
+				"D2 - Jellybeans - Quantity: 10 - Price: $4.5\n" +
+				"D3 - Little Bears - Quantity: 10 - Price: $4.5\n" +
+				"D4 - Party Mix - Quantity: 10 - Price: $4.5\n\n"
 		);
 
 		assertEquals(test1,testOut.toString() );
@@ -83,28 +83,28 @@ public class CustomerSystemTest {
 		ArrayList<Item> items = i.getItems();
 		customerSystem.itemsAvailable();
 		String test2 = ("Here are our items available: \n"+"\n"+
-				"Drinks - \n" +
-				"A1 - Water: "+items.get(0).getQuantity()+"\n" +
-				"A2 - Soft Drink: "+items.get(1).getQuantity()+"\n" +
-				"A3 - Juice: "+items.get(2).getQuantity()+"\n\n" +
+				"Drinks - \n"
+				+items.get(0).toString()
+				+items.get(1).toString()
+				+items.get(2).toString()+"\n"+
 
-				"Chocolates - \n" +
-				"B1 - M&M: "+items.get(3).getQuantity()+"\n" +
-				"B2 - Bounty: "+items.get(4).getQuantity()+"\n" +
-				"B3 - Mars: "+items.get(5).getQuantity()+"\n" +
-				"B4 - Snickers: "+items.get(6).getQuantity()+"\n\n" +
+				"Chocolates - \n"
+				+items.get(3).toString()
+				+items.get(4).toString()
+				+items.get(5).toString()
+				+items.get(6).toString()+"\n"+
 
-				"Chips - \n" +
-				"C1 - Original: "+items.get(7).getQuantity()+"\n" +
-				"C2 - Chicken: "+items.get(8).getQuantity()+"\n" +
-				"C3 - BBQ: "+items.get(9).getQuantity()+"\n" +
-				"C4 - Sweet Chilly: "+items.get(10).getQuantity()+"\n\n" +
+				"Chips - \n"
+				+items.get(7).toString()
+				+items.get(8).toString()
+				+items.get(9).toString()
+				+items.get(10).toString()+"\n"+
 
-				"Lollies - \n" +
-				"D1 - Sour Worms: "+items.get(11).getQuantity()+"\n" +
-				"D2 - Jellybeans: "+items.get(12).getQuantity()+"\n" +
-				"D3 - Little Bears: "+items.get(13).getQuantity()+"\n" +
-				"D4 - Party Mix: "+items.get(14).getQuantity()+"\n\n"
+				"Lollies - \n"
+				+items.get(11).toString()
+				+items.get(12).toString()
+				+items.get(13).toString()
+				+items.get(14).toString()+"\n"
 		);
 
 		assertEquals(test2,testOut.toString());

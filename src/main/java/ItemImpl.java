@@ -70,7 +70,10 @@ public class ItemImpl implements Item {
     @Override
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-
+    }
+    @Override
+    public String toString(){
+        return this.getCode()+" - "+this.getName()+" - Quantity: "+this.getQuantity()+" - Price: $"+this.getPrice()+"\n";
     }
 
 }

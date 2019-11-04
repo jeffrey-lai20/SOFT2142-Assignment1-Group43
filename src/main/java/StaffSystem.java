@@ -46,7 +46,7 @@ public class StaffSystem {
 
     public static void showSales(ArrayList<Transaction> transactions) {
         for (Transaction t : transactions) {
-            t.printTransaction();
+            System.out.println(t.getTrans());
         }
     }
 

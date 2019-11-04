@@ -38,19 +38,19 @@ public class CustomerSystem {
 
                 System.out.print("\nDrinks - \n");
                 for (Item i : drinks) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\nChocolates - \n");
                 for (Item i : chocolates) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\nChips - \n");
                 for (Item i : chips) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\nLollies - \n");
                 for (Item i : lollies) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\n");
         }
@@ -124,13 +124,18 @@ public class CustomerSystem {
                     for (Item i: transaction.getItems()) {
                         cost += i.getPrice()*i.getQuantity();
                     }
-                    cs.cashInput(cost);
-                    transaction.complete();
+                    if(cs.cashInput(cost)){
+                        transaction.complete();
+                        transaction.printTransaction(cs.getInputtedCash(),cs.getChange());
+                    }
+                    else{
+                        return false;
+                    }
 //                    ArrayList<String> emptyCart1 = new ArrayList<>();
 //                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
 //                    cart = emptyCart1;
 //                    cartQuantity = emptyCartQuantity1;
-                    transaction.printTransaction();
+
                     return true;
 
                 case 2:
