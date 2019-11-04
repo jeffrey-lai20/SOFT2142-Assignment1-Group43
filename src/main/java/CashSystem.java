@@ -7,7 +7,7 @@ public class CashSystem {
         System.out.print("\nThe total cost is : $"+ cost);
         Scanner user= new Scanner(System.in);
         double inputtedVal = 0;
-        while((Math.round(inputtedVal * 10) / 10.0)<cost){
+        while(inputtedVal<cost){
             cashChoiceText();
             String input = user.nextLine();
             if(input.equalsIgnoreCase("cancel")){

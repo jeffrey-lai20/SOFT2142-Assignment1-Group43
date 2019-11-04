@@ -33,10 +33,6 @@ public class Transaction {
         this.completed = true;
     }
 
-    public boolean completed() {
-        return this.completed;
-    }
-
     public ArrayList<Item> getItems() {
         return this.items;
     }
