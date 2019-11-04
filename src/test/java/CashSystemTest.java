@@ -34,65 +34,40 @@ public class CashSystemTest {
     public void OutputText(){
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashChoiceText();
-        String test = "\nPlease choose the note or coin value,\n" +
-                "Followed by the amount to be inputted:\n"+
-                "(E.g. 1 10 = $200 inputted )\n"+
-                "    1. $20 note\n"+
-                "    2. $10 note\n"+
-                "    3.  $5 note\n"+
-                "    4.  $2 coin\n"+
-                "    5.  $1 coin\n"+
-                "    6. 50c coin\n"+
-                "    7. 20c coin\n"+
-                "    8. 10c coin\n"+
-                "    9. Cancel Transaction\n";
+        String test = "\nPlease enter the amount of cash to be inputted:\n";
         assertEquals(test, testOut.toString());
     }
 
 
     @Test
     public void cashInputTest() {
-        String test = ("\nThe total cost is : $100.0\nPlease choose the note or coin value,\n" +
-        "Followed by the amount to be inputted:\n"+
-        "(E.g. 1 10 = $200 inputted )\n"+
-        "    1. $20 note\n"+
-        "    2. $10 note\n"+
-        "    3.  $5 note\n"+
-        "    4.  $2 coin\n"+
-        "    5.  $1 coin\n"+
-        "    6. 50c coin\n"+
-        "    7. 20c coin\n"+
-        "    8. 10c coin\n"+
-        "    9. Cancel Transaction\n"+
-        "Transaction cancelled. See you next time!\n"
+        String test = (
+                "\nThe total cost is : $100.0\nPlease enter the amount of cash to be inputted:\n" +
+                        "Total inputted cash value:9.0\n" +
+                        "Remaining value:91.0\n" +
+                        "Please enter the amount of cash to be inputted:\n"+
+                "Thank you for purchasing !\n"+
+                "Please collect your change: $0.0 and receipt.\n"
         );
-        String input = "9";
+        String input = "9" + System.getProperty("line.separator")
+                + "91" + System.getProperty("line.separator");
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashInput(100);
+        System.setIn(in);
         assertEquals(test, testOut.toString());
     }
 
 
     @Test
     public void cashInputTest2() {
-        String test = ("\nThe total cost is : $100.0\nPlease choose the note or coin value,\n" +
-                "Followed by the amount to be inputted:\n"+
-                "(E.g. 1 10 = $200 inputted )\n"+
-                "    1. $20 note\n"+
-                "    2. $10 note\n"+
-                "    3.  $5 note\n"+
-                "    4.  $2 coin\n"+
-                "    5.  $1 coin\n"+
-                "    6. 50c coin\n"+
-                "    7. 20c coin\n"+
-                "    8. 10c coin\n"+
-                "    9. Cancel Transaction\n"+
+        String test = (
+                "\nThe total cost is : $100.0\nPlease enter the amount of cash to be inputted:\n" +
                 "Thank you for purchasing !\n"+
-                "Please collect your change: $0.0\n"
+                "Please collect your change: $10.0 and receipt.\n"
         );
-        String input = "1 5";
+        String input = "110.0";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         CashSystem testCashSystem = new CashSystem();
@@ -102,42 +77,52 @@ public class CashSystemTest {
 
     @Test
     public void cashInputTest3() {
-        String test = ("\nThe total cost is : $100.0\nPlease choose the note or coin value,\n" +
-                "Followed by the amount to be inputted:\n" +
-                "(E.g. 1 10 = $200 inputted )\n" +
-                "    1. $20 note\n" +
-                "    2. $10 note\n" +
-                "    3.  $5 note\n" +
-                "    4.  $2 coin\n" +
-                "    5.  $1 coin\n" +
-                "    6. 50c coin\n" +
-                "    7. 20c coin\n" +
-                "    8. 10c coin\n" +
-                "    9. Cancel Transaction\n" +
-                "Total inputted cash value:80.0\n" +
-                "Remaining value:20.0" +
-                "\nPlease choose the note or coin value,\n" +
-                "Followed by the amount to be inputted:\n"+
-                "(E.g. 1 10 = $200 inputted )\n"+
-                "    1. $20 note\n"+
-                "    2. $10 note\n"+
-                "    3.  $5 note\n"+
-                "    4.  $2 coin\n"+
-                "    5.  $1 coin\n"+
-                "    6. 50c coin\n"+
-                "    7. 20c coin\n"+
-                "    8. 10c coin\n"+
-                "    9. Cancel Transaction\n"+
+        String test = (
+                "\nThe total cost is : $100.0\nPlease enter the amount of cash to be inputted:\n" +
                 "Thank you for purchasing !\n"+
-                "Please collect your change: $0.0\n"
+                "Please collect your change: $0.0 and receipt.\n"
         );
-        String simulatedUserInput = "1 4" + System.getProperty("line.separator")
-                + "1 1" + System.getProperty("line.separator");
+        String simulatedUserInput = "100";
         InputStream savedStandardInputStream = System.in;
         System.setIn(new ByteArrayInputStream(simulatedUserInput.getBytes()));
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashInput(100);
         System.setIn(savedStandardInputStream);
+        assertEquals(test, testOut.toString());
+    }
+    @Test
+    public void cashInputTest4() {
+        String test = (
+                "\nThe total cost is : $100.0\nPlease enter the amount of cash to be inputted:\n" +
+                        "Transaction cancelled. See you next time!\n"
+        );
+        String input = "cancel";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        CashSystem testCashSystem = new CashSystem();
+        testCashSystem.cashInput(100);
+        assertEquals(test, testOut.toString());
+    }
+
+    @Test
+    public void cashInputTest5() {
+        String test = (
+                "\nThe total cost is : $100.0\nPlease enter the amount of cash to be inputted:\n" +
+                        "Error input please check again.\n" +
+                        "Please make sure only input number.\n" +
+                        "Total inputted cash value:0.0\n" +
+                        "Remaining value:100.0\n" +
+                        "Please enter the amount of cash to be inputted:\n"+
+                        "Thank you for purchasing !\n"+
+                        "Please collect your change: $0.0 and receipt.\n"
+        );
+        String input = "e" + System.getProperty("line.separator")
+                + "100" + System.getProperty("line.separator");
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        CashSystem testCashSystem = new CashSystem();
+        testCashSystem.cashInput(100);
+        System.setIn(in);
         assertEquals(test, testOut.toString());
     }
     @Test
@@ -157,49 +142,6 @@ public class CashSystemTest {
         assertEquals(testCashSystem.changeSystem(100,100.3),0.3,0.0);
         assertEquals(testCashSystem.changeSystem(100,100.1),0.1,0.0);
         assertNotEquals(testCashSystem.changeSystem(100,90),0.1,0.0);
-
-        assertEquals(testCashSystem.inputChecker("1 1").size(),testList.size());
-        assertEquals(testCashSystem.inputChecker("a a").size(),testList.size());
-
     }
-    @Test
-    public void cashHandlerTest(){
-        CashSystem testSystem = new CashSystem();
-        List<Integer> testList = new ArrayList<>();
-        testList.add(2);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),20,0.0);
-        testList = new ArrayList<>();
-        testList.add(3);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),10,0.0);
-        testList = new ArrayList<>();
-        testList.add(4);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),4,0.0);
-        testList = new ArrayList<>();
-        testList.add(5);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),2,0.0);
-        testList = new ArrayList<>();
-        testList.add(6);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),1,0.0);
-        testList = new ArrayList<>();
-        testList.add(7);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),0.4,0.0);
-        testList = new ArrayList<>();
-        testList.add(8);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),0.2,0.0);
-        testList = new ArrayList<>();
-        testList.add(9);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),-1,0.0);
-        testList = new ArrayList<>();
-        testList.add(200);
-        testList.add(2);
-        assertEquals(testSystem.cashHandler(testList),0,0.0);
-    }
+
 }
