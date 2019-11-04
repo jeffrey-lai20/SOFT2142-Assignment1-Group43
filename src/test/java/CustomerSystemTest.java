@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -187,6 +188,43 @@ public class CustomerSystemTest {
 		customerSystem.confirmation(2,"Water",3);
 		assertEquals(test1, testOut.toString());
 	}
+	@Test
+	public void confirmationTextTest(){
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem cs = new CustomerSystem(i.getItems());
+		String text = ("Please choose the next action by entering the corresponding number:\n"+
+		"  1. Proceed to checkout.\n"
+		+"  2. Continue to shop.\n"
+		+"  3. Cancel Transaction.\n"
+		+"  4. View Cart.\n");
+		cs.confirmationText();
+		assertEquals(text, testOut.toString());
+	}
+
+	@Test
+	public void convertCodeNameTest(){
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem cs = new CustomerSystem(i.getItems());
+		assertEquals("Water",cs.convertCodeToName("A1"));
+		assertNotEquals("Water",cs.convertCodeToName("A2"));
+		assertEquals(null,cs.convertCodeToName("11"));
+	}
+
+//	@Test
+//	public void buyingPageTest(){
+//		Inventory i = new Inventory();
+//		Driver testCustomerSystem = new Driver();
+//		CustomerSystem cs = new CustomerSystem(i.getItems());
+//		String input = "A1" + System.getProperty("line.separator")
+//				+ "cancel" + System.getProperty("line.separator");
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		cs.buyingPage();
+//		System.setIn(in);
+//		assertEquals("lol",testOut.toString());
+//	}
 //	@Test
 //	public void systemExitWithSelectedStatusCode0() {
 //		//for system.exit(0) tests

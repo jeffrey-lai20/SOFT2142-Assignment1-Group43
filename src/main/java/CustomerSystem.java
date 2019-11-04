@@ -156,11 +156,9 @@ public class CustomerSystem {
         //the loop responsible for select item,quantity and confirmation
         public void buyingPage(){
             itemsAvailable();
-
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
             int quantitySelected = 0;
-
             //takes in item and checks if input is correct
             System.out.println("Please make a selection.");
             System.out.println("Enter Item: ");
@@ -192,7 +190,6 @@ public class CustomerSystem {
                     totalQuantity.add(quantitySelected);
                 } catch(Exception e) {
                     e.printStackTrace();
-                    System.out.println("yeet");
                     System.out.println("Invalid input. Please try again.");
                 }
 

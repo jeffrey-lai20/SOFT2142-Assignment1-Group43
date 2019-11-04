@@ -123,7 +123,14 @@ public class CashSystemTest {
         CashSystem testCashSystem = new CashSystem();
         testCashSystem.cashInput(100);
         System.setIn(in);
+        assertEquals(testCashSystem.getInputtedCash(),100,0);
         assertEquals(test, testOut.toString());
+    }
+    @Test
+    public void cashInputTest6() {
+       CashSystem cs = new CashSystem();
+       cs.changeSystem(100,110);
+       assertEquals(cs.getChange(),10,0);
     }
     @Test
     public void changeSystemTest(){
