@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class CustomerSystem {
 
-//        private ArrayList<String> cart = new ArrayList<>();
-//        private ArrayList<Integer> cartQuantity = new ArrayList<>();
         private Transaction transaction = new Transaction();
         private ArrayList<Item> items;
         private List<Integer> totalQuantity = new ArrayList<>() ;
@@ -129,11 +127,6 @@ public class CustomerSystem {
                     else{
                         return false;
                     }
-//                    ArrayList<String> emptyCart1 = new ArrayList<>();
-//                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
-//                    cart = emptyCart1;
-//                    cartQuantity = emptyCartQuantity1;
-
                     return true;
 
                 case 2:
@@ -144,20 +137,10 @@ public class CustomerSystem {
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
                     transaction = new Transaction();
-//                    ArrayList<String> emptyCart2 = new ArrayList<>();
-//                    ArrayList<Integer> emptyCartQuantity2 = new ArrayList<>();
-//                    cart = emptyCart2;
-//                    cartQuantity = emptyCartQuantity2;
                     return false;
 
                 case 4:
                     viewCart();
-//                    for (Item i: transaction.getItems()) {
-//                        System.out.println(i.getName() + ": " + transaction.);
-//                    }
-//                    for (int i = 0; i < transaction.getItems().size(); i++) {
-//                        System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity(i));
-//                    }
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
@@ -230,8 +213,6 @@ public class CustomerSystem {
                     transaction.addItem(i, quantitySelected);
                 }
             }
-//            this.cart.add(itemSelected);
-//            this.cartQuantity.add(quantitySelected);
             while (input.hasNextLine()) {
                 try {
                     int answer = Integer.parseInt(input.nextLine());
@@ -248,8 +229,6 @@ public class CustomerSystem {
                 }
             }
         }
-
-        // to do get calculate price for transaction
         public double priceCalculation(){
             int counter = 0;
             cost =0;
@@ -261,7 +240,7 @@ public class CustomerSystem {
         }
 
         public void viewCart() {
-            System.out.println("Cart: ");
+            System.out.println("\nCart: ");
             int i;
             for (i=0;i<transaction.getQuantity().size();i++) {
                 System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity().get(i)+
@@ -275,11 +254,4 @@ public class CustomerSystem {
             transaction.clearItems();
         }
 
-//        public ArrayList<Item> getCart () {
-//                return transaction.getItems();
-//        }
-
-//        public ArrayList<Integer> getCartQuantity() {
-//                return cartQuantity;
-//        }
 }
