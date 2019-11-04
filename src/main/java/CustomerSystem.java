@@ -122,6 +122,14 @@ public class CustomerSystem {
                     if(cs.cashInput(priceCalculation())){
                         transaction.complete();
                         transaction.printTransaction(cs.getInputtedCash(),cs.getChange());
+                        int i,j;
+                        for (i=0;i<transaction.getQuantity().size();i++) {
+                            for (j=0;j<items.size();j++) {
+                                if (items.get(j).getName().equals(transaction.getItems().get(i).getName())) {
+                                    items.get(j).setQuantity(items.get(j).getQuantity() - transaction.getQuantity().get(i));
+                                }
+                            }
+                        }
                         this.clearCart();
                     }
                     else{
