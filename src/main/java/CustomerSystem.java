@@ -197,7 +197,6 @@ public class CustomerSystem {
                     }
                     totalQuantity.add(quantitySelected);
                 } catch(Exception e) {
-                    e.printStackTrace();
                     System.out.println("Invalid input. Please try again.");
                 }
 
