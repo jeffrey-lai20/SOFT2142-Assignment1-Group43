@@ -123,10 +123,10 @@ public class CustomerSystem {
                         transaction.complete();
                         transaction.printTransaction(cs.getInputtedCash(),cs.getChange());
                         int i,j;
-                        for (i=0;i<transaction.getQuantity().size();i++) {
-                            for (j=0;j<items.size();j++) {
-                                if (items.get(j).getName().equals(transaction.getItems().get(i).getName())) {
-                                    items.get(j).setQuantity(items.get(j).getQuantity() - transaction.getQuantity().get(i));
+                        for (i=0;i<items.size();i++) {
+                            for (j=0;j<transaction.getItems().size();j++) {
+                                if (items.get(i).getName().equals(transaction.getItems().get(j).getName())) {
+                                    items.get(i).setQuantity(items.get(i).getQuantity() - transaction.getQuantity().get(j));
                                 }
                             }
                         }
@@ -138,7 +138,7 @@ public class CustomerSystem {
                     return true;
 
                 case 2:
-                    takeAwayItem(itemSelected,quantitySelected);
+//                    takeAwayItem(itemSelected,quantitySelected);
                     buyingPage();
                     return true;
 
