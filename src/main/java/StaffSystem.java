@@ -44,10 +44,52 @@ public class StaffSystem {
         System.out.print("4 : Exit / Logout\n\n");
     }
 
+    public static void showSalesOptions() {
+        System.out.print("\nSelect an option :\n"
+                        + "1 : See All Transactions\n"
+                        + "2 : See Completed Transactions\n"
+                        + "3 : See Cancelled Transactions\n"
+                        + "4 : Go Back\n\n");
+    }
+
     public static void showSales(ArrayList<Transaction> transactions) {
-        for (Transaction t : transactions) {
-            System.out.println(t.getTrans());
+        Scanner input = new Scanner(System.in);
+        showSalesOptions();
+        String salesInput = input.nextLine();
+        while (salesInput.equals("4") != true) {
+            switch (salesInput) {
+                case "1":
+                    //show all transactions
+                    for (Transaction t : transactions) {
+                        t.printTransaction();
+                    }
+                    showSalesOptions();
+                    break;
+                case "2":
+                    //show all successfull transactions
+                    for (Transaction t : transactions) {
+                        if (t.getStatus().equals("Completed")) {
+                            t.printTransaction();
+                        }
+                    }
+                    showSalesOptions();
+                    break;
+                case "3":
+                    // show all cancelled transactions
+                    for (Transaction t : transactions) {
+                        if (t.getStatus().equals("Cancelled")) {
+                            t.printTransaction();
+                        }
+                    }
+                    showSalesOptions();
+                default:
+                    System.out.println("Invalid Output");
+                    showSalesOptions();
+                    break;
+            }
+            salesInput = input.nextLine();
         }
+        
     }
 
     public void showMenu(Inventory inventory, ArrayList<Transaction> transactions) {

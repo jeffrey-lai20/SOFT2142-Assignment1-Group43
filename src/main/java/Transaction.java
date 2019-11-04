@@ -11,6 +11,9 @@ public class Transaction {
     private double totalAmount;
     private ArrayList<Integer> quantity;
     private String trans;
+    private double inputtedCash;
+    private double change;
+
     public Transaction() {
         Date currentDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -50,7 +53,7 @@ public class Transaction {
         for (int i = 0; i < this.items.size(); i++) {
             Item item = this.items.get(i);
             finalItems += (item.getName() + "\t"
-                            + this.quantity.get(i) + "\t\t\t"
+                            + this.quantity.get(i) + "\t\t"
                             + "$"+item.getPrice() + "\t\t"
                             + "$"+item.getPrice()*this.quantity.get(i) + "\t"
                             + "\n");
@@ -66,15 +69,15 @@ public class Transaction {
         }
     }
 
-    public void printTransaction(double inputtedCash,double change) {
+    public void printTransaction() {
         String newTrans = ("\n==============================================================\n"
                 + "Transaction Date and Time - " + getDateAndTime() + "\n"
                 +"-----------------------------------------------------------\n"
                 + "Item Name\tQuantity\tPrice/ea\tTotal Price" + "\n"+
         this.printItems()+
         "-----------------------------------------------------------\n"
-                + "Total Cost\t\t"+ this.totalAmount + "\n"
-                + "Inputted cash\t"+ inputtedCash+ "\tChange\t" +change
+                + "Total Cost\t\t\t\t\t$"+ this.totalAmount + "\n"
+                + "Inputted cash\t"+ this.inputtedCash+ "\tChange\t" + this.change
                 + "\nTransaction Status - " + this.getStatus() + "\n"+
                 "==============================================================\n");
         System.out.print(newTrans);
@@ -94,6 +97,14 @@ public class Transaction {
         this.items.clear();
         this.quantity.clear();
         totalAmount=0;
+    }
+
+    public void setInputtedCash(Double c) {
+        this.inputtedCash = c;
+    }
+
+    public void setChange(Double c) {
+        this.change = c;
     }
 
 }

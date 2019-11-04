@@ -121,7 +121,9 @@ public class CustomerSystem {
                     CashSystem cs = new CashSystem();
                     if(cs.cashInput(priceCalculation())){
                         transaction.complete();
-                        transaction.printTransaction(cs.getInputtedCash(),cs.getChange());
+                        transaction.setChange(cs.getChange());
+                        transaction.setInputtedCash(cs.getInputtedCash());
+                        transaction.printTransaction();
                         int i,j;
                         for (i=0;i<items.size();i++) {
                             for (j=0;j<transaction.getItems().size();j++) {
@@ -162,7 +164,7 @@ public class CustomerSystem {
         }
 
         //the loop responsible for select item,quantity and confirmation
-        public void buyingPage(){
+        public Transaction buyingPage(){
             itemsAvailable();
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
@@ -208,8 +210,7 @@ public class CustomerSystem {
             } else if (quantitySelected != 0){
                 System.out.println("\nYou have selected " + quantitySelected + " " + itemSelected + "s ");
             } else {
-                buyingPage();
-                return;
+                return buyingPage();
             }
             confirmationText();
             for (Item i :items) {
@@ -232,6 +233,7 @@ public class CustomerSystem {
                     confirmationText();
                 }
             }
+            return transaction;
         }
         public double priceCalculation(){
             int counter = 0;
