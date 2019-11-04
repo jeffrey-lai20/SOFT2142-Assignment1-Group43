@@ -151,13 +151,13 @@ public class CustomerSystem {
                     return false;
 
                 case 4:
-//                    viewCart();
+                    viewCart();
 //                    for (Item i: transaction.getItems()) {
 //                        System.out.println(i.getName() + ": " + transaction.);
 //                    }
-                    for (int i = 0; i < transaction.getItems().size(); i++) {
-                        System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity(i));
-                    }
+//                    for (int i = 0; i < transaction.getItems().size(); i++) {
+//                        System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity(i));
+//                    }
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
@@ -254,18 +254,20 @@ public class CustomerSystem {
             int counter = 0;
             cost =0;
             for(Item i : transaction.getItems())    {
-                cost+= i.getPrice()*transaction.getQuantity(counter);
+                cost+= i.getPrice()*transaction.getQuantity().get(counter);
                 counter+=1;
             }
             return cost;
         }
 
-        public void viewCart(ArrayList<String> cart, ArrayList<Integer> cartQuantity) {
+        public void viewCart() {
             System.out.println("Cart: ");
             int i;
-            for (i=0;i<cart.size();i++) {
-                System.out.println(cart.get(i) + ": " + cartQuantity.get(i));
+            for (i=0;i<transaction.getQuantity().size();i++) {
+                System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity().get(i)+
+                        " = $"+transaction.getItems().get(i).getPrice()*transaction.getQuantity().get(i));
             }
+            System.out.println("Total: $"+transaction.totalAmount());
             System.out.println();
         }
 

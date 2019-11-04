@@ -1,6 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Transaction {
@@ -89,8 +90,8 @@ public class Transaction {
     public String getTrans(){
         return this.trans;
     }
-    public int getQuantity(int index) {
-        return quantity.get(index);
+    public List<Integer> getQuantity() {
+        return quantity;
     }
     public void clearItems(){
         this.items.clear();
