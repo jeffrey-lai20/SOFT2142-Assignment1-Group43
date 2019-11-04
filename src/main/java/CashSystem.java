@@ -30,7 +30,7 @@ public class CashSystem {
     }
     //prints out input menu
     void cashChoiceText(){
-        System.out.println("\nPlease enter the amount of cash to be inputted:" );
+        System.out.print("\nPlease enter the amount of cash to be inputted:\n");
     }
 
     //check if input is valid
@@ -39,8 +39,8 @@ public class CashSystem {
             double finalInput= Double.parseDouble(input);
             return finalInput;
         }catch (Exception e){
-            System.out.println("Error input please check again.");
-            System.out.println("Please make sure only input number.");
+            System.out.print("Error input please check again.\n");
+            System.out.print("Please make sure only input number.\n");
             return 0;
         }
     }

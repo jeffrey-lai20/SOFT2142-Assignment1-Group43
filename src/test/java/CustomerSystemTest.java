@@ -234,4 +234,27 @@ public class CustomerSystemTest {
 //		//customerSystem.testExit();
 //	}
 
+	@Test
+	public void confirmationTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		customerSystem.confirmation(5, "this shouldn't work", 5);
+		customerSystem.confirmation(5, "this should work", 3);
+		String expectedOut = "Invalid input please try again.\n" +
+				"Transaction cancelled. Have a good day!\n";
+		assertEquals(expectedOut, testOut.toString());
+	}
+
+	@Test
+	public void clearCartTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		customerSystem.clearCart();
+		customerSystem.viewCart();
+		String test1 = "\nCart: \n" +
+				"Total: $0.0\n" +
+				"\n";
+		assertEquals(test1, testOut.toString());
+	}
+
 }

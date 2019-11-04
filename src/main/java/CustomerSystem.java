@@ -244,14 +244,14 @@ public class CustomerSystem {
         }
 
         public void viewCart() {
-            System.out.println("\nCart: ");
+            System.out.print("\nCart: \n");
             int i;
             for (i=0;i<transaction.getQuantity().size();i++) {
                 System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity().get(i)+
                         " = $"+transaction.getItems().get(i).getPrice()*transaction.getQuantity().get(i));
             }
-            System.out.println("Total: $"+transaction.totalAmount());
-            System.out.println();
+            System.out.print("Total: $"+transaction.totalAmount() + "\n");
+            System.out.print("\n");
         }
 
         public void clearCart(){
