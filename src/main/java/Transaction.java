@@ -92,7 +92,11 @@ public class Transaction {
     public int getQuantity(int index) {
         return quantity.get(index);
     }
-
+    public void clearItems(){
+        this.items.clear();
+        this.quantity.clear();
+        totalAmount=0;
+    }
     // Just for testing // will delete later
     public static void main(String[] args) {
         Item airpods = new ItemImpl("Apple Airpods", 319.0, Item.TYPE.CHOCOLATES, 1, "A5");
@@ -101,4 +105,5 @@ public class Transaction {
         t1.complete();
         t1.printTransaction(10,10);
     }
+
 }
