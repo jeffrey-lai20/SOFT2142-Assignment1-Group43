@@ -4,13 +4,6 @@ public class ItemImpl implements Item {
     private TYPE type;
     private Integer quantity;
     private String code;
-    
-//    public ItemImpl(String name, double price, TYPE type, Integer quantity) {
-//        this.name = name;
-//        this.price = price;
-//        this.type = type;
-//        this.quantity = quantity;
-//    }
 
     public ItemImpl(String name, double price, TYPE type, Integer quantity, String code) {
         this.name = name;
@@ -70,7 +63,10 @@ public class ItemImpl implements Item {
     @Override
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-
+    }
+    @Override
+    public String toString(){
+        return this.getCode()+" - "+this.getName()+" - Quantity: "+this.getQuantity()+" - Price: $"+this.getPrice()+"\n";
     }
 
 }

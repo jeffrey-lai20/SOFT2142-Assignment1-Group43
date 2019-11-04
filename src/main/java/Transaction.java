@@ -1,6 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Transaction {
@@ -9,7 +10,7 @@ public class Transaction {
     private boolean completed;
     private double totalAmount;
     private ArrayList<Integer> quantity;
-
+    private String trans;
     public Transaction() {
         Date currentDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -32,10 +33,6 @@ public class Transaction {
         this.completed = true;
     }
 
-    public boolean completed() {
-        return this.completed;
-    }
-
     public ArrayList<Item> getItems() {
         return this.items;
     }
@@ -48,15 +45,17 @@ public class Transaction {
         return this.dateTime;
     }
 
-    public void printItems() {
+    public String printItems() {
+        String finalItems ="";
         for (int i = 0; i < this.items.size(); i++) {
             Item item = this.items.get(i);
-            System.out.print(item.getName() + "\t"
-                            + this.quantity.get(i) + "\t\t"
-                            + item.getPrice() + "\t\t"
-                            + item.getPrice()*this.quantity.get(i) + "\t"
+            finalItems += (item.getName() + "\t"
+                            + this.quantity.get(i) + "\t\t\t"
+                            + "$"+item.getPrice() + "\t\t"
+                            + "$"+item.getPrice()*this.quantity.get(i) + "\t"
                             + "\n");
         }
+        return finalItems;
     }
 
     public String getStatus() {
@@ -67,38 +66,34 @@ public class Transaction {
         }
     }
 
-    public Integer getTotalQuantity() {
-        Integer total = 0;
-        for (Integer i : this.quantity) {
-            total = total + i;
-        }
-        return total;
+    public void printTransaction(double inputtedCash,double change) {
+        String newTrans = ("\n==============================================================\n"
+                + "Transaction Date and Time - " + getDateAndTime() + "\n"
+                +"-----------------------------------------------------------\n"
+                + "Item Name\tQuantity\tPrice/ea\tTotal Price" + "\n"+
+        this.printItems()+
+        "-----------------------------------------------------------\n"
+                + "Total Cost\t\t"+ this.totalAmount + "\n"
+                + "Inputted cash\t"+ inputtedCash+ "\tChange\t" +change
+                + "\nTransaction Status - " + this.getStatus() + "\n"+
+                "==============================================================\n");
+        System.out.print(newTrans);
+        saveTransaction(newTrans);
+    }
+    private void saveTransaction(String trans){
+        this.trans = trans;
+    }
+    public String getTrans(){
+        return this.trans;
+    }
+    public List<Integer> getQuantity() {
+        return quantity;
     }
 
-    public void printTransaction() {
-        System.out.print("\n==============================================================\n"
-                        + "Transaction Date and Time - " + getDateAndTime() + "\n"
-                        +"-----------------------------------------------------------\n"
-                        + "Item Name\tQuantity\tPrice/ea\tTotal Price" + "\n"
-                        );
-        this.printItems();
-        System.out.print("-----------------------------------------------------------\n" 
-                        + "Total\t\t $" + this.getTotalQuantity() + "\t\t\t\t" + this.totalAmount + "\n"
-                        + "Transaction Status - " + this.getStatus() + "\n");
-        System.out.print("==============================================================\n");
-
+    public void clearItems(){
+        this.items.clear();
+        this.quantity.clear();
+        totalAmount=0;
     }
 
-    public int getQuantity(int index) {
-        return quantity.get(index);
-    }
-
-    // Just for testing // will delete later
-    public static void main(String[] args) {
-        Item airpods = new ItemImpl("Apple Airpods", 319.0, Item.TYPE.CHOCOLATES, 1, "A5");
-        Transaction t1 = new Transaction();
-        t1.addItem(airpods, 2);
-        t1.complete();
-        t1.printTransaction();
-    }
 }

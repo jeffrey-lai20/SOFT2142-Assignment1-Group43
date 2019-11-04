@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -47,27 +48,27 @@ public class CustomerSystemTest {
 		String test1 = ("Here are our items available: \n" +
 				"\n" +
 				"Drinks - \n" +
-				"A1 - Water: 10\n" +
-				"A2 - Soft Drink: 10\n" +
-				"A3 - Juice: 10\n" +
+				"A1 - Water - Quantity: 10 - Price: $2.5\n" +
+				"A2 - Soft Drink - Quantity: 10 - Price: $3.0\n" +
+				"A3 - Juice - Quantity: 5 - Price: $3.0\n" +
 				"\n" +
 				"Chocolates - \n" +
-				"B1 - M&M: 10\n" +
-				"B2 - Bounty: 10\n" +
-				"B3 - Mars: 10\n" +
-				"B4 - Snickers: 10\n" +
+				"B1 - M&M - Quantity: 10 - Price: $4.0\n" +
+				"B2 - Bounty - Quantity: 10 - Price: $4.0\n" +
+				"B3 - Mars - Quantity: 10 - Price: $4.0\n" +
+				"B4 - Snickers - Quantity: 10 - Price: $4.0\n" +
 				"\n" +
 				"Chips - \n" +
-				"C1 - Original: 10\n" +
-				"C2 - Chicken: 10\n" +
-				"C3 - BBQ: 10\n" +
-				"C4 - Sweet Chilly: 10\n" +
+				"C1 - Original - Quantity: 10 - Price: $5.0\n" +
+				"C2 - Chicken - Quantity: 10 - Price: $5.0\n" +
+				"C3 - BBQ - Quantity: 10 - Price: $5.0\n" +
+				"C4 - Sweet Chilly - Quantity: 10 - Price: $5.0\n" +
 				"\n" +
 				"Lollies - \n" +
-				"D1 - Sour Worms: 10\n" +
-				"D2 - Jellybeans: 10\n" +
-				"D3 - Little Bears: 10\n" +
-				"D4 - Party Mix: 10\n\n"
+				"D1 - Sour Worms - Quantity: 10 - Price: $4.5\n" +
+				"D2 - Jellybeans - Quantity: 10 - Price: $4.5\n" +
+				"D3 - Little Bears - Quantity: 10 - Price: $4.5\n" +
+				"D4 - Party Mix - Quantity: 10 - Price: $4.5\n\n"
 		);
 
 		assertEquals(test1,testOut.toString() );
@@ -83,28 +84,28 @@ public class CustomerSystemTest {
 		ArrayList<Item> items = i.getItems();
 		customerSystem.itemsAvailable();
 		String test2 = ("Here are our items available: \n"+"\n"+
-				"Drinks - \n" +
-				"A1 - Water: "+items.get(0).getQuantity()+"\n" +
-				"A2 - Soft Drink: "+items.get(1).getQuantity()+"\n" +
-				"A3 - Juice: "+items.get(2).getQuantity()+"\n\n" +
+				"Drinks - \n"
+				+items.get(0).toString()
+				+items.get(1).toString()
+				+items.get(2).toString()+"\n"+
 
-				"Chocolates - \n" +
-				"B1 - M&M: "+items.get(3).getQuantity()+"\n" +
-				"B2 - Bounty: "+items.get(4).getQuantity()+"\n" +
-				"B3 - Mars: "+items.get(5).getQuantity()+"\n" +
-				"B4 - Snickers: "+items.get(6).getQuantity()+"\n\n" +
+				"Chocolates - \n"
+				+items.get(3).toString()
+				+items.get(4).toString()
+				+items.get(5).toString()
+				+items.get(6).toString()+"\n"+
 
-				"Chips - \n" +
-				"C1 - Original: "+items.get(7).getQuantity()+"\n" +
-				"C2 - Chicken: "+items.get(8).getQuantity()+"\n" +
-				"C3 - BBQ: "+items.get(9).getQuantity()+"\n" +
-				"C4 - Sweet Chilly: "+items.get(10).getQuantity()+"\n\n" +
+				"Chips - \n"
+				+items.get(7).toString()
+				+items.get(8).toString()
+				+items.get(9).toString()
+				+items.get(10).toString()+"\n"+
 
-				"Lollies - \n" +
-				"D1 - Sour Worms: "+items.get(11).getQuantity()+"\n" +
-				"D2 - Jellybeans: "+items.get(12).getQuantity()+"\n" +
-				"D3 - Little Bears: "+items.get(13).getQuantity()+"\n" +
-				"D4 - Party Mix: "+items.get(14).getQuantity()+"\n\n"
+				"Lollies - \n"
+				+items.get(11).toString()
+				+items.get(12).toString()
+				+items.get(13).toString()
+				+items.get(14).toString()+"\n"
 		);
 
 		assertEquals(test2,testOut.toString());
@@ -187,6 +188,43 @@ public class CustomerSystemTest {
 		customerSystem.confirmation(2,"Water",3);
 		assertEquals(test1, testOut.toString());
 	}
+	@Test
+	public void confirmationTextTest(){
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem cs = new CustomerSystem(i.getItems());
+		String text = ("Please choose the next action by entering the corresponding number:\n"+
+		"  1. Proceed to checkout.\n"
+		+"  2. Continue to shop.\n"
+		+"  3. Cancel Transaction.\n"
+		+"  4. View Cart.\n");
+		cs.confirmationText();
+		assertEquals(text, testOut.toString());
+	}
+
+	@Test
+	public void convertCodeNameTest(){
+		Inventory i = new Inventory();
+		Driver testCustomerSystem = new Driver();
+		CustomerSystem cs = new CustomerSystem(i.getItems());
+		assertEquals("Water",cs.convertCodeToName("A1"));
+		assertNotEquals("Water",cs.convertCodeToName("A2"));
+		assertEquals(null,cs.convertCodeToName("11"));
+	}
+
+//	@Test
+//	public void buyingPageTest(){
+//		Inventory i = new Inventory();
+//		Driver testCustomerSystem = new Driver();
+//		CustomerSystem cs = new CustomerSystem(i.getItems());
+//		String input = "A1" + System.getProperty("line.separator")
+//				+ "cancel" + System.getProperty("line.separator");
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		cs.buyingPage();
+//		System.setIn(in);
+//		assertEquals("lol",testOut.toString());
+//	}
 //	@Test
 //	public void systemExitWithSelectedStatusCode0() {
 //		//for system.exit(0) tests
@@ -195,5 +233,28 @@ public class CustomerSystemTest {
 //		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 //		//customerSystem.testExit();
 //	}
+
+	@Test
+	public void confirmationTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		customerSystem.confirmation(5, "this shouldn't work", 5);
+		customerSystem.confirmation(5, "this should work", 3);
+		String expectedOut = "Invalid input please try again.\n" +
+				"Transaction cancelled. Have a good day!\n";
+		assertEquals(expectedOut, testOut.toString());
+	}
+
+	@Test
+	public void clearCartTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		customerSystem.clearCart();
+		customerSystem.viewCart();
+		String test1 = "\nCart: \n" +
+				"Total: $0.0\n" +
+				"\n";
+		assertEquals(test1, testOut.toString());
+	}
 
 }

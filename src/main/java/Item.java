@@ -9,6 +9,7 @@ public interface Item {
     public void setQuantity(Integer quantity);
     void setCode(String code);
     String getCode();
+    String toString();
 
     public enum TYPE {
         DRINKS,

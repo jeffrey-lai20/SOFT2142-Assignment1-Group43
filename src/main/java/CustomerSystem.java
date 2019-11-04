@@ -1,13 +1,13 @@
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CustomerSystem {
 
-//        private ArrayList<String> cart = new ArrayList<>();
-//        private ArrayList<Integer> cartQuantity = new ArrayList<>();
         private Transaction transaction = new Transaction();
-    private ArrayList<Item> items;
+        private ArrayList<Item> items;
+        private List<Integer> totalQuantity = new ArrayList<>() ;
         private double cost = 0;
         CustomerSystem(ArrayList<Item> items) {
             this.items = items;
@@ -38,19 +38,19 @@ public class CustomerSystem {
 
                 System.out.print("\nDrinks - \n");
                 for (Item i : drinks) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\nChocolates - \n");
                 for (Item i : chocolates) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\nChips - \n");
                 for (Item i : chips) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\nLollies - \n");
                 for (Item i : lollies) {
-                        System.out.print(i.getCode() + " - " + i.getName()+": "+i.getQuantity()+"\n");
+                        System.out.print(i.toString());
                 }
                 System.out.print("\n");
         }
@@ -118,43 +118,37 @@ public class CustomerSystem {
         public boolean confirmation(int quantitySelected, String itemSelected, int answer) {
             switch(answer){
                 case 1 :
-                    //calculate cost
                     CashSystem cs = new CashSystem();
-                    double cost = 0;
-                    for (Item i: transaction.getItems()) {
-                        cost += i.getPrice()*i.getQuantity();
+                    if(cs.cashInput(priceCalculation())){
+                        transaction.complete();
+                        transaction.printTransaction(cs.getInputtedCash(),cs.getChange());
+                        int i,j;
+                        for (i=0;i<items.size();i++) {
+                            for (j=0;j<transaction.getItems().size();j++) {
+                                if (items.get(i).getName().equals(transaction.getItems().get(j).getName())) {
+                                    items.get(i).setQuantity(items.get(i).getQuantity() - transaction.getQuantity().get(j));
+                                }
+                            }
+                        }
+                        this.clearCart();
                     }
-                    cs.cashInput(cost);
-                    transaction.complete();
-//                    ArrayList<String> emptyCart1 = new ArrayList<>();
-//                    ArrayList<Integer> emptyCartQuantity1 = new ArrayList<>();
-//                    cart = emptyCart1;
-//                    cartQuantity = emptyCartQuantity1;
-                    transaction.printTransaction();
+                    else{
+                        return false;
+                    }
                     return true;
 
                 case 2:
-                    takeAwayItem(itemSelected,quantitySelected);
+//                    takeAwayItem(itemSelected,quantitySelected);
                     buyingPage();
                     return true;
 
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
                     transaction = new Transaction();
-//                    ArrayList<String> emptyCart2 = new ArrayList<>();
-//                    ArrayList<Integer> emptyCartQuantity2 = new ArrayList<>();
-//                    cart = emptyCart2;
-//                    cartQuantity = emptyCartQuantity2;
                     return false;
 
                 case 4:
-//                    viewCart();
-//                    for (Item i: transaction.getItems()) {
-//                        System.out.println(i.getName() + ": " + transaction.);
-//                    }
-                    for (int i = 0; i < transaction.getItems().size(); i++) {
-                        System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity(i));
-                    }
+                    viewCart();
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
@@ -170,11 +164,9 @@ public class CustomerSystem {
         //the loop responsible for select item,quantity and confirmation
         public void buyingPage(){
             itemsAvailable();
-
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
             int quantitySelected = 0;
-
             //takes in item and checks if input is correct
             System.out.println("Please make a selection.");
             System.out.println("Enter Item: ");
@@ -203,6 +195,7 @@ public class CustomerSystem {
                         in = input.nextLine();
                         quantitySelected = Integer.parseInt(in);
                     }
+                    totalQuantity.add(quantitySelected);
                 } catch(Exception e) {
                     System.out.println("Invalid input. Please try again.");
                 }
@@ -222,11 +215,8 @@ public class CustomerSystem {
             for (Item i :items) {
                 if (i.getName().equalsIgnoreCase(itemSelected)) {
                     transaction.addItem(i, quantitySelected);
-
                 }
             }
-//            this.cart.add(itemSelected);
-//            this.cartQuantity.add(quantitySelected);
             while (input.hasNextLine()) {
                 try {
                     int answer = Integer.parseInt(input.nextLine());
@@ -243,28 +233,29 @@ public class CustomerSystem {
                 }
             }
         }
-
-        // to do get calculate price for transaction
         public double priceCalculation(){
+            int counter = 0;
+            cost =0;
             for(Item i : transaction.getItems())    {
+                cost+= i.getPrice()*transaction.getQuantity().get(counter);
+                counter+=1;
             }
-            return 0;
+            return cost;
         }
 
-        public void viewCart(ArrayList<String> cart, ArrayList<Integer> cartQuantity) {
-            System.out.println("Cart: ");
+        public void viewCart() {
+            System.out.print("\nCart: \n");
             int i;
-            for (i=0;i<cart.size();i++) {
-                System.out.println(cart.get(i) + ": " + cartQuantity.get(i));
+            for (i=0;i<transaction.getQuantity().size();i++) {
+                System.out.println(transaction.getItems().get(i).getName() + ": " + transaction.getQuantity().get(i)+
+                        " = $"+transaction.getItems().get(i).getPrice()*transaction.getQuantity().get(i));
             }
-            System.out.println();
+            System.out.print("Total: $"+transaction.totalAmount() + "\n");
+            System.out.print("\n");
         }
 
-//        public ArrayList<Item> getCart () {
-//                return transaction.getItems();
-//        }
+        public void clearCart(){
+            transaction.clearItems();
+        }
 
-//        public ArrayList<Integer> getCartQuantity() {
-//                return cartQuantity;
-//        }
 }

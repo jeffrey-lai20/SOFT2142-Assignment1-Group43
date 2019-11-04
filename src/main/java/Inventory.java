@@ -60,8 +60,8 @@ public class Inventory {
 
     public void printInventory() {
         for (Item i : items) {
-            System.out.println(i.getName() + " - " + i.getQuantity());
+            System.out.print(i.getName() + " - " + i.getQuantity() + "\n");
         }
-        System.out.println("\nTotal Items = " + this.getQuantity() + "\n");
+        System.out.print("\nTotal Items = " + this.getQuantity() + "\n\n");
     }
 }
