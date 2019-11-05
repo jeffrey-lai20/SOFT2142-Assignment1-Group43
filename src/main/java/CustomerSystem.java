@@ -60,9 +60,10 @@ public class CustomerSystem {
                     if (i.getName().equalsIgnoreCase(input) || i.getCode().equalsIgnoreCase(input)) {
                         return true;
                     } else if (input.equalsIgnoreCase("Cancel")) {
-                        System.out.print("Transaction cancelled, have a good day!\n");
+                        System.out.print("Transaction cancelled, have a good day!\n\n");
                         transaction = new Transaction();
-                        return false;
+                        VendingMachine.firstPage();
+//                        return false;
                     }
                 }
                 System.out.print("Invalid input please try again.\n");
