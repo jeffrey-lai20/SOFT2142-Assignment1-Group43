@@ -7,15 +7,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
-import org.graalvm.compiler.lir.alloc.trace.TraceBuilderPhase;
+//import org.graalvm.compiler.lir.alloc.trace.TraceBuilderPhase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-
 
 public class CustomerSystemTest {
 
