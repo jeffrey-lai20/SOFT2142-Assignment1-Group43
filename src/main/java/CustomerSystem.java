@@ -63,7 +63,7 @@ public class CustomerSystem {
                         System.out.print("Transaction cancelled, have a good day!\n\n");
                         transaction = new Transaction();
                         VendingMachine.firstPage();
-//                        return false;
+                        return false;
                     }
                 }
                 System.out.print("Invalid input please try again.\n");
@@ -245,7 +245,7 @@ public class CustomerSystem {
 
         public double priceCalculation(){
             int counter = 0;
-            cost =0;
+            cost = 0;
             for(Item i : transaction.getItems())    {
                 cost+= i.getPrice()*transaction.getQuantity().get(counter);
                 counter+=1;

@@ -27,17 +27,19 @@ public class VendingMachine {
 
     //Selecting role page some changes for jenkins
     public static void firstPage(){
-        System.out.println("Please select your role : \n1 : Customer\n2 : Staff");
+        System.out.print("Please select your role : \n1 : Customer\n2 : Staff\n");
         Scanner roleInput = new Scanner(System.in);
         if (roleInput.hasNextLine()) {
             String userInput = roleInput.nextLine();
             while (userInput.equals("2")) {
-               staffPage();
+                staffPage();
             }
             if (userInput.equals("1")) {
                 customerPage();
                 System.out.println("");
                 firstPage();
+                roleInput.close();
+
                 // userInput = roleInput.nextLine();
             }
             if (userInput.equalsIgnoreCase("Cancel")) {
@@ -46,8 +48,8 @@ public class VendingMachine {
             } else {
                 System.out.println("Invalid input please try again");
                 firstPage();
+                roleInput.close();
             }
-            roleInput.close();
         }
     }
 

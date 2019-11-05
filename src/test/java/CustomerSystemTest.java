@@ -7,7 +7,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import org.graalvm.compiler.lir.alloc.trace.TraceBuilderPhase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -129,7 +131,10 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "Transaction cancelled, have a good day!\n";
+		String test1 = "Transaction cancelled, have a good day!\n\n" +
+				"Please select your role : \n" +
+				"1 : Customer\n" +
+				"2 : Staff\n";
 
 		customerSystem.enterItemChecker("cancel");
 		assertEquals(test1, testOut.toString());
@@ -189,6 +194,37 @@ public class CustomerSystemTest {
 		customerSystem.confirmation(2,"Water",3,new ArrayList<Transaction>());
 		assertEquals(test1, testOut.toString());
 	}
+
+//	@Test
+//	public void confirmationTest3() {
+//		Inventory i = new Inventory();
+//		VendingMachine testCustomerSystem = new VendingMachine();
+//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+//		String test1 = "Transaction cancelled. Have a good day!\n";
+//
+//		customerSystem.confirmation(2,"Water",2,new ArrayList<Transaction>());
+//		assertEquals(test1, testOut.toString());
+//	}
+	@Test
+	public void confirmationTest4() {
+		Inventory i = new Inventory();
+		VendingMachine testCustomerSystem = new VendingMachine();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		String test1 = "\nThe total cost is : $0.0";
+
+		customerSystem.confirmation(2,"Water",1,new ArrayList<Transaction>());
+		assertEquals(test1, testOut.toString());
+	}
+//	@Test
+//	public void confirmationTest5() {
+//		Inventory i = new Inventory();
+//		VendingMachine testCustomerSystem = new VendingMachine();
+//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+//		String test1 = "Transaction cancelled. Have a good day!\n";
+//
+//		customerSystem.confirmation(2,"Water",4,new ArrayList<Transaction>());
+//		assertEquals(test1, testOut.toString());
+//	}
 	@Test
 	public void confirmationTextTest(){
 		Inventory i = new Inventory();
@@ -246,6 +282,7 @@ public class CustomerSystemTest {
 		assertEquals(expectedOut, testOut.toString());
 	}
 
+
 	@Test
 	public void clearCartTest() {
 		Inventory i = new Inventory();
@@ -258,4 +295,34 @@ public class CustomerSystemTest {
 		assertEquals(test1, testOut.toString());
 	}
 
+	@Test
+	public void priceCalcTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		assertEquals(0, customerSystem.priceCalculation(), 0.001);
+	}
+
+	@Test
+	public void buyingPageTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		InputStream sysInBackup = System.in; // backup System.in to restore it later
+		inputData("water");
+		inputData("2");
+		inputData("4");
+		inputData("5");
+
+		customerSystem.buyingPage(new ArrayList<>());
+//		ByteArrayInputStream in = new ByteArrayInputStream("water".getBytes());
+//		System.setIn(in);
+		String test1 = "Please make a selection.\n" +
+				"Enter Item:\n";
+//		assertEquals(test1, testOut.toString());
+		System.setIn(sysInBackup);
+
+	}
+	private void inputData(String data) {
+		testIn = new ByteArrayInputStream(data.getBytes());
+		System.setIn(testIn);
+	}
 }
