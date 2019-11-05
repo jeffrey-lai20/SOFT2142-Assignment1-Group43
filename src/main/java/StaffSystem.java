@@ -85,7 +85,7 @@ public class StaffSystem {
                     showSalesOptions();
                     break;
                 default:
-                    System.out.println("Invalid Input");
+                    System.out.print("Invalid Input\n");
                     showSalesOptions();
                     break;
             }
