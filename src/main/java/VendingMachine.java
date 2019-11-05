@@ -47,6 +47,7 @@ public class VendingMachine {
                 System.out.println("Invalid input please try again");
                 firstPage();
             }
+            roleInput.close();
         }
     }
 
