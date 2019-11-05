@@ -121,7 +121,7 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		String test1 = "Invalid input please try again.\n";
+		String test1 = "Invalid input. Please try again.\n";
 
 		customerSystem.enterItemChecker("Ice-cream");
 		assertEquals(test1, testOut.toString());
@@ -341,27 +341,25 @@ public class CustomerSystemTest {
 				"Enter quantity:\n";
 		assertEquals(test1, testOut.toString());
 	}
-//	private void inputData(String data) {
-//		testIn = new ByteArrayInputStream(data.getBytes());
-//		System.setIn(testIn);
-//	}
 
-//	@Test
-//	public void test() {
-//		Inventory i = new Inventory();
-//
-//
-//		String test = "Invalid input please try again.\n";
-//		String input = "asdk";
-//		InputStream in = System.in;
-//		System.setIn(new ByteArrayInputStream(input.getBytes()));
-//
-//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-//		ArrayList<Transaction> transactions = new ArrayList<>();
-//		System.setIn(in);
-//		customerSystem.buyingPage(transactions);
-//		assertEquals(test, testOut.toString());
-////		System.setIn(in);
-//	}
+	@Test
+	public void enterItemNullTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		customerSystem.enterItemChecker(null);
+		String expectedOut = "Invalid input. Please try again.\n";
+		assertEquals(expectedOut, testOut.toString());
+	}
+
+	@Test
+	public void convertCodeNullTest() {
+		Inventory i = new Inventory();
+		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+		customerSystem.convertCodeToName(null);
+		String expectedOut = "Invalid input. Please try again.\n";
+		assertEquals(expectedOut, testOut.toString());
+	}
+
+
 
 }

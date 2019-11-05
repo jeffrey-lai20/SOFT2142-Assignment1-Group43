@@ -17,10 +17,6 @@ public class VendingMachine {
         cashSystem = new CashSystem();
         staffSystem = new StaffSystem();
         transactions = new ArrayList<>();
-
-        String itemSelected = null;
-        int quantitySelected = 0;
-
         firstPage();
 
     }
@@ -36,15 +32,15 @@ public class VendingMachine {
             }
             if (userInput.equals("1")) {
                 customerPage();
-                System.out.println("");
-                firstPage();
                 roleInput.close();
-
+                System.exit(0);
                 // userInput = roleInput.nextLine();
             }
             if (userInput.equalsIgnoreCase("Cancel")) {
                 System.out.println("Cancelling transaction.");
                 roleInput.close();
+                System.exit(0);
+
             } else {
                 System.out.println("Invalid input please try again");
                 firstPage();

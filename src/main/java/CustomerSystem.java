@@ -56,6 +56,7 @@ public class CustomerSystem {
         }
 
         public boolean enterItemChecker(String input) {
+            try {
                 for(Item i :items) {
                     if (i.getName().equalsIgnoreCase(input) || i.getCode().equalsIgnoreCase(input)) {
                         return true;
@@ -66,11 +67,19 @@ public class CustomerSystem {
                         return false;
                     }
                 }
-                System.out.print("Invalid input please try again.\n");
+                System.out.print("Invalid input. Please try again.\n");
                 return false;
+            } catch (NullPointerException e) {
+                System.out.print("Invalid input. Please try again.\n");
+            }
+            return false;
         }
 
         public Item convertCodeToName(String code) {
+            if (code == null) {
+                System.out.print("Invalid input. Please try again.\n");
+                return null;
+            }
             Item item = null;
             for(Item i :items) {
                 if (i.getCode().equalsIgnoreCase(code)) {
@@ -168,7 +177,7 @@ public class CustomerSystem {
         }
 
         //the loop responsible for select item,quantity and confirmation
-        public void buyingPage(ArrayList<Transaction> transactions){
+        public void buyingPage(ArrayList<Transaction> transactions) {
             itemsAvailable();
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
@@ -210,7 +219,6 @@ public class CustomerSystem {
                 } catch(Exception e) {
                     System.out.println("Invalid input. Please try again.");
                 }
-
             }
 
             //Provide customer next action to take.
