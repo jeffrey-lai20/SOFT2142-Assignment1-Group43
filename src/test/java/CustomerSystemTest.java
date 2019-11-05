@@ -37,6 +37,7 @@ public class CustomerSystemTest {
 	@After
     public void restoreStreams() {
         System.setOut(systemOut);
+		System.setIn(systemIn);
     }
 	/**
 	 * Basic test to check avaliable items
@@ -306,23 +307,61 @@ public class CustomerSystemTest {
 	public void buyingPageTest() {
 		Inventory i = new Inventory();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		InputStream sysInBackup = System.in; // backup System.in to restore it later
-		inputData("water");
-		inputData("2");
-		inputData("4");
-		inputData("5");
-
+//		InputStream sysInBackup = System.in; // backup System.in to restore it later
 		customerSystem.buyingPage(new ArrayList<>());
-//		ByteArrayInputStream in = new ByteArrayInputStream("water".getBytes());
-//		System.setIn(in);
-		String test1 = "Please make a selection.\n" +
-				"Enter Item:\n";
-//		assertEquals(test1, testOut.toString());
-		System.setIn(sysInBackup);
 
+
+		String test1 = "Here are our items available: \n" +
+				"\n" +
+				"Drinks - \n" +
+				"A1 - Water - Quantity: 10 - Price: $2.5\n" +
+				"A2 - Soft Drink - Quantity: 10 - Price: $3.0\n" +
+				"A3 - Juice - Quantity: 5 - Price: $3.0\n" +
+				"\n" +
+				"Chocolates - \n" +
+				"B1 - M&M - Quantity: 10 - Price: $4.0\n" +
+				"B2 - Bounty - Quantity: 10 - Price: $4.0\n" +
+				"B3 - Mars - Quantity: 10 - Price: $4.0\n" +
+				"B4 - Snickers - Quantity: 10 - Price: $4.0\n" +
+				"\n" +
+				"Chips - \n" +
+				"C1 - Original - Quantity: 10 - Price: $5.0\n" +
+				"C2 - Chicken - Quantity: 10 - Price: $5.0\n" +
+				"C3 - BBQ - Quantity: 10 - Price: $5.0\n" +
+				"C4 - Sweet Chilly - Quantity: 10 - Price: $5.0\n" +
+				"\n" +
+				"Lollies - \n" +
+				"D1 - Sour Worms - Quantity: 10 - Price: $4.5\n" +
+				"D2 - Jellybeans - Quantity: 10 - Price: $4.5\n" +
+				"D3 - Little Bears - Quantity: 10 - Price: $4.5\n" +
+				"D4 - Party Mix - Quantity: 10 - Price: $4.5\n" +
+				"\n" +
+				"Please make a selection.\n" +
+				"Enter Item:\n" +
+				"Enter quantity:\n";
+		assertEquals(test1, testOut.toString());
 	}
-	private void inputData(String data) {
-		testIn = new ByteArrayInputStream(data.getBytes());
-		System.setIn(testIn);
-	}
+//	private void inputData(String data) {
+//		testIn = new ByteArrayInputStream(data.getBytes());
+//		System.setIn(testIn);
+//	}
+
+//	@Test
+//	public void test() {
+//		Inventory i = new Inventory();
+//
+//
+//		String test = "Invalid input please try again.\n";
+//		String input = "asdk";
+//		InputStream in = System.in;
+//		System.setIn(new ByteArrayInputStream(input.getBytes()));
+//
+//		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
+//		ArrayList<Transaction> transactions = new ArrayList<>();
+//		System.setIn(in);
+//		customerSystem.buyingPage(transactions);
+//		assertEquals(test, testOut.toString());
+////		System.setIn(in);
+//	}
+
 }

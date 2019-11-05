@@ -136,7 +136,7 @@ public class CustomerSystem {
                         }
                         // this.clearCart();
                     }
-                    else{
+                    else {
                         return false;
                     }
                     this.transaction = new Transaction();
@@ -175,11 +175,11 @@ public class CustomerSystem {
             Item item = null;
             int quantitySelected = 0;
             //takes in item and checks if input is correct
-            System.out.println("Please make a selection.");
-            System.out.println("Enter Item: ");
+            System.out.print("Please make a selection.\n");
+            System.out.print("Enter Item:\n");
             if (input.hasNextLine()) {
                 itemSelected = input.nextLine(); //Testing scanner input, not working.
-                while(!enterItemChecker(itemSelected)){
+                while(!enterItemChecker(itemSelected) && input.hasNextLine()){
                     itemSelected = input.nextLine();
                 }
                 if (itemSelected.length() == 2) {
@@ -189,8 +189,8 @@ public class CustomerSystem {
             }
 
             //takes in quantity and checks if quantity is correct.
-            System.out.println("Enter quantity: ");
-            if (input.hasNextLine()) {
+            System.out.print("Enter quantity:\n");
+            while (input.hasNextLine()) {
                 try {
                     String in = input.nextLine();
                     if (in.equalsIgnoreCase("Cancel")) {
@@ -198,6 +198,7 @@ public class CustomerSystem {
                         transactions.add(this.transaction);
                         this.transaction = new Transaction();
                         System.exit(0);
+                        break;
                     }
                     quantitySelected = Integer.parseInt(in);
                     while(!enterQuantityChecker(quantitySelected, itemSelected)){
@@ -205,6 +206,7 @@ public class CustomerSystem {
                         quantitySelected = Integer.parseInt(in);
                     }
                     totalQuantity.add(quantitySelected);
+                    break;
                 } catch(Exception e) {
                     System.out.println("Invalid input. Please try again.");
                 }
@@ -214,10 +216,11 @@ public class CustomerSystem {
             //Provide customer next action to take.
             if (quantitySelected == 1) {
                 System.out.println("\nYou have selected one " + itemSelected);
-            } else if (quantitySelected != 0){
+            } else if (quantitySelected != 0) {
                 System.out.println("\nYou have selected " + quantitySelected + " " + itemSelected + "s ");
             } else {
-                buyingPage(transactions);
+                input.close();
+//                buyingPage(transactions);
                 return; 
             }
             confirmationText();
@@ -241,6 +244,7 @@ public class CustomerSystem {
                     confirmationText();
                 }
             }
+            input.close();
         }
 
         public double priceCalculation(){
