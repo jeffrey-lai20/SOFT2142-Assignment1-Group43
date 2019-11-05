@@ -42,7 +42,7 @@ public class CustomerSystemTest {
 	@Test
 	public void itemAvailableTest1() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		customerSystem.itemsAvailable();
 		String test1 = ("Here are our items available: \n" +
@@ -78,7 +78,7 @@ public class CustomerSystemTest {
 	@Test
 	public void itemAvailableTest2() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 
 		ArrayList<Item> items = i.getItems();
@@ -115,7 +115,7 @@ public class CustomerSystemTest {
 	@Test
 	public void enterItemTest1() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Invalid input please try again.\n";
 
@@ -126,7 +126,7 @@ public class CustomerSystemTest {
 	@Test
 	public void enterItemTest2() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Transaction cancelled, have a good day!\n";
 
@@ -137,7 +137,7 @@ public class CustomerSystemTest {
 	@Test
 	public void enterQuantityTest1() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Quantity must be at least 1 and less than availability. Please try again.\n";
 
@@ -148,7 +148,7 @@ public class CustomerSystemTest {
 	@Test
 	public void enterQuantityTest2() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Quantity must be at least 1 and less than availability. Please try again.\n";
 
@@ -159,7 +159,7 @@ public class CustomerSystemTest {
 	@Test
 	public void enterQuantityTest3() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Quantity requested exceeds stock quantity. Please try again.\n";
 
@@ -170,7 +170,7 @@ public class CustomerSystemTest {
 	@Test
 	public void confirmationTest1() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Invalid input please try again.\n";
 
@@ -181,7 +181,7 @@ public class CustomerSystemTest {
 	@Test
 	public void confirmationTest2() {
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Transaction cancelled. Have a good day!\n";
 
@@ -191,7 +191,7 @@ public class CustomerSystemTest {
 	@Test
 	public void confirmationTextTest(){
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem cs = new CustomerSystem(i.getItems());
 		String text = ("Please choose the next action by entering the corresponding number:\n"+
 		"  1. Proceed to checkout.\n"
@@ -205,7 +205,7 @@ public class CustomerSystemTest {
 	@Test
 	public void convertCodeNameTest(){
 		Inventory i = new Inventory();
-		Driver testCustomerSystem = new Driver();
+		VendingMachine testCustomerSystem = new VendingMachine();
 		CustomerSystem cs = new CustomerSystem(i.getItems());
 		assertEquals("Water",cs.convertCodeToName("A1"));
 		assertNotEquals("Water",cs.convertCodeToName("A2"));
@@ -215,7 +215,7 @@ public class CustomerSystemTest {
 //	@Test
 //	public void buyingPageTest(){
 //		Inventory i = new Inventory();
-//		Driver testCustomerSystem = new Driver();
+//		VendingMachine testCustomerSystem = new VendingMachine();
 //		CustomerSystem cs = new CustomerSystem(i.getItems());
 //		String input = "A1" + System.getProperty("line.separator")
 //				+ "cancel" + System.getProperty("line.separator");
