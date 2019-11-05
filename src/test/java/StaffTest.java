@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
@@ -35,20 +36,6 @@ public class StaffTest {
         System.setIn(savedStandardInputStream);
     }
 
-    // @Test
-    // public void loginFail() {
-    //     String input = "staff" + System.getProperty("line.separator")
-    //             + "@staff" + System.getProperty("line.separator") 
-    //             + "" + System.getProperty("line.separator");
-    //     InputStream savedStandardInputStream = System.in;
-    //     System.setIn(new ByteArrayInputStream(input.getBytes()));
-    //     StaffSystem s = new StaffSystem();
-    //     s.loginScreen();
-    //     assertEquals(false, s.staffLoggedIn());
-    //     System.setIn(savedStandardInputStream);
-    // }
-    // aws test
-
     @Test
     public void staffMenuOptionsTest() {
         String expected = ("Select a task :\n"
@@ -59,6 +46,20 @@ public class StaffTest {
                             );
         StaffSystem s = new StaffSystem();
         s.showMenuOptions();
+        assertEquals(expected, testOut.toString());
+    }
+
+    @Test
+    public void showSalesOptionsTest() {
+        String expected = ("\nSelect an option :\n"
+        + "1 : See All Transactions\n"
+        + "2 : See Completed Transactions\n"
+        + "3 : See Cancelled Transactions\n"
+        + "4 : Go Back\n\n");
+
+        Inventory i = new Inventory();
+        StaffSystem s = new StaffSystem();
+        s.showSalesOptions();
         assertEquals(expected, testOut.toString());
     }
     
