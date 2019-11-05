@@ -79,13 +79,13 @@ public class CustomerSystem {
             return item;
         }
 
-        public void takeAwayItem(String item, int quantity){
-            for(Item i : items){
-                if(i.getName().equalsIgnoreCase(item) || i.getCode().equalsIgnoreCase(item)){
-                    i.setQuantity(i.getQuantity()-quantity);
-                }
-            }
-        }
+//        public void takeAwayItem(String item, int quantity){
+//            for(Item i : items){
+//                if(i.getName().equalsIgnoreCase(item) || i.getCode().equalsIgnoreCase(item)){
+//                    i.setQuantity(i.getQuantity()-quantity);
+//                }
+//            }
+//        }
 
         // Checks if quantity entered is valid
         public boolean enterQuantityChecker(int quantity, String itemSelected) {
