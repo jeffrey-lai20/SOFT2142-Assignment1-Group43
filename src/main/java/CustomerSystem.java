@@ -218,6 +218,7 @@ public class CustomerSystem {
                 System.out.println("\nYou have selected " + quantitySelected + " " + itemSelected + "s ");
             } else {
                 buyingPage(transactions);
+                input.close();
                 return; 
             }
             confirmationText();
