@@ -39,4 +39,4 @@ jacocoTestReport {
     }
 }
 apply plugin: 'application'
-mainClassName = 'Driver'
+mainClassName = 'VendingMachine'
