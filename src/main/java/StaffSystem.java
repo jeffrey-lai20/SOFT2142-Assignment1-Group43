@@ -30,6 +30,7 @@ public class StaffSystem {
                 System.out.println("Invalid Username\n");
             }
         }
+        input.close();
     }
 
     public boolean staffLoggedIn() {
@@ -90,7 +91,7 @@ public class StaffSystem {
             }
             salesInput = input.nextLine();
         }
-        
+        input.close();
     }
 
     public void showMenu(Inventory inventory, ArrayList<Transaction> transactions) {
@@ -127,5 +128,6 @@ public class StaffSystem {
             System.out.println("Logout Successfully\n");
             VendingMachine.firstPage();
         }
+        input.close();
     }
 }
