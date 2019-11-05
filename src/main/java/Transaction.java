@@ -86,9 +86,7 @@ public class Transaction {
     private void saveTransaction(String trans){
         this.trans = trans;
     }
-    public String getTrans(){
-        return this.trans;
-    }
+
     public List<Integer> getQuantity() {
         return quantity;
     }
