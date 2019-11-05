@@ -62,7 +62,6 @@ public class Driver {
 
     //Customer interface
     private static void customerPage() {
-        Transaction t = customerSystem.buyingPage();
-        transactions.add(t);
+        customerSystem.buyingPage(transactions);
     }
 }

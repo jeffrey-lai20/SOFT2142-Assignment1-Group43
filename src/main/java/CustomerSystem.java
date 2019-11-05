@@ -69,14 +69,14 @@ public class CustomerSystem {
                 return false;
         }
 
-        public String convertCodeToName(String code) {
-            String name = null;
+        public Item convertCodeToName(String code) {
+            Item item = null;
             for(Item i :items) {
                 if (i.getCode().equalsIgnoreCase(code)) {
-                    name = i.getName();
+                    return i;
                 }
             }
-            return name;
+            return item;
         }
 
         public void takeAwayItem(String item, int quantity){
@@ -115,15 +115,16 @@ public class CustomerSystem {
         }
 
         //checks user input for confirmation stage
-        public boolean confirmation(int quantitySelected, String itemSelected, int answer) {
+        public boolean confirmation(int quantitySelected, String itemSelected, int answer, ArrayList<Transaction> transactions) {
             switch(answer){
                 case 1 :
                     CashSystem cs = new CashSystem();
                     if(cs.cashInput(priceCalculation())){
-                        transaction.complete();
-                        transaction.setChange(cs.getChange());
-                        transaction.setInputtedCash(cs.getInputtedCash());
-                        transaction.printTransaction();
+                        this.transaction.complete();
+                        this.transaction.setChange(cs.getChange());
+                        this.transaction.setInputtedCash(cs.getInputtedCash());
+                        this.transaction.printTransaction();
+                        transactions.add(this.transaction);
                         int i,j;
                         for (i=0;i<items.size();i++) {
                             for (j=0;j<transaction.getItems().size();j++) {
@@ -132,20 +133,22 @@ public class CustomerSystem {
                                 }
                             }
                         }
-                        this.clearCart();
+                        // this.clearCart();
                     }
                     else{
                         return false;
                     }
+                    this.transaction = new Transaction();
                     return true;
 
                 case 2:
 //                    takeAwayItem(itemSelected,quantitySelected);
-                    buyingPage();
+                    buyingPage(transactions);
                     return true;
 
                 case 3:
                     System.out.print("Transaction cancelled. Have a good day!\n");
+                    transactions.add(this.transaction);
                     transaction = new Transaction();
                     return false;
 
@@ -154,7 +157,7 @@ public class CustomerSystem {
                     confirmationText();
                     Scanner input = new Scanner(System.in);
                     int number = Integer.parseInt(input.nextLine());
-                    confirmation(0, null, number);
+                    confirmation(0, null, number, transactions);
                     return true;
 
                 default:
@@ -164,10 +167,11 @@ public class CustomerSystem {
         }
 
         //the loop responsible for select item,quantity and confirmation
-        public Transaction buyingPage(){
+        public void buyingPage(ArrayList<Transaction> transactions){
             itemsAvailable();
             Scanner input = new Scanner(System.in);
             String itemSelected = null;
+            Item item = null;
             int quantitySelected = 0;
             //takes in item and checks if input is correct
             System.out.println("Please make a selection.");
@@ -178,7 +182,8 @@ public class CustomerSystem {
                     itemSelected = input.nextLine();
                 }
                 if (itemSelected.length() == 2) {
-                    itemSelected = convertCodeToName(itemSelected);
+                    item = convertCodeToName(itemSelected);
+                    itemSelected = item.getName();
                 }
             }
 
@@ -189,7 +194,8 @@ public class CustomerSystem {
                     String in = input.nextLine();
                     if (in.equalsIgnoreCase("Cancel")) {
                         System.out.println("Transaction cancelled. Have a good day!");
-                        transaction = new Transaction();
+                        transactions.add(this.transaction);
+                        this.transaction = new Transaction();
                         System.exit(0);
                     }
                     quantitySelected = Integer.parseInt(in);
@@ -210,7 +216,8 @@ public class CustomerSystem {
             } else if (quantitySelected != 0){
                 System.out.println("\nYou have selected " + quantitySelected + " " + itemSelected + "s ");
             } else {
-                return buyingPage();
+                buyingPage(transactions);
+                return; 
             }
             confirmationText();
             for (Item i :items) {
@@ -222,7 +229,7 @@ public class CustomerSystem {
                 try {
                     int answer = Integer.parseInt(input.nextLine());
                     if (answer < 5 && answer > 0) {
-                        confirmation(quantitySelected, itemSelected, answer);
+                        confirmation(quantitySelected, itemSelected, answer, transactions);
                         break;
                     } else {
                         System.out.println("Invalid input. Please try again.\n");
@@ -233,8 +240,8 @@ public class CustomerSystem {
                     confirmationText();
                 }
             }
-            return transaction;
         }
+
         public double priceCalculation(){
             int counter = 0;
             cost =0;

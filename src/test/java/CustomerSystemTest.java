@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -174,7 +175,7 @@ public class CustomerSystemTest {
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Invalid input please try again.\n";
 
-		customerSystem.confirmation(2,"Water",5);
+		customerSystem.confirmation(2,"Water",5, new ArrayList<Transaction>());
 		assertEquals(test1, testOut.toString());
 	}
 
@@ -185,7 +186,7 @@ public class CustomerSystemTest {
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
 		String test1 = "Transaction cancelled. Have a good day!\n";
 
-		customerSystem.confirmation(2,"Water",3);
+		customerSystem.confirmation(2,"Water",3,new ArrayList<Transaction>());
 		assertEquals(test1, testOut.toString());
 	}
 	@Test
@@ -207,9 +208,9 @@ public class CustomerSystemTest {
 		Inventory i = new Inventory();
 		Driver testCustomerSystem = new Driver();
 		CustomerSystem cs = new CustomerSystem(i.getItems());
-		assertEquals("Water",cs.convertCodeToName("A1"));
-		assertNotEquals("Water",cs.convertCodeToName("A2"));
-		assertEquals(null,cs.convertCodeToName("11"));
+		assertEquals("Water",cs.convertCodeToName("A1").getName());
+		assertNotEquals("Water",cs.convertCodeToName("A2").getName());
+		assertNull(cs.convertCodeToName("11"));
 	}
 
 //	@Test
@@ -238,8 +239,8 @@ public class CustomerSystemTest {
 	public void confirmationTest() {
 		Inventory i = new Inventory();
 		CustomerSystem customerSystem = new CustomerSystem(i.getItems());
-		customerSystem.confirmation(5, "this shouldn't work", 5);
-		customerSystem.confirmation(5, "this should work", 3);
+		customerSystem.confirmation(5, "this shouldn't work", 5, new ArrayList<Transaction>());
+		customerSystem.confirmation(5, "this should work", 3, new ArrayList<Transaction>());
 		String expectedOut = "Invalid input please try again.\n" +
 				"Transaction cancelled. Have a good day!\n";
 		assertEquals(expectedOut, testOut.toString());
